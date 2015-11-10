@@ -1,0 +1,132 @@
+//
+//  Account.swift
+//  MonthlyBalance
+//
+//  Created by Thorsten Klusemann on 08.11.15.
+//  Copyright © 2015 Karrmarr Software. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+@objc(Account)
+class Account: NSManagedObject {
+
+  static func create(name: String) -> Account? {
+    let account: Account? = NSEntityDescription.insertNewObjectForEntityForName(kAccountEntity, inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Account
+    if account != nil {
+      account!.name = name
+      account!.balanceTotal = 0.0
+      account!.balanceCurrentMonth = 0.0
+      account!.balanceCurrentYear = 0.0
+      account!.lastUpdated = NSDate()
+      CoreDataManager.sharedManager().saveContext()
+    }
+    return account
+  }
+  
+  static func findByName(name: String) -> [Account] {
+    let request = NSFetchRequest(entityName: kAccountEntity)
+    request.predicate = NSPredicate(format: "name == %@", name)
+    
+    let results = try! CoreDataManager.sharedManager().managedObjectContext.executeFetchRequest(request)
+    return results as! [Account]
+  }
+  
+  func addActivityForDate(date: NSDate, title: String, icon: String, amount: Double) -> Activity? {
+    let activity: Activity? = NSEntityDescription.insertNewObjectForEntityForName("Activity", inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Activity
+    if activity != nil {
+      activity!.date = date
+      activity!.title = title
+      activity!.icon = icon
+      activity!.amount = amount
+      activity!.account = self
+      
+      adjustBalancesForActivity(activity!)
+      
+      self.lastUpdated = NSDate()
+      
+      CoreDataManager.sharedManager().saveContext()
+    }
+    return activity
+  }
+  
+  func addEventWithTitle(title: String, icon: String, recurring: Bool, dayOfMonth: Int, interval: Int,
+    amount: Double) -> ScheduledEvent? {
+    let event: ScheduledEvent? = NSEntityDescription.insertNewObjectForEntityForName("ScheduledEvent", inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? ScheduledEvent
+    if event != nil {
+      event!.recurring = recurring
+      event!.title = title
+      event!.icon = icon
+      event!.dayOfMonth = dayOfMonth
+      event!.interval = interval
+      event!.amount = amount
+      event!.account = self
+      event!.nextDueDate = NSDate().nextDateWithDayOfMonth(dayOfMonth)
+      CoreDataManager.sharedManager().saveContext()
+    }
+    return event
+  }
+  
+  func updateData() {
+    let lastUpdateMonth = self.lastUpdated?.month()
+    let lastUpdateYear = self.lastUpdated?.year()
+    let currentDate = NSDate()
+    let currentMonth = currentDate.month()
+    let currentYear = currentDate.year()
+    
+    // Check if month has changed since last update
+    if currentMonth != lastUpdateMonth || currentYear != lastUpdateYear {
+      // reset currentMonth-balance
+      self.balanceCurrentMonth = 0.0
+    }
+    // Check if year has changed since last update
+    if currentYear != lastUpdateYear {
+      self.balanceCurrentYear = 0.0
+    }
+    
+    // Check if there were any events due since the last update and apply them
+    // to the account
+    if let events = self.scheduledEvents {
+      for event: ScheduledEvent in events.allObjects as! [ScheduledEvent] {
+        if event.due {
+          // apply the event to the account
+          event.applyToAccount()
+          
+          if !(event.recurring as! Bool) {
+            event.delete()
+          }
+        }
+      }
+    }
+    
+    self.lastUpdated = NSDate()
+    CoreDataManager.sharedManager().saveContext()
+  }
+  
+  // MARK: - Private methods
+  
+  private func adjustBalancesForActivity(activity: Activity) {
+    let currentDate = NSDate()
+    let currentMonth = currentDate.month()
+    let currentYear = currentDate.year()
+    let activityMonth = activity.date!.month()
+    let activityYear = activity.date!.year()
+    
+    self.balanceTotal = NSNumber(double: self.balanceTotal!.doubleValue + activity.amount!.doubleValue)
+    if currentMonth == activityMonth && currentYear == activityYear {
+      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue + activity.amount!.doubleValue)
+    }
+    if currentYear == activityYear {
+      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + activity.amount!.doubleValue)
+    }
+  }
+}
+
+
+
+
+
+
+
+

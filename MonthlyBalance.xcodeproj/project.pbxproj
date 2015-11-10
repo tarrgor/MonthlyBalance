@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */; };
+		F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF461BEF460700A6D7EB /* AppDelegate.swift */; };
+		F258EF491BEF460700A6D7EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF481BEF460700A6D7EB /* ViewController.swift */; };
+		F258EF4C1BEF460700A6D7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F258EF4A1BEF460700A6D7EB /* Main.storyboard */; };
+		F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */; };
+		F258EF511BEF460700A6D7EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F258EF501BEF460700A6D7EB /* Assets.xcassets */; };
+		F258EF541BEF460700A6D7EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F258EF521BEF460700A6D7EB /* LaunchScreen.storyboard */; };
+		F258EF6A1BEF460700A6D7EB /* MonthlyBalanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF691BEF460700A6D7EB /* MonthlyBalanceUITests.swift */; };
+		F258EF901BEF54D900A6D7EB /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8A1BEF54D900A6D7EB /* Account+CoreDataProperties.swift */; };
+		F258EF911BEF54D900A6D7EB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8B1BEF54D900A6D7EB /* Account.swift */; };
+		F258EF921BEF54D900A6D7EB /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8C1BEF54D900A6D7EB /* Activity+CoreDataProperties.swift */; };
+		F258EF931BEF54D900A6D7EB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8D1BEF54D900A6D7EB /* Activity.swift */; };
+		F258EF941BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8E1BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift */; };
+		F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8F1BEF54D900A6D7EB /* ScheduledEvent.swift */; };
+		F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */; };
+		F258EF991BEF5E6000A6D7EB /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */; };
+		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F258EF5B1BEF460700A6D7EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F258EF3B1BEF460700A6D7EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F258EF421BEF460700A6D7EB;
+			remoteInfo = MonthlyBalance;
+		};
+		F258EF661BEF460700A6D7EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F258EF3B1BEF460700A6D7EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F258EF421BEF460700A6D7EB;
+			remoteInfo = MonthlyBalance;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
+		F258EF431BEF460700A6D7EB /* MonthlyBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonthlyBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258EF461BEF460700A6D7EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F258EF481BEF460700A6D7EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F258EF4B1BEF460700A6D7EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F258EF4E1BEF460700A6D7EB /* MonthlyBalance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MonthlyBalance.xcdatamodel; sourceTree = "<group>"; };
+		F258EF501BEF460700A6D7EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F258EF531BEF460700A6D7EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F258EF551BEF460700A6D7EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258EF5A1BEF460700A6D7EB /* MonthlyBalanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonthlyBalanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258EF601BEF460700A6D7EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258EF651BEF460700A6D7EB /* MonthlyBalanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonthlyBalanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258EF691BEF460700A6D7EB /* MonthlyBalanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyBalanceUITests.swift; sourceTree = "<group>"; };
+		F258EF6B1BEF460700A6D7EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258EF8A1BEF54D900A6D7EB /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "MonthlyBalance/Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F258EF8B1BEF54D900A6D7EB /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = MonthlyBalance/Account.swift; sourceTree = "<group>"; };
+		F258EF8C1BEF54D900A6D7EB /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Activity+CoreDataProperties.swift"; path = "MonthlyBalance/Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F258EF8D1BEF54D900A6D7EB /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = MonthlyBalance/Activity.swift; sourceTree = "<group>"; };
+		F258EF8E1BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ScheduledEvent+CoreDataProperties.swift"; path = "MonthlyBalance/ScheduledEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F258EF8F1BEF54D900A6D7EB /* ScheduledEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduledEvent.swift; path = MonthlyBalance/ScheduledEvent.swift; sourceTree = "<group>"; };
+		F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		F258EF9A1BEF61D900A6D7EB /* MonthlyBalance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MonthlyBalance-Bridging-Header.h"; path = "MonthlyBalance/MonthlyBalance-Bridging-Header.h"; sourceTree = "<group>"; };
+		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F258EF401BEF460700A6D7EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF571BEF460700A6D7EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF621BEF460700A6D7EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F207F27B1BEFB9AF00143FD6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F258EF3A1BEF460700A6D7EB = {
+			isa = PBXGroup;
+			children = (
+				F258EF9A1BEF61D900A6D7EB /* MonthlyBalance-Bridging-Header.h */,
+				F258EF8A1BEF54D900A6D7EB /* Account+CoreDataProperties.swift */,
+				F258EF8B1BEF54D900A6D7EB /* Account.swift */,
+				F258EF8C1BEF54D900A6D7EB /* Activity+CoreDataProperties.swift */,
+				F258EF8D1BEF54D900A6D7EB /* Activity.swift */,
+				F258EF8E1BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift */,
+				F258EF8F1BEF54D900A6D7EB /* ScheduledEvent.swift */,
+				F258EF451BEF460700A6D7EB /* MonthlyBalance */,
+				F258EF5D1BEF460700A6D7EB /* MonthlyBalanceTests */,
+				F258EF681BEF460700A6D7EB /* MonthlyBalanceUITests */,
+				F258EF441BEF460700A6D7EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F258EF441BEF460700A6D7EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F258EF431BEF460700A6D7EB /* MonthlyBalance.app */,
+				F258EF5A1BEF460700A6D7EB /* MonthlyBalanceTests.xctest */,
+				F258EF651BEF460700A6D7EB /* MonthlyBalanceUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F258EF451BEF460700A6D7EB /* MonthlyBalance */ = {
+			isa = PBXGroup;
+			children = (
+				F207F27B1BEFB9AF00143FD6 /* Extensions */,
+				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
+				F258EF481BEF460700A6D7EB /* ViewController.swift */,
+				F258EF4A1BEF460700A6D7EB /* Main.storyboard */,
+				F258EF501BEF460700A6D7EB /* Assets.xcassets */,
+				F258EF521BEF460700A6D7EB /* LaunchScreen.storyboard */,
+				F258EF551BEF460700A6D7EB /* Info.plist */,
+				F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */,
+				F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */,
+			);
+			path = MonthlyBalance;
+			sourceTree = "<group>";
+		};
+		F258EF5D1BEF460700A6D7EB /* MonthlyBalanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				F258EF601BEF460700A6D7EB /* Info.plist */,
+				F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */,
+				F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */,
+			);
+			path = MonthlyBalanceTests;
+			sourceTree = "<group>";
+		};
+		F258EF681BEF460700A6D7EB /* MonthlyBalanceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F258EF691BEF460700A6D7EB /* MonthlyBalanceUITests.swift */,
+				F258EF6B1BEF460700A6D7EB /* Info.plist */,
+			);
+			path = MonthlyBalanceUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F258EF421BEF460700A6D7EB /* MonthlyBalance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258EF6E1BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalance" */;
+			buildPhases = (
+				F258EF3F1BEF460700A6D7EB /* Sources */,
+				F258EF401BEF460700A6D7EB /* Frameworks */,
+				F258EF411BEF460700A6D7EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MonthlyBalance;
+			productName = MonthlyBalance;
+			productReference = F258EF431BEF460700A6D7EB /* MonthlyBalance.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F258EF591BEF460700A6D7EB /* MonthlyBalanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258EF711BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalanceTests" */;
+			buildPhases = (
+				F258EF561BEF460700A6D7EB /* Sources */,
+				F258EF571BEF460700A6D7EB /* Frameworks */,
+				F258EF581BEF460700A6D7EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F258EF5C1BEF460700A6D7EB /* PBXTargetDependency */,
+			);
+			name = MonthlyBalanceTests;
+			productName = MonthlyBalanceTests;
+			productReference = F258EF5A1BEF460700A6D7EB /* MonthlyBalanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F258EF641BEF460700A6D7EB /* MonthlyBalanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258EF741BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalanceUITests" */;
+			buildPhases = (
+				F258EF611BEF460700A6D7EB /* Sources */,
+				F258EF621BEF460700A6D7EB /* Frameworks */,
+				F258EF631BEF460700A6D7EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F258EF671BEF460700A6D7EB /* PBXTargetDependency */,
+			);
+			name = MonthlyBalanceUITests;
+			productName = MonthlyBalanceUITests;
+			productReference = F258EF651BEF460700A6D7EB /* MonthlyBalanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F258EF3B1BEF460700A6D7EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Karrmarr Software";
+				TargetAttributes = {
+					F258EF421BEF460700A6D7EB = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					F258EF591BEF460700A6D7EB = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = F258EF421BEF460700A6D7EB;
+					};
+					F258EF641BEF460700A6D7EB = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = F258EF421BEF460700A6D7EB;
+					};
+				};
+			};
+			buildConfigurationList = F258EF3E1BEF460700A6D7EB /* Build configuration list for PBXProject "MonthlyBalance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F258EF3A1BEF460700A6D7EB;
+			productRefGroup = F258EF441BEF460700A6D7EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F258EF421BEF460700A6D7EB /* MonthlyBalance */,
+				F258EF591BEF460700A6D7EB /* MonthlyBalanceTests */,
+				F258EF641BEF460700A6D7EB /* MonthlyBalanceUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F258EF411BEF460700A6D7EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258EF541BEF460700A6D7EB /* LaunchScreen.storyboard in Resources */,
+				F258EF511BEF460700A6D7EB /* Assets.xcassets in Resources */,
+				F258EF4C1BEF460700A6D7EB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF581BEF460700A6D7EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF631BEF460700A6D7EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F258EF3F1BEF460700A6D7EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258EF941BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift in Sources */,
+				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
+				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
+				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
+				F258EF931BEF54D900A6D7EB /* Activity.swift in Sources */,
+				F258EF921BEF54D900A6D7EB /* Activity+CoreDataProperties.swift in Sources */,
+				F258EF491BEF460700A6D7EB /* ViewController.swift in Sources */,
+				F258EF901BEF54D900A6D7EB /* Account+CoreDataProperties.swift in Sources */,
+				F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */,
+				F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */,
+				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF561BEF460700A6D7EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */,
+				F258EF991BEF5E6000A6D7EB /* CoreDataManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258EF611BEF460700A6D7EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258EF6A1BEF460700A6D7EB /* MonthlyBalanceUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F258EF5C1BEF460700A6D7EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F258EF421BEF460700A6D7EB /* MonthlyBalance */;
+			targetProxy = F258EF5B1BEF460700A6D7EB /* PBXContainerItemProxy */;
+		};
+		F258EF671BEF460700A6D7EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F258EF421BEF460700A6D7EB /* MonthlyBalance */;
+			targetProxy = F258EF661BEF460700A6D7EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F258EF4A1BEF460700A6D7EB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F258EF4B1BEF460700A6D7EB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F258EF521BEF460700A6D7EB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F258EF531BEF460700A6D7EB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F258EF6C1BEF460700A6D7EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F258EF6D1BEF460700A6D7EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F258EF6F1BEF460700A6D7EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = MonthlyBalance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F258EF701BEF460700A6D7EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = MonthlyBalance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		F258EF721BEF460700A6D7EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = MonthlyBalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonthlyBalance.app/MonthlyBalance";
+			};
+			name = Debug;
+		};
+		F258EF731BEF460700A6D7EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = MonthlyBalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonthlyBalance.app/MonthlyBalance";
+			};
+			name = Release;
+		};
+		F258EF751BEF460700A6D7EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MonthlyBalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MonthlyBalance;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		F258EF761BEF460700A6D7EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MonthlyBalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MonthlyBalance;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F258EF3E1BEF460700A6D7EB /* Build configuration list for PBXProject "MonthlyBalance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258EF6C1BEF460700A6D7EB /* Debug */,
+				F258EF6D1BEF460700A6D7EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258EF6E1BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258EF6F1BEF460700A6D7EB /* Debug */,
+				F258EF701BEF460700A6D7EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258EF711BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258EF721BEF460700A6D7EB /* Debug */,
+				F258EF731BEF460700A6D7EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258EF741BEF460700A6D7EB /* Build configuration list for PBXNativeTarget "MonthlyBalanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258EF751BEF460700A6D7EB /* Debug */,
+				F258EF761BEF460700A6D7EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F258EF4E1BEF460700A6D7EB /* MonthlyBalance.xcdatamodel */,
+			);
+			currentVersion = F258EF4E1BEF460700A6D7EB /* MonthlyBalance.xcdatamodel */;
+			path = MonthlyBalance.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F258EF3B1BEF460700A6D7EB /* Project object */;
+}
