@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */; };
 		F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF461BEF460700A6D7EB /* AppDelegate.swift */; };
-		F258EF491BEF460700A6D7EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF481BEF460700A6D7EB /* ViewController.swift */; };
+		F258EF491BEF460700A6D7EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF481BEF460700A6D7EB /* HomeViewController.swift */; };
 		F258EF4C1BEF460700A6D7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F258EF4A1BEF460700A6D7EB /* Main.storyboard */; };
 		F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */; };
 		F258EF511BEF460700A6D7EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F258EF501BEF460700A6D7EB /* Assets.xcassets */; };
@@ -24,6 +24,10 @@
 		F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */; };
 		F258EF991BEF5E6000A6D7EB /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */; };
 		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
+		F2E19AB51BF781D200EEC70D /* BalanceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */; };
+		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
+		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
+		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +51,7 @@
 		F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		F258EF431BEF460700A6D7EB /* MonthlyBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonthlyBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258EF461BEF460700A6D7EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F258EF481BEF460700A6D7EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F258EF481BEF460700A6D7EB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F258EF4B1BEF460700A6D7EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F258EF4E1BEF460700A6D7EB /* MonthlyBalance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MonthlyBalance.xcdatamodel; sourceTree = "<group>"; };
 		F258EF501BEF460700A6D7EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +72,10 @@
 		F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		F258EF9A1BEF61D900A6D7EB /* MonthlyBalance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MonthlyBalance-Bridging-Header.h"; path = "MonthlyBalance/MonthlyBalance-Bridging-Header.h"; sourceTree = "<group>"; };
 		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
+		F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoViewController.swift; sourceTree = "<group>"; };
+		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */,
+				F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */,
+				F2E19AB81BF7925F00EEC70D /* StringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -135,13 +145,15 @@
 			children = (
 				F207F27B1BEFB9AF00143FD6 /* Extensions */,
 				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
-				F258EF481BEF460700A6D7EB /* ViewController.swift */,
+				F258EF481BEF460700A6D7EB /* HomeViewController.swift */,
 				F258EF4A1BEF460700A6D7EB /* Main.storyboard */,
 				F258EF501BEF460700A6D7EB /* Assets.xcassets */,
 				F258EF521BEF460700A6D7EB /* LaunchScreen.storyboard */,
 				F258EF551BEF460700A6D7EB /* Info.plist */,
 				F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */,
 				F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */,
+				F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */,
+				F2E19ABA1BF794D100EEC70D /* Constants.swift */,
 			);
 			path = MonthlyBalance;
 			sourceTree = "<group>";
@@ -301,12 +313,16 @@
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
 				F258EF931BEF54D900A6D7EB /* Activity.swift in Sources */,
+				F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */,
 				F258EF921BEF54D900A6D7EB /* Activity+CoreDataProperties.swift in Sources */,
-				F258EF491BEF460700A6D7EB /* ViewController.swift in Sources */,
+				F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */,
+				F258EF491BEF460700A6D7EB /* HomeViewController.swift in Sources */,
+				F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */,
 				F258EF901BEF54D900A6D7EB /* Account+CoreDataProperties.swift in Sources */,
 				F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */,
 				F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */,
 				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
+				F2E19AB51BF781D200EEC70D /* BalanceInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
