@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Monthly Balance-->
@@ -16,14 +18,40 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3B-GA-SLE">
+                                <rect key="frame" x="20" y="8" width="560" height="107"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLA-hc-UmF">
+                                <rect key="frame" x="0.0" y="115" width="600" height="421"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="YLA-hc-UmF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="15a-a8-vpe"/>
+                            <constraint firstItem="r3B-GA-SLE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="BNF-GT-PxQ"/>
+                            <constraint firstItem="r3B-GA-SLE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="RTb-SP-wIR"/>
+                            <constraint firstItem="r3B-GA-SLE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZVS-mP-Pc8"/>
+                            <constraint firstItem="r3B-GA-SLE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="20:100" id="gv7-HI-Hv7"/>
+                            <constraint firstItem="YLA-hc-UmF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="kWc-Jk-2LW"/>
+                            <constraint firstItem="YLA-hc-UmF" firstAttribute="top" secondItem="r3B-GA-SLE" secondAttribute="bottom" id="lh2-7M-ns2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YLA-hc-UmF" secondAttribute="bottom" id="zuM-sh-s7G"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Monthly Balance" id="NSs-Uq-NIh">
-                        <barButtonItem key="leftBarButtonItem" image="MenuIcon" style="plain" id="CFd-po-4HH">
+                        <barButtonItem key="leftBarButtonItem" image="MenuIcon" id="CFd-po-4HH">
                             <color key="tintColor" red="0.98819906290000004" green="1" blue="0.98901612039999998" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="balanceInfoContainerView" destination="r3B-GA-SLE" id="Vbe-4t-JfH"/>
+                        <outlet property="gradientBackgroundView" destination="YLA-hc-UmF" id="fp9-Tj-WjP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

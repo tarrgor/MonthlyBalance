@@ -14,4 +14,7 @@ let kBaseBackgroundColor = "#324EFF"
 let kBalanceAmountTextColor = "#1FF801"
 let kMainFontName = "HelveticaNeue-Light"
 
+// Gradient background layer
+let kGradientBackgroundColor1 = "#478EFF"
+let kGradientBackgroundColor2 = "#324EFF"
 
