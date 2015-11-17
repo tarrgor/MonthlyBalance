@@ -26,8 +26,90 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLA-hc-UmF">
                                 <rect key="frame" x="0.0" y="115" width="600" height="421"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vbg-2y-Bju">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="252.5"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="separatorColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="sectionIndexColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <color key="sectionIndexTrackingBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCell" rowHeight="60" id="9cK-0N-SIt" customClass="ActivityTableViewCell" customModule="MonthlyBalance" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9cK-0N-SIt" id="hKE-Dr-yQT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjC-cA-bDf">
+                                                            <rect key="frame" x="69" y="8" width="35.5" height="24"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7X-e9-2Ao">
+                                                            <rect key="frame" x="69" y="33" width="34.5" height="16.5"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39.99 €" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-m6-SGy">
+                                                            <rect key="frame" x="507.5" y="15" width="73.5" height="26"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJ9-Y3-9JS">
+                                                            <rect key="frame" x="16" y="9" width="40" height="40"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="61p-oV-ex8"/>
+                                                                <constraint firstAttribute="width" constant="40" id="l8d-qA-7Sl"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="mjC-cA-bDf" firstAttribute="leading" secondItem="fJ9-Y3-9JS" secondAttribute="trailing" constant="13" id="N1n-In-Mi4"/>
+                                                        <constraint firstItem="K7X-e9-2Ao" firstAttribute="top" secondItem="mjC-cA-bDf" secondAttribute="bottom" constant="1" id="XUf-MC-YDF"/>
+                                                        <constraint firstItem="mjC-cA-bDf" firstAttribute="top" secondItem="hKE-Dr-yQT" secondAttribute="topMargin" id="Yuw-Ud-CqJ"/>
+                                                        <constraint firstItem="fJ9-Y3-9JS" firstAttribute="leading" secondItem="hKE-Dr-yQT" secondAttribute="leadingMargin" constant="8" id="ZVY-G0-dUZ"/>
+                                                        <constraint firstItem="fJ9-Y3-9JS" firstAttribute="top" secondItem="hKE-Dr-yQT" secondAttribute="topMargin" constant="1" id="ceU-he-OUp"/>
+                                                        <constraint firstItem="K7X-e9-2Ao" firstAttribute="leading" secondItem="mjC-cA-bDf" secondAttribute="leading" id="gp9-AC-hlw"/>
+                                                        <constraint firstItem="LgU-m6-SGy" firstAttribute="top" secondItem="hKE-Dr-yQT" secondAttribute="topMargin" constant="7" id="joJ-51-tqe"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="LgU-m6-SGy" secondAttribute="trailing" constant="11" id="nwC-ND-iqJ"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="amountLabel" destination="LgU-m6-SGy" id="gP8-8a-G7d"/>
+                                                    <outlet property="iconImageView" destination="fJ9-Y3-9JS" id="Dof-OC-rz4"/>
+                                                    <outlet property="timeLabel" destination="K7X-e9-2Ao" id="OMC-yP-Ggg"/>
+                                                    <outlet property="titleLabel" destination="mjC-cA-bDf" id="PgC-C2-dAR"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="71a-bB-hux"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ldl-cF-l61"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vbg-2y-Bju" secondAttribute="trailing" id="2gW-pe-Ll3"/>
+                                    <constraint firstItem="vbg-2y-Bju" firstAttribute="height" secondItem="YLA-hc-UmF" secondAttribute="height" multiplier="60:100" id="IFO-1O-5Br"/>
+                                    <constraint firstItem="vbg-2y-Bju" firstAttribute="leading" secondItem="YLA-hc-UmF" secondAttribute="leading" id="lDS-Ws-k0b"/>
+                                    <constraint firstItem="vbg-2y-Bju" firstAttribute="top" secondItem="YLA-hc-UmF" secondAttribute="top" id="on1-Gy-FTp"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <animations/>

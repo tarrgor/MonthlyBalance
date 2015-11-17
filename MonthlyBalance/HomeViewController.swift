@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     let layer = self.gradientBackgroundView.layer
     self.gradientLayer = gradientBackgroundLayer(layer.frame.size)
     layer.addSublayer(self.gradientLayer)
-    
+
     // initialize Page View Controller
     initializePageViewController()
   }
@@ -98,7 +98,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     index++
     return self.balanceInfoViewControllerAtIndex(index)
   }
-  
+    
   // MARK: - Private methods
   
   private func initializePageViewController() {
@@ -128,7 +128,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     let layer = CAGradientLayer()
     layer.colors = colors
     layer.locations = locations
-    
+    layer.zPosition = -1
     layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     
     return layer
