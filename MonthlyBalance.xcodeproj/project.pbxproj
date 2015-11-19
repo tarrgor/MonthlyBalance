@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */; };
+		F216E4BB1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */; };
 		F22AC1051BFBA752004A212B /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AC1041BFBA752004A212B /* ActivityTableViewCell.swift */; };
 		F22AC1071BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */; };
 		F24AD85B1BFA580B00083DDB /* BalanceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24AD85A1BFA580B00083DDB /* BalanceInfoView.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
+		F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerPageViewExtension.swift; sourceTree = "<group>"; };
 		F22AC1041BFBA752004A212B /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTableViewExtension.swift; sourceTree = "<group>"; };
 		F24AD85A1BFA580B00083DDB /* BalanceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				F207F27B1BEFB9AF00143FD6 /* Extensions */,
 				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
 				F258EF481BEF460700A6D7EB /* HomeViewController.swift */,
+				F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */,
 				F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */,
 				F258EF4A1BEF460700A6D7EB /* Main.storyboard */,
 				F258EF501BEF460700A6D7EB /* Assets.xcassets */,
@@ -334,6 +337,7 @@
 				F24AD85B1BFA580B00083DDB /* BalanceInfoView.swift in Sources */,
 				F22AC1071BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift in Sources */,
 				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
+				F216E4BB1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift in Sources */,
 				F2E19AB51BF781D200EEC70D /* BalanceInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
