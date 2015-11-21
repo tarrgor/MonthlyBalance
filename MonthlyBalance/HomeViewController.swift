@@ -14,6 +14,10 @@ class HomeViewController: UIViewController {
   
   @IBOutlet weak var gradientBackgroundView: UIView!
   
+  @IBOutlet weak var incomeButton: UIButton!
+  
+  @IBOutlet weak var expenditureButton: UIButton!
+  
   var balancePageViewController: UIPageViewController!
   var gradientLayer: CAGradientLayer!
   
@@ -42,6 +46,42 @@ class HomeViewController: UIViewController {
     self.gradientLayer.frame = self.gradientBackgroundView.layer.bounds
     
     super.updateViewConstraints()
+  }
+
+  @IBAction func incomeButtonTouchDown(sender: UIButton) {
+    sender.backgroundColor = UIColor(hex: "#97BDFF")
+  }
+  
+  @IBAction func expenditureButtonTouchDown(sender: UIButton) {
+    sender.backgroundColor = UIColor(hex: "#97BDFF")
+  }
+  
+  @IBAction func incomeButtonPressed(sender: UIButton) {
+    incomeButton.enabled = false
+    expenditureButton.enabled = false
+    
+    let amountPadViewController = AmountPadViewController()
+    self.addChildViewController(amountPadViewController)
+    self.view.addSubview(amountPadViewController.view)
+    
+    let amountPadHeight = self.view.bounds.size.height * 0.75;
+    amountPadViewController.view.frame = CGRect(x: 0, y: self.view.bounds.size.height + 100, width: self.view.bounds.size.width, height: amountPadHeight)
+    
+    let maskLayer = CAShapeLayer()
+    let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: amountPadViewController.view.bounds.size.height - self.incomeButton.bounds.size.height - 3))
+    maskLayer.path = path.CGPath
+    
+    amountPadViewController.view.layer.mask = maskLayer
+    
+    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 10, options: [], animations: {
+      let ypos = self.view.bounds.size.height - amountPadViewController.view.bounds.size.height
+      amountPadViewController.view.frame.origin = CGPoint(x: 0, y: ypos)
+    }, completion: nil)
+  }
+
+  @IBAction func expenditureButtonPressed(sender: UIButton) {
+    incomeButton.enabled = false
+    expenditureButton.enabled = false
   }
   
   // MARK: - Private methods

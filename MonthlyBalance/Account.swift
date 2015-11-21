@@ -12,6 +12,15 @@ import CoreData
 @objc(Account)
 class Account: NSManagedObject {
 
+  var sortedActivitiesByTitle: [Activity] {
+    guard let activities = self.activities else { return [] }
+    
+    let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+    let sortDescriptors = [ sortDescriptor ]
+    
+    return activities.sortedArrayUsingDescriptors(sortDescriptors) as! [Activity]
+  }
+  
   static func create(name: String) -> Account? {
     let account: Account? = NSEntityDescription.insertNewObjectForEntityForName(kAccountEntity, inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Account
     if account != nil {

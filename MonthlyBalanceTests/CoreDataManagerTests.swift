@@ -165,6 +165,27 @@ class CoreDataManagerTests: XCTestCase {
     XCTAssert(acct!.scheduledEvents?.count == 1)
   }
   
+  func testSortActivities() {
+    let acct = Account.create("TestAccount")
+    
+    XCTAssertNotNil(acct)
+    
+    acct!.addActivityForDate(NSDate(), title: "UUU", icon: "", amount: 99.0)
+    acct!.addActivityForDate(NSDate(), title: "RRR", icon: "", amount: 99.0)
+    acct!.addActivityForDate(NSDate(), title: "AAA", icon: "", amount: 99.0)
+    acct!.addActivityForDate(NSDate(), title: "JJJ", icon: "", amount: 99.0)
+    acct!.addActivityForDate(NSDate(), title: "BBB", icon: "", amount: 99.0)
+    acct!.addActivityForDate(NSDate(), title: "MMM", icon: "", amount: 99.0)
+    
+    let verifyAcct = Account.findByName("TestAccount")[0]
+    
+    XCTAssertNotNil(verifyAcct)
+    
+    for act: Activity in verifyAcct.sortedActivitiesByTitle {
+      print(act.title)
+    }
+  }
+  
   private func fakeOlderAccount(account: Account, olderDate: NSDate) {
     account.addActivityForDate(olderDate, title: "Test1", icon: "Default", amount: -30.0)
     account.addActivityForDate(olderDate, title: "Test2", icon: "Default", amount: 145.0)

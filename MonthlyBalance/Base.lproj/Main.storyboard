@@ -109,18 +109,29 @@
                                             <constraint firstAttribute="height" constant="45" id="CaG-b1-Dwc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Income">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="incomeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OUA-YQ-sss"/>
+                                            <action selector="incomeButtonTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Jph-OD-E0O"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-Kx-TfI" userLabel="Right Button">
                                         <rect key="frame" x="300.5" y="376" width="299.5" height="45"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.27450980392156865" green="0.54117647058823526" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Expenditure">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="expenditureButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fva-rp-l03"/>
+                                            <action selector="expenditureButtonTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="nE2-x5-7Hp"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="w4q-QC-hex" userLabel="Button center line">
                                         <rect key="frame" x="299.5" y="376" width="1" height="45"/>
@@ -204,7 +215,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="balanceInfoContainerView" destination="r3B-GA-SLE" id="Vbe-4t-JfH"/>
+                        <outlet property="expenditureButton" destination="Nhw-Kx-TfI" id="dJk-yG-dFA"/>
                         <outlet property="gradientBackgroundView" destination="YLA-hc-UmF" id="fp9-Tj-WjP"/>
+                        <outlet property="incomeButton" destination="sXa-pb-M0t" id="cz7-wO-GXQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
