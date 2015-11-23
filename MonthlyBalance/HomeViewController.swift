@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
   
   var balancePageViewController: UIPageViewController!
   var gradientLayer: CAGradientLayer!
+  var amountPadViewController: AmountPadViewController!
   
   // Page info for BalanceInfoViewControllers
   let balanceTitles = [ "Total balance", "Current month", "Current year" ]
@@ -45,6 +46,8 @@ class HomeViewController: UIViewController {
   override func updateViewConstraints() {
     self.gradientLayer.frame = self.gradientBackgroundView.layer.bounds
     
+    // Relocate number pad 
+    
     super.updateViewConstraints()
   }
 
@@ -60,7 +63,22 @@ class HomeViewController: UIViewController {
     incomeButton.enabled = false
     expenditureButton.enabled = false
     
+    openAmountPad(.Income)
+  }
+
+  @IBAction func expenditureButtonPressed(sender: UIButton) {
+    incomeButton.enabled = false
+    expenditureButton.enabled = false
+
+    openAmountPad(.Expenditure)
+  }
+  
+  // MARK: - Private methods
+  
+  private func openAmountPad(mode: AmountPadMode) {
     let amountPadViewController = AmountPadViewController()
+    amountPadViewController.delegate = self
+    amountPadViewController.mode = mode
     self.addChildViewController(amountPadViewController)
     self.view.addSubview(amountPadViewController.view)
     
@@ -73,19 +91,12 @@ class HomeViewController: UIViewController {
     
     amountPadViewController.view.layer.mask = maskLayer
     
-    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 10, options: [], animations: {
+    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
       let ypos = self.view.bounds.size.height - amountPadViewController.view.bounds.size.height
       amountPadViewController.view.frame.origin = CGPoint(x: 0, y: ypos)
-    }, completion: nil)
+      }, completion: nil)
   }
-
-  @IBAction func expenditureButtonPressed(sender: UIButton) {
-    incomeButton.enabled = false
-    expenditureButton.enabled = false
-  }
-  
-  // MARK: - Private methods
-    
+ 
   private func gradientBackgroundLayer(size: CGSize) -> CAGradientLayer {
     let colors = [ UIColor(hex: kGradientBackgroundColor1).CGColor, UIColor(hex: kGradientBackgroundColor2).CGColor ]
     let locations = [ 0.0, 1.0 ]

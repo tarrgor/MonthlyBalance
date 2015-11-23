@@ -8,9 +8,21 @@
 
 import UIKit
 
+enum AmountPadMode {
+  case Income, Expenditure
+}
+
 class AmountPadViewController : UIViewController {
   
-  var amountLabel: UILabel!
+  var amount: Int = 0
+  var digits: Int = 0
+  
+  var mode: AmountPadMode?
+  
+  var delegate: AmountPadDelegate? = nil
+  
+  private var _decimalMode = false
+  private var _currentDigit = 1
   
   // MARK: - Initialization
   
@@ -18,29 +30,73 @@ class AmountPadViewController : UIViewController {
     let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
     self.view = AmountPadView(effect: blurEffect)
     
-    self.view.backgroundColor = UIColor.clearColor()
-    self.view.layer.cornerRadius = 30
-    
-    self.view.clipsToBounds = true
-    
-    // AmountLabel
-    let font = UIFont(name: kMainFontName, size: 48)
-    
-    self.amountLabel = UILabel(frame: CGRectZero)
-    self.amountLabel.text = "0"
-    self.amountLabel.font = font
-    self.amountLabel.sizeToFit()
-    self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
-    
-    self.view.addSubview(self.amountLabel)
-    
-    setupConstraints()
+    setupActions()
+  }
+
+  // MARK: - Actions
+  
+  func okPressed(sender: UIButton) {
+    self.delegate?.amountPadDidPressOk(self)
   }
   
-  // MARK: - Autolayout
-  
-  func setupConstraints() {
-    self.view.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 37))
-    self.view.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self.view, attribute: .Trailing, multiplier: 1, constant: -22))
+  func cancelPressed(sender: UIButton) {
+    self.amount = 0
+    self.digits = 0
+    
+    self.delegate?.amountPadDidPressCancel(self)
   }
+  
+  func numberPressed(sender: UIButton) {
+    if sender.tag >= 1 && sender.tag <= 10 {
+      let number = sender.tag < 10 ? sender.tag : 0
+      if (_decimalMode) {
+        if (_currentDigit == 1) {
+          self.digits = number * 10
+          _currentDigit = 2
+        } else {
+          self.digits += number
+          _currentDigit = 1
+        }
+      } else {
+        self.amount = self.amount * 10 + number
+      }
+      updateAmountDisplay()
+    }
+  }
+  
+  func commaPressed(sender: UIButton) {
+    if !self._decimalMode {
+      _decimalMode = true
+      updateAmountDisplay()
+    }
+  }
+  
+  // MARK: - Private methods
+  
+  private func updateAmountDisplay() {
+    let amountPadView = self.view as! AmountPadView
+    
+    var amountString = String(self.amount)
+    if self.digits > 0 {
+      amountString.appendContentsOf("." + String(self.digits))
+    } else if _decimalMode {
+      amountString.appendContentsOf(".")
+    }
+    amountString.appendContentsOf(" €")
+    amountPadView.amountLabel.text = amountString
+  }
+  
+  private func setupActions() {
+    let amountPadView = self.view as! AmountPadView
+    
+    amountPadView.okButton.addTarget(self, action: "okPressed:", forControlEvents: .TouchUpInside)
+    amountPadView.cancelButton.addTarget(self, action: "cancelPressed:", forControlEvents: .TouchUpInside)
+    
+    for numericButton in amountPadView.numericButtons {
+      numericButton?.addTarget(self, action: "numberPressed:", forControlEvents: .TouchUpInside)
+    }
+    
+    amountPadView.commaButton.addTarget(self, action: "commaPressed:", forControlEvents: .TouchUpInside)
+  }
+
 }

@@ -44,7 +44,7 @@ class BalanceInfoView : UIView {
     self.amountLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.amountLabel.textColor = UIColor(hex: kBalanceAmountTextColor)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
-    self.amountLabel.text = "952,00 €"
+    self.amountLabel.text = "952.00 €"
     self.amountLabel.textAlignment = .Center
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
     self.amountLabel.sizeToFit()
