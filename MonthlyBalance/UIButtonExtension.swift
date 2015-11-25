@@ -66,4 +66,15 @@ extension UIButton {
     
     return button
   }
+
+  static func menuItemButton(title: String) -> UIButton {
+    let button = UIButton(type: .System)
+    button.titleLabel?.font = UIFont(name: kMenuFontName, size: 20)
+    button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    button.setTitle(title, forState: .Normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.sizeToFit()
+
+    return button
+  }
 }

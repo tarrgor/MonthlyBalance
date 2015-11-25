@@ -211,6 +211,9 @@
                     <navigationItem key="navigationItem" title="Monthly Balance" id="NSs-Uq-NIh">
                         <barButtonItem key="leftBarButtonItem" image="MenuIcon" id="CFd-po-4HH">
                             <color key="tintColor" red="0.98819906290000004" green="1" blue="0.98901612039999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="mainMenuButtonPressed:" destination="BYZ-38-t0r" id="q0T-Bv-l8r"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

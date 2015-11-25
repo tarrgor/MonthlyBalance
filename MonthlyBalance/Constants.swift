@@ -12,7 +12,9 @@ import Foundation
 
 let kBaseBackgroundColor = "#324EFF"
 let kBalanceAmountTextColor = "#1FF801"
+
 let kMainFontName = "HelveticaNeue-Light"
+let kMenuFontName = "HelveticaNeue"
 
 // Gradient background layer
 let kGradientBackgroundColor1 = "#478EFF"

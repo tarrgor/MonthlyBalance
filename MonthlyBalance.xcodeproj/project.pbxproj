@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F2056DC51C03A5F800558AB5 /* AmountPadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2056DC41C03A5F800558AB5 /* AmountPadDelegate.swift */; };
-		F2056DC71C03A69B00558AB5 /* HomeViewControllerAmountPadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2056DC61C03A69B00558AB5 /* HomeViewControllerAmountPadExtension.swift */; };
+		741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194987C5C4AD2CBF53391B /* AmountPadView.swift */; };
+		7419452C8E54A7955922E45C /* HomeViewControllerAmountPadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194D350D357B7F121AD434 /* HomeViewControllerAmountPadExtension.swift */; };
+		7419454C62391038DA5BEE70 /* AmountPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */; };
+		74194583D794DE86EF2E83ED /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194475024D7D72BA468593 /* MainMenuView.swift */; };
+		741945E7EA10F0A5F3097818 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */; };
+		741946CD518B172455551BA0 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194826134CBD7435F04ADA /* MainMenuViewController.swift */; };
+		74194A39E881DDB20697D55F /* HomeViewControllerTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741948EBC9EC61A43818EF04 /* HomeViewControllerTableViewExtension.swift */; };
+		74194BD9D1AF0DD8AE408ED2 /* BalanceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */; };
+		74194BE4E5DFA5CC7982EFC5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741946F21E2835E93CE95383 /* HomeViewController.swift */; };
+		74194CC9C2FCB1B41895D270 /* BalanceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */; };
+		74194E4C1ED62F2600A8E50B /* HomeViewControllerPageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419499FBBB53D2D89CD0CCD /* HomeViewControllerPageViewExtension.swift */; };
+		74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */; };
 		F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */; };
-		F216E4BB1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */; };
-		F22AC1051BFBA752004A212B /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AC1041BFBA752004A212B /* ActivityTableViewCell.swift */; };
-		F22AC1071BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */; };
-		F24AD85B1BFA580B00083DDB /* BalanceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24AD85A1BFA580B00083DDB /* BalanceInfoView.swift */; };
 		F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF461BEF460700A6D7EB /* AppDelegate.swift */; };
-		F258EF491BEF460700A6D7EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF481BEF460700A6D7EB /* HomeViewController.swift */; };
 		F258EF4C1BEF460700A6D7EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F258EF4A1BEF460700A6D7EB /* Main.storyboard */; };
 		F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */; };
 		F258EF511BEF460700A6D7EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F258EF501BEF460700A6D7EB /* Assets.xcassets */; };
@@ -31,9 +36,6 @@
 		F258EF991BEF5E6000A6D7EB /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */; };
 		F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */; };
 		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
-		F2B5BD4B1BFF9E4300AAB868 /* AmountPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B5BD4A1BFF9E4300AAB868 /* AmountPadViewController.swift */; };
-		F2B5BD4D1BFF9ECA00AAB868 /* AmountPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B5BD4C1BFF9ECA00AAB868 /* AmountPadView.swift */; };
-		F2E19AB51BF781D200EEC70D /* BalanceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */; };
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
@@ -57,16 +59,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F2056DC41C03A5F800558AB5 /* AmountPadDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadDelegate.swift; sourceTree = "<group>"; };
-		F2056DC61C03A69B00558AB5 /* HomeViewControllerAmountPadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerAmountPadExtension.swift; sourceTree = "<group>"; };
+		7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadDelegate.swift; sourceTree = "<group>"; };
+		74194475024D7D72BA468593 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoViewController.swift; sourceTree = "<group>"; };
+		741946F21E2835E93CE95383 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		74194826134CBD7435F04ADA /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		741948EBC9EC61A43818EF04 /* HomeViewControllerTableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTableViewExtension.swift; sourceTree = "<group>"; };
+		74194987C5C4AD2CBF53391B /* AmountPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadView.swift; sourceTree = "<group>"; };
+		7419499FBBB53D2D89CD0CCD /* HomeViewControllerPageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerPageViewExtension.swift; sourceTree = "<group>"; };
+		74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoView.swift; sourceTree = "<group>"; };
+		74194D350D357B7F121AD434 /* HomeViewControllerAmountPadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerAmountPadExtension.swift; sourceTree = "<group>"; };
+		74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadViewController.swift; sourceTree = "<group>"; };
 		F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
-		F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerPageViewExtension.swift; sourceTree = "<group>"; };
-		F22AC1041BFBA752004A212B /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
-		F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTableViewExtension.swift; sourceTree = "<group>"; };
-		F24AD85A1BFA580B00083DDB /* BalanceInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoView.swift; sourceTree = "<group>"; };
 		F258EF431BEF460700A6D7EB /* MonthlyBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonthlyBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258EF461BEF460700A6D7EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F258EF481BEF460700A6D7EB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F258EF4B1BEF460700A6D7EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F258EF4E1BEF460700A6D7EB /* MonthlyBalance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MonthlyBalance.xcdatamodel; sourceTree = "<group>"; };
 		F258EF501BEF460700A6D7EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,9 +95,6 @@
 		F258EF9A1BEF61D900A6D7EB /* MonthlyBalance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MonthlyBalance-Bridging-Header.h"; path = "MonthlyBalance/MonthlyBalance-Bridging-Header.h"; sourceTree = "<group>"; };
 		F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
-		F2B5BD4A1BFF9E4300AAB868 /* AmountPadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadViewController.swift; sourceTree = "<group>"; };
-		F2B5BD4C1BFF9ECA00AAB868 /* AmountPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadView.swift; sourceTree = "<group>"; };
-		F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoViewController.swift; sourceTree = "<group>"; };
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -121,6 +125,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74194F79B764629A53735119 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */,
+				74194987C5C4AD2CBF53391B /* AmountPadView.swift */,
+				7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */,
+				74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */,
+				7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */,
+				74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */,
+				74194D350D357B7F121AD434 /* HomeViewControllerAmountPadExtension.swift */,
+				741948EBC9EC61A43818EF04 /* HomeViewControllerTableViewExtension.swift */,
+				741946F21E2835E93CE95383 /* HomeViewController.swift */,
+				7419499FBBB53D2D89CD0CCD /* HomeViewControllerPageViewExtension.swift */,
+				74194826134CBD7435F04ADA /* MainMenuViewController.swift */,
+				74194475024D7D72BA468593 /* MainMenuView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		F207F27B1BEFB9AF00143FD6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,25 +185,16 @@
 		F258EF451BEF460700A6D7EB /* MonthlyBalance */ = {
 			isa = PBXGroup;
 			children = (
+				74194F79B764629A53735119 /* UI */,
 				F207F27B1BEFB9AF00143FD6 /* Extensions */,
 				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
-				F258EF481BEF460700A6D7EB /* HomeViewController.swift */,
-				F216E4BA1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift */,
-				F22AC1061BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift */,
-				F2056DC61C03A69B00558AB5 /* HomeViewControllerAmountPadExtension.swift */,
 				F258EF4A1BEF460700A6D7EB /* Main.storyboard */,
 				F258EF501BEF460700A6D7EB /* Assets.xcassets */,
 				F258EF521BEF460700A6D7EB /* LaunchScreen.storyboard */,
 				F258EF551BEF460700A6D7EB /* Info.plist */,
 				F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */,
 				F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */,
-				F2E19AB41BF781D200EEC70D /* BalanceInfoViewController.swift */,
 				F2E19ABA1BF794D100EEC70D /* Constants.swift */,
-				F24AD85A1BFA580B00083DDB /* BalanceInfoView.swift */,
-				F22AC1041BFBA752004A212B /* ActivityTableViewCell.swift */,
-				F2B5BD4A1BFF9E4300AAB868 /* AmountPadViewController.swift */,
-				F2B5BD4C1BFF9ECA00AAB868 /* AmountPadView.swift */,
-				F2056DC41C03A5F800558AB5 /* AmountPadDelegate.swift */,
 			);
 			path = MonthlyBalance;
 			sourceTree = "<group>";
@@ -272,6 +286,7 @@
 				TargetAttributes = {
 					F258EF421BEF460700A6D7EB = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = YZB6HYGFR3;
 					};
 					F258EF591BEF460700A6D7EB = {
 						CreatedOnToolsVersion = 7.1;
@@ -340,25 +355,27 @@
 				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
-				F2B5BD4B1BFF9E4300AAB868 /* AmountPadViewController.swift in Sources */,
 				F258EF931BEF54D900A6D7EB /* Activity.swift in Sources */,
 				F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */,
 				F258EF921BEF54D900A6D7EB /* Activity+CoreDataProperties.swift in Sources */,
 				F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */,
-				F258EF491BEF460700A6D7EB /* HomeViewController.swift in Sources */,
 				F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */,
 				F258EF901BEF54D900A6D7EB /* Account+CoreDataProperties.swift in Sources */,
-				F22AC1051BFBA752004A212B /* ActivityTableViewCell.swift in Sources */,
 				F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */,
 				F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */,
-				F2056DC51C03A5F800558AB5 /* AmountPadDelegate.swift in Sources */,
-				F24AD85B1BFA580B00083DDB /* BalanceInfoView.swift in Sources */,
-				F22AC1071BFBA7D8004A212B /* HomeViewControllerTableViewExtension.swift in Sources */,
-				F2056DC71C03A69B00558AB5 /* HomeViewControllerAmountPadExtension.swift in Sources */,
-				F2B5BD4D1BFF9ECA00AAB868 /* AmountPadView.swift in Sources */,
 				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
-				F216E4BB1BFE53F6004257F7 /* HomeViewControllerPageViewExtension.swift in Sources */,
-				F2E19AB51BF781D200EEC70D /* BalanceInfoViewController.swift in Sources */,
+				741945E7EA10F0A5F3097818 /* ActivityTableViewCell.swift in Sources */,
+				741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */,
+				74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */,
+				7419454C62391038DA5BEE70 /* AmountPadViewController.swift in Sources */,
+				74194CC9C2FCB1B41895D270 /* BalanceInfoViewController.swift in Sources */,
+				74194BD9D1AF0DD8AE408ED2 /* BalanceInfoView.swift in Sources */,
+				7419452C8E54A7955922E45C /* HomeViewControllerAmountPadExtension.swift in Sources */,
+				74194A39E881DDB20697D55F /* HomeViewControllerTableViewExtension.swift in Sources */,
+				74194BE4E5DFA5CC7982EFC5 /* HomeViewController.swift in Sources */,
+				74194E4C1ED62F2600A8E50B /* HomeViewControllerPageViewExtension.swift in Sources */,
+				741946CD518B172455551BA0 /* MainMenuViewController.swift in Sources */,
+				74194583D794DE86EF2E83ED /* MainMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,10 +517,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MonthlyBalance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -514,10 +534,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MonthlyBalance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
 			};
 			name = Release;
