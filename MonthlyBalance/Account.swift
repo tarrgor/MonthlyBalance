@@ -34,12 +34,12 @@ class Account: NSManagedObject {
     return account
   }
   
+  static func findAll() -> [Account] {
+    return fetchAccounts(nil)
+  }
+  
   static func findByName(name: String) -> [Account] {
-    let request = NSFetchRequest(entityName: kAccountEntity)
-    request.predicate = NSPredicate(format: "name == %@", name)
-    
-    let results = try! CoreDataManager.sharedManager().managedObjectContext.executeFetchRequest(request)
-    return results as! [Account]
+    return fetchAccounts(NSPredicate(format: "name == %@", name))
   }
   
   func addActivityForDate(date: NSDate, title: String, icon: String, amount: Double) -> Activity? {
@@ -129,6 +129,15 @@ class Account: NSManagedObject {
     if currentYear == activityYear {
       self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + activity.amount!.doubleValue)
     }
+  }
+  
+  private static func fetchAccounts(predicate: NSPredicate?) -> [Account] {
+    let request = NSFetchRequest(entityName: kAccountEntity)
+    if predicate != nil {
+      request.predicate = predicate!
+    }
+    let results = try! CoreDataManager.sharedManager().managedObjectContext.executeFetchRequest(request)
+    return results as! [Account]
   }
 }
 

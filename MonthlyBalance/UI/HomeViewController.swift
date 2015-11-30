@@ -44,6 +44,19 @@ class HomeViewController: UIViewController {
     // initialize Page View Controller
     initializePageViewController()
   }
+  
+  override func viewDidAppear(animated: Bool) {
+    let accounts = Account.findAll()
+    if accounts.count == 0 {
+      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CreateAccountViewController")
+      else {
+        print("Error")
+        return
+      }
+      
+      self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
+    }
+  }
 
   override func updateViewConstraints() {
     self.gradientLayer.frame = self.gradientBackgroundView.layer.bounds
