@@ -96,6 +96,14 @@ class HomeViewController: UIViewController {
     }
   }
 
+  func manageAccountsMenuItemPressed(sender: UIButton) {
+    closeMainMenu()
+    
+    let manageAccountsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ManageAccountsTableViewController")
+    
+    self.navigationController!.pushViewController(manageAccountsViewController!, animated: true)
+  }
+  
   // MARK: - Private methods
 
   private func openMainMenu() {
@@ -109,15 +117,25 @@ class HomeViewController: UIViewController {
     self.navigationController!.view.addSubview(self.mainMenuViewController.view)
 
     UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
-      self.navigationController!.view.frame.origin.x += menuWidth
+      self.navigationController!.navigationBar.frame.origin.x += menuWidth
+      self.view.frame.origin.x += menuWidth
+      self.mainMenuViewController.view.frame.origin.x += menuWidth
     }, completion: nil)
 
+    // initialize actions
+    let mainMenuView = self.mainMenuViewController.view as! MainMenuView
+    mainMenuView.manageAccountsMenuItem.addTarget(self, action: "manageAccountsMenuItemPressed:", forControlEvents: .TouchUpInside)
+    
     self.mainMenuOpened = true
   }
 
   private func closeMainMenu() {
+    let menuWidth = self.navigationController!.view.bounds.size.width * 0.54
+    
     UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
-      self.navigationController!.view.frame.origin.x = 0
+      self.navigationController!.navigationBar.frame.origin.x = 0
+      self.view.frame.origin.x = 0
+      self.mainMenuViewController.view.frame.origin.x -= menuWidth
     }, completion: {
       _ in
       self.mainMenuViewController.view.removeFromSuperview()

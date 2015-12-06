@@ -38,6 +38,8 @@
 		F2779DAA1C0CDCC400ECDCC5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2779DA91C0CDCC400ECDCC5 /* UIViewControllerExtension.swift */; };
 		F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */; };
 		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
+		F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */; };
+		F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */; };
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
@@ -99,6 +101,8 @@
 		F2779DA91C0CDCC400ECDCC5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
+		F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageAccountsTableViewController.swift; sourceTree = "<group>"; };
+		F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				74194826134CBD7435F04ADA /* MainMenuViewController.swift */,
 				74194475024D7D72BA468593 /* MainMenuView.swift */,
 				F2779DA71C0CCAA700ECDCC5 /* CreateAccountViewController.swift */,
+				F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */,
+				F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				F258EF941BEF54D900A6D7EB /* ScheduledEvent+CoreDataProperties.swift in Sources */,
 				F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */,
 				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
+				F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */,
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
 				F258EF931BEF54D900A6D7EB /* Activity.swift in Sources */,
@@ -372,6 +379,7 @@
 				F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */,
 				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
 				741945E7EA10F0A5F3097818 /* ActivityTableViewCell.swift in Sources */,
+				F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */,
 				F2779DA81C0CCAA700ECDCC5 /* CreateAccountViewController.swift in Sources */,
 				741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */,
 				74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */,

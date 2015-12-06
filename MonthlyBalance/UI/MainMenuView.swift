@@ -10,7 +10,7 @@ class MainMenuView : UIView {
   var headerLabel: UILabel!
   var lineView: UIView!
 
-  var homeMenuItem: UIButton!
+  var manageAccountsMenuItem: UIButton!
 
   // MARK: - Initialization
 
@@ -45,8 +45,8 @@ class MainMenuView : UIView {
 
     self.addSubview(self.lineView)
 
-    self.homeMenuItem = UIButton.menuItemButton("Home")
-    self.addSubview(homeMenuItem)
+    self.manageAccountsMenuItem = UIButton.menuItemButton("Manage Accounts")
+    self.addSubview(manageAccountsMenuItem)
   }
 
   private func setupConstraints() {
@@ -64,9 +64,7 @@ class MainMenuView : UIView {
     self.lineView.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Width, relatedBy: .Equal,
         toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 200))
 
-    self.addConstraint(NSLayoutConstraint(item: self.homeMenuItem, attribute: .Top, relatedBy: .Equal,
-        toItem: self.lineView, attribute: .Bottom, multiplier: 1, constant: 26))
-    self.addConstraint(NSLayoutConstraint(item: self.homeMenuItem, attribute: .Leading, relatedBy: .Equal,
-        toItem: self.headerLabel, attribute: .Leading, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.manageAccountsMenuItem, attribute: .Top, relatedBy: .Equal, toItem: self.lineView, attribute: .Bottom, multiplier: 1, constant: 20))
+    self.addConstraint(NSLayoutConstraint(item: self.manageAccountsMenuItem, attribute: .Leading, relatedBy: .Equal, toItem: self.headerLabel, attribute: .Leading, multiplier: 1, constant: 0))
   }
 }
