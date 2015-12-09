@@ -10,9 +10,24 @@ import UIKit
 
 extension UIViewController {
   
+  var slideMenuViewController : SlideMenuViewController? {
+    var controller: SlideMenuViewController? = nil
+    var parent: UIViewController? = self.parentViewController
+    
+    while controller == nil && parent != nil {
+      if parent!.isKindOfClass(SlideMenuViewController) {
+        controller = parent as? SlideMenuViewController
+      } else {
+        parent = parent?.parentViewController
+      }
+    }
+    
+    return controller
+  }
+  
   func showAlertWithTitle(title: String, message: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+    alertController.addAction(UIAlertAction(title: kTitleOkButton, style: UIAlertActionStyle.Default, handler: nil))
     self.presentViewController(alertController, animated: true, completion: nil)
   }
   

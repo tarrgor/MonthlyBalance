@@ -22,7 +22,7 @@ extension UIButton {
       button.tag = number
     }
     
-    button.setBackgroundImage(UIImage(named: "NumericButtonCircle"), forState: .Normal)
+    button.setBackgroundImage(UIImage(named: kImageNameNumericButtonCircle), forState: .Normal)
 
     button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -38,7 +38,7 @@ extension UIButton {
     button.setTitleColor(UIColor.blackColor(), forState: .Normal)
     button.tag = 10
     
-    button.setBackgroundImage(UIImage(named: "ZeroButtonOval"), forState: .Normal)
+    button.setBackgroundImage(UIImage(named: kImageNameZeroButtonOval), forState: .Normal)
     
     button.translatesAutoresizingMaskIntoConstraints = false
     
@@ -49,7 +49,7 @@ extension UIButton {
     let button = UIButton(type: .System)
     button.frame = CGRect(x: 50, y: 100, width: 64, height: 64)
     
-    button.setBackgroundImage(UIImage(named: "OkButton"), forState: .Normal)
+    button.setBackgroundImage(UIImage(named: kImageNameOkButton), forState: .Normal)
     
     button.translatesAutoresizingMaskIntoConstraints = false
     
@@ -60,7 +60,7 @@ extension UIButton {
     let button = UIButton(type: .System)
     button.frame = CGRect(x: 50, y: 100, width: 64, height: 64)
     
-    button.setBackgroundImage(UIImage(named: "CancelButton"), forState: .Normal)
+    button.setBackgroundImage(UIImage(named: kImageNameCancelButton), forState: .Normal)
     
     button.translatesAutoresizingMaskIntoConstraints = false
     

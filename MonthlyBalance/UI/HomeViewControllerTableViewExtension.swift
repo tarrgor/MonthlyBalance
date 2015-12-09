@@ -20,7 +20,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ActivityCell") as! ActivityTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
     
     cell.titleLabel.text = "Title"
     cell.amountLabel.text = "95,00 €"
@@ -28,7 +28,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     cell.iconImageView.image = UIImage()
     
     cell.selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
-    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: "#97BDFF")
+    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
     
     return cell
   }

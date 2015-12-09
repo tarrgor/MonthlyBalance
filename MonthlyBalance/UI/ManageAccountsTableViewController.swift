@@ -16,9 +16,9 @@ class ManageAccountsTableViewController : UITableViewController {
   // MARK: - Initialization
   
   override func viewDidLoad() {
-    self.navigationItem.title = "Manage Accounts"
+    self.navigationItem.title = kTitleManageAccounts
     self.navigationItem.leftItemsSupplementBackButton = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
     self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed:")
     self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
@@ -43,15 +43,15 @@ class ManageAccountsTableViewController : UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("AccountTableViewCell") as! AccountTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(kIdAccountCell) as! AccountTableViewCell
     
     cell.accountNameLabel.text = self.accounts[indexPath.row].name!
     cell.balanceLabel.text = String(self.accounts[indexPath.row].balanceCurrentMonth!)
     cell.selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
-    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: "#85B1F7")
+    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
     
     if indexPath.row == self.selectedAccountIndex {
-      cell.checkmarkImageView.image = UIImage(named: "CheckmarkIcon")
+      cell.checkmarkImageView.image = UIImage(named: kImageNameCheckmarkIcon)
     } else {
       cell.checkmarkImageView.image = nil
     }

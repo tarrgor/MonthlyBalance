@@ -10,13 +10,52 @@ import Foundation
 
 // View Controller constants
 
-let kBaseBackgroundColor = "#324EFF"
-let kBalanceAmountTextColor = "#1FF801"
+let kIdCreateAccountViewController = "CreateAccountViewController"
+let kIdManageAccountsTableViewController = "ManageAccountsTableViewController"
+
+// Table View Cells
+
+let kIdActivityCell = "ActivityCell"
+let kIdAccountCell = "AccountCell"
+
+// Colors
+
+let kColorGradientBackground1 = "#478EFF"
+let kColorGradientBackground2 = "#324EFF"
+
+let kColorBaseBackground = "#324EFF"
+let kColorBalanceAmountText = "#1FF801"
+
+let kColorButtonBackground = "#468AFF"
+let kColorHighlightedButtonBackground = "#97BDFF"
+let kColorHighlightedTableViewSelection = "#97BDFF"
+
+let kColorTableViewSelection = "#97BDFF"
+
+let kColorMainMenuBackground = "#85B1F7"
+
+// Fonts
 
 let kMainFontName = "HelveticaNeue-Light"
 let kMenuFontName = "HelveticaNeue"
 
-// Gradient background layer
-let kGradientBackgroundColor1 = "#478EFF"
-let kGradientBackgroundColor2 = "#324EFF"
+// Texts
 
+let kLabelMainMenu = "Main menu"
+let kLabelManageAccounts = "Manage Accounts"
+
+let kPlaceholderName = "Name"
+let kPlaceholderPassword = "Password"
+
+let kTitleManageAccounts = "Manage Accounts"
+let kTitleBackButton = "< Back"
+
+let kTitleOkButton = "OK"
+
+// Assets
+
+let kImageNameCheckmarkIcon = "CheckmarkIcon"
+let kImageNameNumericButtonCircle = "NumericButtonCircle"
+let kImageNameZeroButtonOval = "ZeroButtonOval"
+let kImageNameOkButton = "OkButton"
+let kImageNameCancelButton = "CancelButton"

@@ -35,6 +35,8 @@ class AmountPadViewController : UIViewController {
 
   // MARK: - Actions
   
+  // TODO: Create a builder class for the amount
+  
   func okPressed(sender: UIButton) {
     self.delegate?.amountPadDidPressOk(self)
   }

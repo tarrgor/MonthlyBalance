@@ -1,0 +1,121 @@
+//
+//  SlideMenuViewController.swift
+//  MonthlyBalance
+//
+//  Created by Thorsten Klusemann on 09.12.15.
+//  Copyright © 2015 Karrmarr Software. All rights reserved.
+//
+
+import UIKit
+
+class SlideMenuViewController : UIViewController {
+  
+  var menuViewController : UIViewController!
+  var contentViewController : UIViewController!
+  
+  var menuWidth: CGFloat = 0
+  
+  var menuOpened: Bool {
+    return self.contentViewController.view.frame.origin.x > 0
+  }
+  
+  // MARK: Initialization
+  
+  init(menuViewController: UIViewController, contentViewController: UIViewController) {
+    super.init(nibName: nil, bundle: nil)
+    
+    self.menuViewController = menuViewController
+    self.contentViewController = contentViewController
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  // MARK: View lifecycle
+  
+  override func viewDidLoad() {
+    self.addChildViewController(contentViewController)
+    self.contentViewController.view.frame = self.view.bounds
+    self.view.addSubview(self.contentViewController.view)
+    self.contentViewController.didMoveToParentViewController(self)
+    
+    if self.menuWidth == 0 {
+      self.menuWidth = self.view.bounds.size.width * 0.6
+    }
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    self.contentViewController.beginAppearanceTransition(true, animated: animated)
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    self.contentViewController.endAppearanceTransition()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    self.contentViewController.beginAppearanceTransition(false, animated: animated)
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    self.contentViewController.endAppearanceTransition()
+  }
+  
+  // MARK: Menu actions
+  
+  func openMenu(animated: Bool) {
+    self.loadMenuViewController()
+    
+    let duration = animated ? 0.3 : 0
+    var contentFrame = self.contentViewController.view.frame
+    contentFrame.origin.x += self.menuWidth
+    self.menuViewController.beginAppearanceTransition(true, animated: animated)
+    
+    UIView.animateWithDuration(duration, delay: 0, options: [ .CurveEaseInOut ], animations: {
+      self.contentViewController.view.frame = contentFrame
+      self.addShadowToContentView()
+    }, completion: {_ in
+      self.menuViewController.endAppearanceTransition()
+    })
+  }
+  
+  func closeMenu(animated: Bool) {
+    let duration = animated ? 0.3 : 0
+    var contentFrame = self.contentViewController.view.frame
+    contentFrame.origin.x = 0
+    self.menuViewController.beginAppearanceTransition(false, animated: animated)
+    
+    UIView.animateWithDuration(duration, delay: 0, options: [ .CurveEaseInOut ], animations: {
+      self.contentViewController.view.frame = contentFrame
+    }, completion: {_ in
+      self.menuViewController.endAppearanceTransition()
+      self.removeShadowFromContentView()
+    })
+  }
+  
+  // Private methods
+  
+  private func loadMenuViewController() {
+    self.addChildViewController(self.menuViewController)
+    self.menuViewController.view.frame = CGRect(x: 0, y: 0, width: self.menuWidth, height: self.view.bounds.size.height)
+    self.view.insertSubview(self.menuViewController.view, atIndex: 0)
+    self.menuViewController.didMoveToParentViewController(self)
+  }
+  
+  private func addShadowToContentView() {
+    let layer = self.contentViewController.view.layer
+    
+    layer.masksToBounds = false
+    layer.shadowColor = UIColor.blackColor().CGColor
+    layer.shadowOpacity = 0.4
+    layer.shadowRadius = 5
+    layer.shadowPath = UIBezierPath(rect: self.contentViewController.view.bounds).CGPath
+    layer.shadowOffset = CGSize(width: -2.5, height: 3)
+  }
+  
+  private func removeShadowFromContentView() {
+    let layer = self.contentViewController.view.layer
+    
+    layer.masksToBounds = true
+  }
+}

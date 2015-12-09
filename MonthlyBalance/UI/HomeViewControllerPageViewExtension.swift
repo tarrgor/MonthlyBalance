@@ -63,7 +63,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
   func initializePageViewController() {
     // Initialize page view controller
     let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: [:])
-    pageViewController.view.backgroundColor = UIColor(hex: kBaseBackgroundColor)
+    pageViewController.view.backgroundColor = UIColor(hex: kColorBaseBackground)
     pageViewController.dataSource = self
     
     let startPage = self.balanceInfoViewControllerAtIndex(0)

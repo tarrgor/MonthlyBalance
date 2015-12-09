@@ -50,8 +50,8 @@ extension HomeViewController : AmountPadDelegate {
     incomeButton.enabled = true
     expenditureButton.enabled = true
     
-    incomeButton.backgroundColor = UIColor(hex: "#468AFF")
-    expenditureButton.backgroundColor = UIColor(hex: "#468AFF")
+    incomeButton.backgroundColor = UIColor(hex: kColorButtonBackground)
+    expenditureButton.backgroundColor = UIColor(hex: kColorButtonBackground)
   }
   
   func animateAmountPadOutOfScreen(amountPad: AmountPadViewController) {

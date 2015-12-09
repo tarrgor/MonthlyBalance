@@ -109,45 +109,11 @@ class AmountPadView : UIVisualEffectView {
   }
   
   func createNumericButtons() {
-    let button7 = UIButton.amountPadButtonWithTitle("7")
-    self.addSubview(button7)
-    self.numericButtons[7] = button7
-
-    let button8 = UIButton.amountPadButtonWithTitle("8")
-    self.addSubview(button8)
-    self.numericButtons[8] = button8
-
-    let button9 = UIButton.amountPadButtonWithTitle("9")
-    self.addSubview(button9)
-    self.numericButtons[9] = button9
-
-    let button4 = UIButton.amountPadButtonWithTitle("4")
-    self.addSubview(button4)
-    self.numericButtons[4] = button4
-    
-    let button5 = UIButton.amountPadButtonWithTitle("5")
-    self.addSubview(button5)
-    self.numericButtons[5] = button5
-    
-    let button6 = UIButton.amountPadButtonWithTitle("6")
-    self.addSubview(button6)
-    self.numericButtons[6] = button6
-
-    let button1 = UIButton.amountPadButtonWithTitle("1")
-    self.addSubview(button1)
-    self.numericButtons[1] = button1
-
-    let button2 = UIButton.amountPadButtonWithTitle("2")
-    self.addSubview(button2)
-    self.numericButtons[2] = button2
-    
-    let button3 = UIButton.amountPadButtonWithTitle("3")
-    self.addSubview(button3)
-    self.numericButtons[3] = button3
-    
-    let button0 = UIButton.amountPadButtonWithNumberZero()
-    self.addSubview(button0)
-    self.numericButtons[0] = button0
+    for btn in 0...9 {
+      let button = UIButton.amountPadButtonWithTitle(String(btn))
+      self.addSubview(button)
+      self.numericButtons[btn] = button
+    }
     
     let buttonComma = UIButton.amountPadButtonWithTitle(".")
     self.addSubview(buttonComma)
