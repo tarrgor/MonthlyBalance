@@ -43,6 +43,7 @@
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
+		F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagementDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				F258EF4D1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld */,
 				F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */,
 				F2E19ABA1BF794D100EEC70D /* Constants.swift */,
+				F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */,
 			);
 			path = MonthlyBalance;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */,
 				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
 				F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */,
+				F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */,
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
 				F232F6231C18B4D600CB58CC /* MainMenuViewController.swift in Sources */,

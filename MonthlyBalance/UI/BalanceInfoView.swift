@@ -8,21 +8,46 @@
 
 import UIKit
 
+enum BalanceInfoType : String {
+  case TotalBalance = "Total Balance"
+  case CurrentMonth = "Current month"
+  case CurrentYear = "Current year"
+  
+  static func types() -> [BalanceInfoType] {
+    return [ TotalBalance, CurrentMonth, CurrentYear ]
+  }
+  
+  static func count() -> Int {
+    return BalanceInfoType.types().count
+  }
+  
+  func propertyName() -> String {
+    switch self {
+    case .TotalBalance:
+      return "balanceTotal"
+    case .CurrentMonth:
+      return "balanceCurrentMonth"
+    case .CurrentYear:
+      return "balanceCurrentYear"
+    }
+  }
+}
+
 class BalanceInfoView : UIView {
+  
+  var type: BalanceInfoType
+  var account: Account?
   
   var headlineLabel: UILabel!
   var amountLabel: UILabel!
   
-  var headline: String = "No title" {
-    didSet {
-      updateLabels()
-    }
-  }
-  
   var referencedEntity: Account?
   var referenceKey: String = ""
 
-  override init(frame: CGRect) {
+  init(frame: CGRect, type: BalanceInfoType, account: Account) {
+    self.type = type
+    self.account = account
+    
     super.init(frame: frame)
     
     self.backgroundColor = UIColor(hex: kColorBaseBackground)
@@ -33,7 +58,7 @@ class BalanceInfoView : UIView {
     // initialize Labels
     self.headlineLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.headlineLabel.textColor = UIColor.whiteColor()
-    self.headlineLabel.text = self.headline
+    self.headlineLabel.text = self.type.rawValue
     self.headlineLabel.font = UIFont(name: kMainFontName, size: 16)
     self.headlineLabel.textAlignment = .Center
     self.headlineLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +69,7 @@ class BalanceInfoView : UIView {
     self.amountLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.amountLabel.textColor = UIColor(hex: kColorBalanceAmountText)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
-    self.amountLabel.text = "952.00 €"
+    self.amountLabel.text = String(account.valueForKey(self.type.propertyName())!)
     self.amountLabel.textAlignment = .Center
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
     self.amountLabel.sizeToFit()
@@ -55,6 +80,8 @@ class BalanceInfoView : UIView {
   }
 
   required init?(coder aDecoder: NSCoder) {
+    self.type = .TotalBalance
+    self.account = nil
     super.init(coder: aDecoder)
   }
   
@@ -71,9 +98,5 @@ class BalanceInfoView : UIView {
     self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self.headlineLabel, attribute: .Bottom, multiplier: 1.0, constant: 2))
 
     super.updateConstraints()
-  }
-  
-  private func updateLabels() {
-    self.headlineLabel.text = self.headline
   }
 }

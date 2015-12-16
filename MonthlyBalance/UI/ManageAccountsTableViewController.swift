@@ -13,6 +13,8 @@ class ManageAccountsTableViewController : UITableViewController {
   var accounts: [Account] = Account.findAll()
   var selectedAccountIndex = 0
   
+  var accountManagementDelegate: AccountManagementDelegate?
+  
   // MARK: - Initialization
   
   override func viewDidLoad() {
@@ -62,5 +64,6 @@ class ManageAccountsTableViewController : UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.selectedAccountIndex = indexPath.row
     tableView.reloadData()
+    self.accountManagementDelegate?.didChangeAccountSelection(self.accounts[self.selectedAccountIndex])
   }
 }

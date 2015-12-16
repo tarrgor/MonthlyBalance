@@ -10,10 +10,28 @@ import UIKit
 
 class BalanceInfoViewController: UIViewController {
   var pageIndex: Int = 0
+  var type: BalanceInfoType
+  var account: Account?
+  
+  init(type: BalanceInfoType, account: Account) {
+    self.type = type
+    self.account = account
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    self.type = .TotalBalance
+    self.account = nil
+    super.init(coder: aDecoder)
+  }
   
   override func loadView() {
     // Initialize view
-    self.view = BalanceInfoView(frame: CGRect(x: 0, y: 80, width: 414, height: 120))
+    let balanceInfoView = BalanceInfoView(frame: CGRect(x: 0, y: 80, width: 414, height: 120), type: self.type, account: account!)
+    self.view = balanceInfoView
+    
+    
   }
   
   override func viewDidLoad() {

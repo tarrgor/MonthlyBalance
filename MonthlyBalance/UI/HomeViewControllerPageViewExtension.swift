@@ -13,7 +13,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
   // MARK: - PageViewController DataSource
   
   func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return self.balanceTitles.count
+    return BalanceInfoType.count()
   }
   
   func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -36,7 +36,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
     let balanceInfoViewController = viewController as! BalanceInfoViewController
     var index = balanceInfoViewController.pageIndex
     
-    if index == (self.balanceTitles.count - 1) || index == NSNotFound {
+    if index == (BalanceInfoType.count() - 1) || index == NSNotFound {
       return nil
     }
     
@@ -47,14 +47,12 @@ extension HomeViewController : UIPageViewControllerDataSource {
   // MARK: - Helper methods for PageViewController
   
   func balanceInfoViewControllerAtIndex(index: Int) -> BalanceInfoViewController? {
-    if index < 0 || index >= self.balanceTitles.count {
+    if index < 0 || index >= BalanceInfoType.count() {
       return nil
     }
     
-    let viewController = BalanceInfoViewController()
-    let view = viewController.view as! BalanceInfoView
+    let viewController = BalanceInfoViewController(type: BalanceInfoType.types()[index], account: self.selectedAccount!)
     
-    view.headline = self.balanceTitles[index]
     viewController.pageIndex = index
     
     return viewController

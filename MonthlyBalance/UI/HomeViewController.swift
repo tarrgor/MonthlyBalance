@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AccountManagementDelegate {
 
   @IBOutlet weak var balanceInfoContainerView: UIView!
 
@@ -23,12 +23,14 @@ class HomeViewController: UIViewController {
 
   var mainMenuOpened: Bool = false
 
-  // Page info for BalanceInfoViewControllers
-  let balanceTitles = ["Total balance", "Current month", "Current year"]
-
+  var selectedAccount: Account?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // load settings
+    self.loadSettings()
+    
     // remove line below the navigation bar
     if let navigationBar = self.navigationController?.navigationBar {
       navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
@@ -97,6 +99,14 @@ class HomeViewController: UIViewController {
     }
   }
   
+  // MARK: - AccountManagementDelegate
+  
+  func didChangeAccountSelection(account: Account) {
+    print("Account selection changed to \(account.name!)")
+    self.selectedAccount = account
+    self.saveSettings()
+  }
+  
   // MARK: - Private methods
 
   private func gradientBackgroundLayer(size: CGSize) -> CAGradientLayer {
@@ -110,6 +120,28 @@ class HomeViewController: UIViewController {
     layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 
     return layer
+  }
+  
+  private func loadSettings() {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    if let accountName = defaults.stringForKey("selectedAccount") {
+      if let account = Account.findByName(accountName).first {
+        self.selectedAccount = account
+      } else {
+        let accounts = Account.findAll()
+        self.selectedAccount = accounts.first
+        saveSettings()
+      }
+    }
+    print("Selected Account from settings: \(self.selectedAccount?.name)")
+  }
+  
+  private func saveSettings() {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    if let account = self.selectedAccount {
+      defaults.setValue(account.name!, forKey: "selectedAccount")
+    }
+    defaults.synchronize()
   }
 }
 

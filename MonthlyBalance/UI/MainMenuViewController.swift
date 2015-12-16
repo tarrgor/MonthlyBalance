@@ -15,8 +15,13 @@ class MainMenuViewController : UIViewController {
       svc.closeMenu(true)
       
       let navController = svc.contentViewController as? UINavigationController
-      let manageAccountsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ManageAccountsTableViewController")
-      navController?.pushViewController(manageAccountsViewController!, animated: true)
+      let homeViewController = navController!.topViewController as! HomeViewController
+      let manageAccountsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ManageAccountsTableViewController") as! ManageAccountsTableViewController
+      manageAccountsViewController.accountManagementDelegate = homeViewController
+      if let account = homeViewController.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
+        manageAccountsViewController.selectedAccountIndex = index
+      }
+      navController?.pushViewController(manageAccountsViewController, animated: true)
     }
   }
 }
