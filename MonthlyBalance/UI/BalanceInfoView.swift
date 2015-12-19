@@ -44,7 +44,7 @@ class BalanceInfoView : UIView {
   var referencedEntity: Account?
   var referenceKey: String = ""
 
-  init(frame: CGRect, type: BalanceInfoType, account: Account) {
+  init(frame: CGRect, type: BalanceInfoType, account: Account) throws {
     self.type = type
     self.account = account
     
@@ -69,7 +69,10 @@ class BalanceInfoView : UIView {
     self.amountLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.amountLabel.textColor = UIColor(hex: kColorBalanceAmountText)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
-    self.amountLabel.text = String(account.valueForKey(self.type.propertyName())!)
+    
+    let amount: Double = account.valueForKey(self.type.propertyName()) as! Double
+    try self.amountLabel.text = CurrencyUtil.formattedValue(amount)
+    
     self.amountLabel.textAlignment = .Center
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
     self.amountLabel.sizeToFit()

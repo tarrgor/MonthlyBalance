@@ -11,6 +11,11 @@ import UIKit
 extension HomeViewController : AmountPadDelegate {
   
   func amountPadDidPressOk(amountPad: AmountPadViewController) {
+    let title = amountPad.mode == .Income ? "Income" : "Expenditure"
+    let finalAmount: Double = Double(amountPad.amount) + Double(amountPad.digits) / 100
+    self.selectedAccount?.addActivityForDate(NSDate(), title: title, icon: "", amount: finalAmount)
+    self.activityTableView.reloadData()
+    
     closeAmountPad(amountPad)
   }
   

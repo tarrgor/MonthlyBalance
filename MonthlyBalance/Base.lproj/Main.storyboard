@@ -201,6 +201,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityTableView" destination="vbg-2y-Bju" id="plz-XE-3fv"/>
                         <outlet property="balanceInfoContainerView" destination="r3B-GA-SLE" id="Vbe-4t-JfH"/>
                         <outlet property="expenditureButton" destination="Nhw-Kx-TfI" id="dJk-yG-dFA"/>
                         <outlet property="gradientBackgroundView" destination="YLA-hc-UmF" id="fp9-Tj-WjP"/>

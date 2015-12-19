@@ -38,6 +38,7 @@
 		F2779DAA1C0CDCC400ECDCC5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2779DA91C0CDCC400ECDCC5 /* UIViewControllerExtension.swift */; };
 		F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */; };
 		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
+		F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */; };
 		F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */; };
 		F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */; };
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
@@ -102,6 +103,7 @@
 		F2779DA91C0CDCC400ECDCC5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
+		F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyUtil.swift; sourceTree = "<group>"; };
 		F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageAccountsTableViewController.swift; sourceTree = "<group>"; };
 		F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		F258EF451BEF460700A6D7EB /* MonthlyBalance */ = {
 			isa = PBXGroup;
 			children = (
+				F2ABADAB1C21DE600027EE38 /* Utils */,
 				74194F79B764629A53735119 /* UI */,
 				F207F27B1BEFB9AF00143FD6 /* Extensions */,
 				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
@@ -231,6 +234,14 @@
 				F258EF6B1BEF460700A6D7EB /* Info.plist */,
 			);
 			path = MonthlyBalanceUITests;
+			sourceTree = "<group>";
+		};
+		F2ABADAB1C21DE600027EE38 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +398,7 @@
 				F232F6211C18A43C00CB58CC /* SlideMenuViewController.swift in Sources */,
 				F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */,
 				F2779DA81C0CCAA700ECDCC5 /* CreateAccountViewController.swift in Sources */,
+				F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */,
 				741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */,
 				74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */,
 				7419454C62391038DA5BEE70 /* AmountPadViewController.swift in Sources */,

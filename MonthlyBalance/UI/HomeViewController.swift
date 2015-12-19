@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, AccountManagementDelegate {
 
   @IBOutlet weak var expenditureButton: UIButton!
 
+  @IBOutlet weak var activityTableView: UITableView!
+  
   var balancePageViewController: UIPageViewController!
   var gradientLayer: CAGradientLayer!
 

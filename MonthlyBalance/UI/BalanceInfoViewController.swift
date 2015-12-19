@@ -28,10 +28,12 @@ class BalanceInfoViewController: UIViewController {
   
   override func loadView() {
     // Initialize view
-    let balanceInfoView = BalanceInfoView(frame: CGRect(x: 0, y: 80, width: 414, height: 120), type: self.type, account: account!)
-    self.view = balanceInfoView
-    
-    
+    do {
+      let balanceInfoView = try BalanceInfoView(frame: CGRect(x: 0, y: 80, width: 414, height: 120), type: self.type, account: account!)
+      self.view = balanceInfoView
+    } catch {
+      self.showAlertWithTitle("An error occured!", message: "An invalid amount could not be converted to a currency format.")
+    }
   }
   
   override func viewDidLoad() {
