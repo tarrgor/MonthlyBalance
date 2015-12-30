@@ -36,7 +36,17 @@ enum BalanceInfoType : String {
 class BalanceInfoView : UIView {
   
   var type: BalanceInfoType
-  var account: Account?
+  var account: Account? {
+    didSet {
+      if account != nil {
+        do {
+          try setAmountLabelText()
+        } catch {
+          print("Could not set amount for label.")
+        }
+      }
+    }
+  }
   
   var headlineLabel: UILabel!
   var amountLabel: UILabel!
@@ -70,8 +80,7 @@ class BalanceInfoView : UIView {
     self.amountLabel.textColor = UIColor(hex: kColorBalanceAmountText)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
     
-    let amount: Double = account.valueForKey(self.type.propertyName()) as! Double
-    try self.amountLabel.text = CurrencyUtil.formattedValue(amount)
+    try setAmountLabelText()
     
     self.amountLabel.textAlignment = .Center
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -101,5 +110,12 @@ class BalanceInfoView : UIView {
     self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self.headlineLabel, attribute: .Bottom, multiplier: 1.0, constant: 2))
 
     super.updateConstraints()
+  }
+  
+  func setAmountLabelText() throws {
+    if let account = self.account {
+      let amount: Double = account.valueForKey(self.type.propertyName()) as! Double
+      try self.amountLabel.text = CurrencyUtil.formattedValue(amount)
+    }
   }
 }

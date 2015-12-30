@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, AccountManagementDelegate {
+class HomeViewController: UIViewController {
 
   @IBOutlet weak var balanceInfoContainerView: UIView!
 
@@ -21,17 +21,17 @@ class HomeViewController: UIViewController, AccountManagementDelegate {
   @IBOutlet weak var activityTableView: UITableView!
   
   var balancePageViewController: UIPageViewController!
-  var gradientLayer: CAGradientLayer!
 
   var mainMenuOpened: Bool = false
 
-  var selectedAccount: Account?
+  var settings: Settings!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // load settings
-    self.loadSettings()
+    
+    // Get the settings
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    self.settings = appDelegate.settings
     
     // remove line below the navigation bar
     if let navigationBar = self.navigationController?.navigationBar {
@@ -40,10 +40,8 @@ class HomeViewController: UIViewController, AccountManagementDelegate {
     }
 
     // Setup background gradient
-    let layer = self.gradientBackgroundView.layer
-    self.gradientLayer = gradientBackgroundLayer(layer.frame.size)
-    layer.addSublayer(self.gradientLayer)
-
+    self.gradientBackgroundView.addGradientBackgroundLayer(UIColor(hex: kColorGradientBackground1), color2: UIColor(hex: kColorGradientBackground2))
+    
     // initialize Page View Controller
     initializePageViewController()
   }
@@ -61,12 +59,13 @@ class HomeViewController: UIViewController, AccountManagementDelegate {
     }
   }
 
-  override func updateViewConstraints() {
-    self.gradientLayer.frame = self.gradientBackgroundView.layer.bounds
+  override func viewDidLayoutSubviews() {
+    if let gradientLayer = self.gradientBackgroundView.gradientBackgroundLayer {
+      self.gradientBackgroundView.layer.frame = self.gradientBackgroundView.frame
+      gradientLayer.frame = self.gradientBackgroundView.bounds
+    }
 
-    // Relocate number pad 
-
-    super.updateViewConstraints()
+    super.viewDidLayoutSubviews()
   }
 
   @IBAction func incomeButtonTouchDown(sender: UIButton) {
@@ -100,54 +99,208 @@ class HomeViewController: UIViewController, AccountManagementDelegate {
       }
     }
   }
-  
+}
+
+extension HomeViewController : AccountManagementDelegate {
   // MARK: - AccountManagementDelegate
   
   func didChangeAccountSelection(account: Account) {
-    print("Account selection changed to \(account.name!)")
-    self.selectedAccount = account
-    self.saveSettings()
-  }
-  
-  // MARK: - Private methods
-
-  private func gradientBackgroundLayer(size: CGSize) -> CAGradientLayer {
-    let colors = [UIColor(hex: kColorGradientBackground1).CGColor, UIColor(hex: kColorGradientBackground2).CGColor]
-    let locations = [0.0, 1.0]
-
-    let layer = CAGradientLayer()
-    layer.colors = colors
-    layer.locations = locations
-    layer.zPosition = -1
-    layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-
-    return layer
-  }
-  
-  private func loadSettings() {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    if let accountName = defaults.stringForKey("selectedAccount") {
-      if let account = Account.findByName(accountName).first {
-        self.selectedAccount = account
-      } else {
-        let accounts = Account.findAll()
-        self.selectedAccount = accounts.first
-        saveSettings()
-      }
-    }
-    print("Selected Account from settings: \(self.selectedAccount?.name)")
-  }
-  
-  private func saveSettings() {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    if let account = self.selectedAccount {
-      defaults.setValue(account.name!, forKey: "selectedAccount")
-    }
-    defaults.synchronize()
+    self.settings.selectedAccount = account
+    self.settings.save()
+    self.activityTableView.reloadData()
+    updateAccountOnPageViewController()
   }
 }
 
+extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
+  // MARK: - UITableViewDataSource, UITableViewDelegate
+  
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    guard let count = self.settings.selectedAccount?.activities?.count else {
+      print("Invalid data: Number of elements in TableView cannot be determined.")
+      return 0
+    }
+    return count
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
+    
+    guard let activity: Activity = self.settings.selectedAccount?.activities?.allObjects[indexPath.row] as? Activity
+      else {
+        cell.titleLabel.text = "ERROR!"
+        setSelectedBackgroundColorForCell(cell)
+        return cell
+    }
+    
+    cell.titleLabel.text = activity.title
+    cell.timeLabel.text = "Time"
+    cell.iconImageView.image = UIImage()
+    
+    guard let currencyAmount = try? CurrencyUtil.formattedValue(Double(activity.amount!))
+      else {
+        cell.amountLabel.text = "ERR!"
+        setSelectedBackgroundColorForCell(cell)
+        return cell
+    }
+    
+    cell.amountLabel.text = currencyAmount
+    
+    setSelectedBackgroundColorForCell(cell)
+    
+    return cell
+  }
+  
+  // MARK: - Private methods
+  private func setSelectedBackgroundColorForCell(cell: UITableViewCell) {
+    cell.selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
+    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
+  }
+}
 
+extension HomeViewController : AmountPadDelegate {
+  
+  func amountPadDidPressOk(amountPad: AmountPadViewController) {
+    let title = amountPad.mode == .Income ? "Income" : "Expenditure"
+    let finalAmount: Double = Double(amountPad.amount) + Double(amountPad.digits) / 100
+    self.settings.selectedAccount?.addActivityForDate(NSDate(), title: title, icon: "", amount: finalAmount)
+    self.activityTableView.reloadData()
+    
+    closeAmountPad(amountPad)
+  }
+  
+  func amountPadDidPressCancel(amountPad: AmountPadViewController) {
+    closeAmountPad(amountPad)
+  }
+  
+  func openAmountPad(mode: AmountPadMode) {
+    let amountPadViewController = AmountPadViewController()
+    amountPadViewController.delegate = self
+    amountPadViewController.mode = mode
+    self.addChildViewController(amountPadViewController)
+    self.view.addSubview(amountPadViewController.view)
+    
+    let amountPadHeight = self.view.bounds.size.height * 0.75;
+    amountPadViewController.view.frame = CGRect(x: 0, y: self.view.bounds.size.height + 100, width: self.view.bounds.size.width, height: amountPadHeight)
+    
+    let maskLayer = CAShapeLayer()
+    let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: amountPadViewController.view.bounds.size.height - self.incomeButton.bounds.size.height - 3))
+    maskLayer.path = path.CGPath
+    
+    amountPadViewController.view.layer.mask = maskLayer
+    
+    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+      let ypos = self.view.bounds.size.height - amountPadViewController.view.bounds.size.height
+      amountPadViewController.view.frame.origin = CGPoint(x: 0, y: ypos)
+      }, completion: nil)
+  }
+  
+  func closeAmountPad(amountPad: AmountPadViewController) {
+    animateAmountPadOutOfScreen(amountPad)
+    resetButtons()
+    amountPad.removeFromParentViewController()
+  }
+  
+  func resetButtons() {
+    incomeButton.enabled = true
+    expenditureButton.enabled = true
+    
+    incomeButton.backgroundColor = UIColor(hex: kColorButtonBackground)
+    expenditureButton.backgroundColor = UIColor(hex: kColorButtonBackground)
+  }
+  
+  func animateAmountPadOutOfScreen(amountPad: AmountPadViewController) {
+    UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
+      amountPad.view.frame.origin.y += self.view.frame.size.height
+      }, completion: {_ in
+        amountPad.view.removeFromSuperview()
+    })
+  }
+}
 
+extension HomeViewController : UIPageViewControllerDataSource {
+  
+  // MARK: - PageViewController DataSource
+  
+  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    return BalanceInfoType.count()
+  }
+  
+  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    return 0
+  }
+  
+  func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    let balanceInfoViewController = viewController as! BalanceInfoViewController
+    var index = balanceInfoViewController.pageIndex
+    
+    if index == 0 || index == NSNotFound {
+      return nil
+    }
+    
+    index--
+    return self.balanceInfoViewControllerAtIndex(index)
+  }
+  
+  func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    let balanceInfoViewController = viewController as! BalanceInfoViewController
+    var index = balanceInfoViewController.pageIndex
+    
+    if index == (BalanceInfoType.count() - 1) || index == NSNotFound {
+      return nil
+    }
+    
+    index++
+    return self.balanceInfoViewControllerAtIndex(index)
+  }
+  
+  // MARK: - Helper methods for PageViewController
+  
+  func balanceInfoViewControllerAtIndex(index: Int) -> BalanceInfoViewController? {
+    if index < 0 || index >= BalanceInfoType.count() {
+      return nil
+    }
+    
+    let viewController = BalanceInfoViewController(type: BalanceInfoType.types()[index], account: self.settings.selectedAccount!)
+    
+    viewController.pageIndex = index
+    
+    return viewController
+  }
+  
+  func initializePageViewController() {
+    // Initialize page view controller
+    let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: [:])
+    pageViewController.view.backgroundColor = UIColor(hex: kColorBaseBackground)
+    pageViewController.dataSource = self
+    
+    let startPage = self.balanceInfoViewControllerAtIndex(0)
+    pageViewController.setViewControllers([startPage!], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+    
+    // add page view controller as a child view controller
+    self.addChildViewController(pageViewController)
+    
+    pageViewController.view.frame = CGRect(x: 0, y: 0, width: self.balanceInfoContainerView.bounds.size.width, height: self.balanceInfoContainerView.bounds.size.height)
+    self.balanceInfoContainerView.addSubview(pageViewController.view)
+    
+    pageViewController.didMoveToParentViewController(self)
+    
+    self.balancePageViewController = pageViewController
+  }
+  
+  func updateAccountOnPageViewController() {
+    let viewControllers = self.balancePageViewController.childViewControllers
+    viewControllers.forEach { viewController in
+      if let bvc = viewController as? BalanceInfoViewController {
+        bvc.account = self.settings.selectedAccount
+        bvc.view.setNeedsDisplay()
+      }
+    }
+  }
+}
 
 

@@ -186,8 +186,8 @@
                             <constraint firstItem="r3B-GA-SLE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="BNF-GT-PxQ"/>
                             <constraint firstItem="r3B-GA-SLE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="RTb-SP-wIR"/>
                             <constraint firstItem="r3B-GA-SLE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZVS-mP-Pc8"/>
+                            <constraint firstItem="YLA-hc-UmF" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="ZYY-Nj-EKl"/>
                             <constraint firstItem="r3B-GA-SLE" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="20:100" id="gv7-HI-Hv7"/>
-                            <constraint firstItem="YLA-hc-UmF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="kWc-Jk-2LW"/>
                             <constraint firstItem="YLA-hc-UmF" firstAttribute="top" secondItem="r3B-GA-SLE" secondAttribute="bottom" id="lh2-7M-ns2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YLA-hc-UmF" secondAttribute="bottom" id="zuM-sh-s7G"/>
                         </constraints>
@@ -247,12 +247,24 @@
                                     <action selector="manageAccountsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="i0W-cj-x0I"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4A-A3-ZXa">
+                                <rect key="frame" x="20" y="137" width="74" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="PLK-aw-MKS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.52156862745098043" green="0.69411764705882351" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="H4A-A3-ZXa" firstAttribute="leading" secondItem="dVe-uv-A2D" secondAttribute="leading" id="EmE-1W-Oiq"/>
                             <constraint firstItem="Zmj-Rr-F2Y" firstAttribute="top" secondItem="dVe-uv-A2D" secondAttribute="bottom" constant="6" id="Lwe-Qy-nNh"/>
                             <constraint firstItem="Qgx-T3-Kbv" firstAttribute="leading" secondItem="dVe-uv-A2D" secondAttribute="leading" id="M1e-eg-EZj"/>
                             <constraint firstItem="dVe-uv-A2D" firstAttribute="top" secondItem="bbS-Hq-uU1" secondAttribute="bottom" id="Xrh-gm-usj"/>
+                            <constraint firstItem="H4A-A3-ZXa" firstAttribute="top" secondItem="Qgx-T3-Kbv" secondAttribute="bottom" constant="20" id="bdR-mj-kF3"/>
                             <constraint firstItem="Zmj-Rr-F2Y" firstAttribute="leading" secondItem="vop-WO-POd" secondAttribute="leading" id="d6V-QV-fFV"/>
                             <constraint firstAttribute="trailing" secondItem="Zmj-Rr-F2Y" secondAttribute="trailing" constant="20" id="euY-ru-VkJ"/>
                             <constraint firstItem="Qgx-T3-Kbv" firstAttribute="top" secondItem="Zmj-Rr-F2Y" secondAttribute="bottom" constant="26" id="hFe-wG-KCf"/>
@@ -437,6 +449,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbg-1q-ZET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2702" y="364"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="n1V-4B-I17">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="aOu-g8-DGU" customClass="SettingsViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x7O-Pc-Veg"/>
+                        <viewControllerLayoutGuide type="bottom" id="SGt-Ug-GG5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f3m-YJ-Tou">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8O-V2-wmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3365" y="364"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="spF-eB-nxt">

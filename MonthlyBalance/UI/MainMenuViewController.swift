@@ -11,17 +11,34 @@ import UIKit
 class MainMenuViewController : UIViewController {
   
   @IBAction func manageAccountsMenuItemPressed(sender: UIButton) {
+    loadViewControllerWithIdentifier("ManageAccountsTableViewController") { navController, viewController in
+      let homeViewController = navController.topViewController as! HomeViewController
+      if let manageAccountsViewController = viewController as? ManageAccountsTableViewController {
+        manageAccountsViewController.accountManagementDelegate = homeViewController
+        if let account = homeViewController.settings.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
+          manageAccountsViewController.selectedAccountIndex = index
+        }
+      }
+    }
+  }
+  
+  @IBAction func settingsMenuItemPressed(sender: UIButton) {
+    loadViewControllerWithIdentifier("SettingsViewController", beforePush: nil)
+  }
+  
+  private func loadViewControllerWithIdentifier(identifier: String, beforePush: ((UINavigationController, UIViewController) -> ())?) {
     if let svc = self.slideMenuViewController {
       svc.closeMenu(true)
       
-      let navController = svc.contentViewController as? UINavigationController
-      let homeViewController = navController!.topViewController as! HomeViewController
-      let manageAccountsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ManageAccountsTableViewController") as! ManageAccountsTableViewController
-      manageAccountsViewController.accountManagementDelegate = homeViewController
-      if let account = homeViewController.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
-        manageAccountsViewController.selectedAccountIndex = index
+      if let navController = svc.contentViewController as? UINavigationController {
+        if let newViewController = self.storyboard?.instantiateViewControllerWithIdentifier(identifier) {
+          if let callback = beforePush {
+            callback(navController, newViewController)
+          }
+          
+          navController.pushViewController(newViewController, animated: true)
+        }
       }
-      navController?.pushViewController(manageAccountsViewController, animated: true)
     }
   }
 }

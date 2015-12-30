@@ -11,7 +11,13 @@ import UIKit
 class BalanceInfoViewController: UIViewController {
   var pageIndex: Int = 0
   var type: BalanceInfoType
-  var account: Account?
+  var account: Account? {
+    didSet {
+      if let view = self.view {
+        view.setValue(account, forKey: "account")
+      }
+    }
+  }
   
   init(type: BalanceInfoType, account: Account) {
     self.type = type
