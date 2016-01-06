@@ -451,22 +451,93 @@
             <point key="canvasLocation" x="2702" y="364"/>
         </scene>
         <!--Settings View Controller-->
-        <scene sceneID="n1V-4B-I17">
+        <scene sceneID="vkM-W9-qeX">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="aOu-g8-DGU" customClass="SettingsViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x7O-Pc-Veg"/>
-                        <viewControllerLayoutGuide type="bottom" id="SGt-Ug-GG5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="f3m-YJ-Tou">
+                <tableViewController storyboardIdentifier="SettingsViewController" id="ke5-Lb-FiJ" customClass="SettingsViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HMj-Co-dIj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s8O-V2-wmy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Default titles" id="X9b-8D-Nbu">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fSa-ja-fFB">
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSa-ja-fFB" id="WIE-ns-Guo">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wk-Ky-FBI">
+                                                    <rect key="frame" x="28" y="8" width="64" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j59-lr-3bT">
+                                                    <rect key="frame" x="142" y="8" width="430" height="24"/>
+                                                    <color key="textColor" red="0.52156862745098043" green="0.69411764705882351" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j59-lr-3bT" firstAttribute="leading" secondItem="6wk-Ky-FBI" secondAttribute="trailing" constant="50" id="6vh-XI-3Ri"/>
+                                                <constraint firstItem="j59-lr-3bT" firstAttribute="top" secondItem="WIE-ns-Guo" secondAttribute="topMargin" id="9by-BW-5Vs"/>
+                                                <constraint firstItem="6wk-Ky-FBI" firstAttribute="top" secondItem="WIE-ns-Guo" secondAttribute="topMargin" id="IlD-IM-RnS"/>
+                                                <constraint firstItem="j59-lr-3bT" firstAttribute="baseline" secondItem="6wk-Ky-FBI" secondAttribute="baseline" id="JUG-xB-bs5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j59-lr-3bT" secondAttribute="trailing" constant="20" id="gWV-8f-Ke5"/>
+                                                <constraint firstItem="6wk-Ky-FBI" firstAttribute="leading" secondItem="WIE-ns-Guo" secondAttribute="leadingMargin" constant="20" id="yhP-FO-xzZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="65O-jU-KfM">
+                                        <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="65O-jU-KfM" id="k6o-Ug-mzv">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenditure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV4-WU-SO8">
+                                                    <rect key="frame" x="28" y="8" width="102.5" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GKZ-1I-UQh">
+                                                    <rect key="frame" x="180.5" y="8" width="391.5" height="24"/>
+                                                    <color key="textColor" red="0.52156862745098043" green="0.69411764705882351" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EV4-WU-SO8" firstAttribute="leading" secondItem="k6o-Ug-mzv" secondAttribute="leadingMargin" constant="20" id="0gL-OA-rLU"/>
+                                                <constraint firstItem="EV4-WU-SO8" firstAttribute="top" secondItem="k6o-Ug-mzv" secondAttribute="topMargin" id="EPr-Dw-356"/>
+                                                <constraint firstItem="GKZ-1I-UQh" firstAttribute="baseline" secondItem="EV4-WU-SO8" secondAttribute="baseline" id="IPx-le-wbH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GKZ-1I-UQh" secondAttribute="trailing" constant="20" id="aWf-R5-kwP"/>
+                                                <constraint firstItem="GKZ-1I-UQh" firstAttribute="leading" secondItem="EV4-WU-SO8" secondAttribute="trailing" constant="50" id="srj-Tn-SJR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.19607843137254902" green="0.30588235294117649" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ke5-Lb-FiJ" id="OU8-bs-jTH"/>
+                            <outlet property="delegate" destination="ke5-Lb-FiJ" id="Jxd-wA-SjQ"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="defaultTitleExpenditureTextField" destination="GKZ-1I-UQh" id="z3B-Ay-WkA"/>
+                        <outlet property="defaultTitleIncomeTextField" destination="j59-lr-3bT" id="WDr-8f-qLo"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dwu-UJ-cfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3365" y="364"/>
+            <point key="canvasLocation" x="3347" y="364"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="spF-eB-nxt">

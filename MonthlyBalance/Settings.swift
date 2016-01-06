@@ -9,12 +9,20 @@
 import Foundation
 
 let kSettingSelectedAccount = "selectedAccount"
+let kSettingDefaultTitleIncome = "defaultTitleIncome"
+let kSettingDefaultTitleExpenditure = "defaultTitleExpenditure"
 
-class Settings {
+let kDefaultTitleIncome = "Income"
+let kDefaultTitleExpenditure = "Expenditure"
+
+class Settings : NSObject {
 
   var selectedAccount: Account?
+  var defaultTitleIncome: String?
+  var defaultTitleExpenditure: String?
   
-  init() {
+  override init() {
+    super.init()
     load()
   }
   
@@ -23,19 +31,37 @@ class Settings {
     if let accountName = defaults.stringForKey(kSettingSelectedAccount) {
       if let account = Account.findByName(accountName).first {
         self.selectedAccount = account
-      } else {
-        let accounts = Account.findAll()
-        self.selectedAccount = accounts.first
-        save()
       }
     }
+
+    if self.selectedAccount == nil {
+      let accounts = Account.findAll()
+      self.selectedAccount = accounts.first
+    }
+
+    self.defaultTitleIncome = defaults.stringForKey(kSettingDefaultTitleIncome)
+    if self.defaultTitleIncome == nil {
+      self.defaultTitleIncome = kDefaultTitleIncome
+    }
+
+    self.defaultTitleExpenditure = defaults.stringForKey(kSettingDefaultTitleExpenditure)
+    if self.defaultTitleExpenditure == nil {
+      self.defaultTitleExpenditure = kDefaultTitleExpenditure
+    }
+
+    print("Loaded defaults:")
+    print("\(self.defaultTitleIncome) \(self.defaultTitleExpenditure)")
   }
   
   func save() {
     let defaults = NSUserDefaults.standardUserDefaults()
     if let account = self.selectedAccount {
-      defaults.setValue(account.name!, forKey: "selectedAccount")
+      defaults.setObject(account.name!, forKey: kSettingSelectedAccount)
     }
+    defaults.setObject(self.defaultTitleIncome, forKey: kSettingDefaultTitleIncome)
+    defaults.setObject(self.defaultTitleExpenditure, forKey: kSettingDefaultTitleExpenditure)
     defaults.synchronize()
+    print("Saved defaults:")
+    print("\(self.defaultTitleIncome) \(self.defaultTitleExpenditure)")
   }
 }

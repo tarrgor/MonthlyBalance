@@ -33,7 +33,8 @@ class CreateAccountViewController : UIViewController {
       return
     }
     
-    Account.create(self.nameTextField.text!)
+    let newAccount = Account.create(self.nameTextField.text!)
+    self.settings?.selectedAccount = newAccount
 
     self.dismissViewControllerAnimated(true, completion: nil)
   }

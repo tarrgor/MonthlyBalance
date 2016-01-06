@@ -10,6 +10,12 @@ import UIKit
 
 extension UIViewController {
   
+  var settings: Settings? {
+    // Get the settings
+    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+    return appDelegate?.settings
+  }
+  
   var slideMenuViewController : SlideMenuViewController? {
     var controller: SlideMenuViewController? = nil
     var parent: UIViewController? = self.parentViewController

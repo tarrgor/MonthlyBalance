@@ -24,14 +24,8 @@ class HomeViewController: UIViewController {
 
   var mainMenuOpened: Bool = false
 
-  var settings: Settings!
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Get the settings
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    self.settings = appDelegate.settings
     
     // remove line below the navigation bar
     if let navigationBar = self.navigationController?.navigationBar {
@@ -41,22 +35,13 @@ class HomeViewController: UIViewController {
 
     // Setup background gradient
     self.gradientBackgroundView.addGradientBackgroundLayer(UIColor(hex: kColorGradientBackground1), color2: UIColor(hex: kColorGradientBackground2))
-    
-    // initialize Page View Controller
-    initializePageViewController()
   }
   
   override func viewDidAppear(animated: Bool) {
-    let accounts = Account.findAll()
-    if accounts.count == 0 {
-      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController)
-      else {
-        print("Error")
-        return
-      }
-      
-      self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
-    }
+    checkSelectedAccount()
+
+    // initialize Page View Controller
+    initializePageViewController()
   }
 
   override func viewDidLayoutSubviews() {
@@ -99,14 +84,28 @@ class HomeViewController: UIViewController {
       }
     }
   }
+
+  // MARK: - Private methods
+
+  private func checkSelectedAccount() {
+    if self.settings?.selectedAccount == nil {
+      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController)
+      else {
+        print("Error")
+        return
+      }
+
+      self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
+    }
+  }
 }
 
 extension HomeViewController : AccountManagementDelegate {
   // MARK: - AccountManagementDelegate
   
   func didChangeAccountSelection(account: Account) {
-    self.settings.selectedAccount = account
-    self.settings.save()
+    self.settings?.selectedAccount = account
+    self.settings?.save()
     self.activityTableView.reloadData()
     updateAccountOnPageViewController()
   }
@@ -120,7 +119,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let count = self.settings.selectedAccount?.activities?.count else {
+    guard let count = self.settings?.selectedAccount?.activities?.count else {
       print("Invalid data: Number of elements in TableView cannot be determined.")
       return 0
     }
@@ -130,7 +129,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
     
-    guard let activity: Activity = self.settings.selectedAccount?.activities?.allObjects[indexPath.row] as? Activity
+    guard let activity: Activity = self.settings?.selectedAccount?.activities?.allObjects[indexPath.row] as? Activity
       else {
         cell.titleLabel.text = "ERROR!"
         setSelectedBackgroundColorForCell(cell)
@@ -165,9 +164,10 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController : AmountPadDelegate {
   
   func amountPadDidPressOk(amountPad: AmountPadViewController) {
-    let title = amountPad.mode == .Income ? "Income" : "Expenditure"
+    let title = amountPad.mode == .Income ? self.settings?.defaultTitleIncome :
+        self.settings?.defaultTitleExpenditure
     let finalAmount: Double = Double(amountPad.amount) + Double(amountPad.digits) / 100
-    self.settings.selectedAccount?.addActivityForDate(NSDate(), title: title, icon: "", amount: finalAmount)
+    self.settings?.selectedAccount?.addActivityForDate(NSDate(), title: title!, icon: "", amount: finalAmount)
     self.activityTableView.reloadData()
     
     closeAmountPad(amountPad)
@@ -265,7 +265,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
       return nil
     }
     
-    let viewController = BalanceInfoViewController(type: BalanceInfoType.types()[index], account: self.settings.selectedAccount!)
+    let viewController = BalanceInfoViewController(type: BalanceInfoType.types()[index], account: self.settings!.selectedAccount!)
     
     viewController.pageIndex = index
     
@@ -273,6 +273,10 @@ extension HomeViewController : UIPageViewControllerDataSource {
   }
   
   func initializePageViewController() {
+    if self.settings?.selectedAccount == nil {
+      return
+    }
+
     // Initialize page view controller
     let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: [:])
     pageViewController.view.backgroundColor = UIColor(hex: kColorBaseBackground)
@@ -296,7 +300,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
     let viewControllers = self.balancePageViewController.childViewControllers
     viewControllers.forEach { viewController in
       if let bvc = viewController as? BalanceInfoViewController {
-        bvc.account = self.settings.selectedAccount
+        bvc.account = self.settings?.selectedAccount
         bvc.view.setNeedsDisplay()
       }
     }

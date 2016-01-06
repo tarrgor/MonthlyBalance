@@ -48,6 +48,7 @@ let kPlaceholderName = "Name"
 let kPlaceholderPassword = "Password"
 
 let kTitleManageAccounts = "Manage Accounts"
+let kTitleSettings = "Settings"
 let kTitleBackButton = "< Back"
 
 let kTitleOkButton = "OK"
