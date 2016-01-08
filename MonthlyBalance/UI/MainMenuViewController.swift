@@ -11,19 +11,23 @@ import UIKit
 class MainMenuViewController : UIViewController {
   
   @IBAction func manageAccountsMenuItemPressed(sender: UIButton) {
-    loadViewControllerWithIdentifier("ManageAccountsTableViewController") { navController, viewController in
+    loadViewControllerWithIdentifier(kIdManageAccountsTableViewController) { navController, viewController in
       let homeViewController = navController.topViewController as! HomeViewController
       if let manageAccountsViewController = viewController as? ManageAccountsTableViewController {
         manageAccountsViewController.accountManagementDelegate = homeViewController
-        if let account = homeViewController.settings?.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
+        if let account = self.settings?.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
           manageAccountsViewController.selectedAccountIndex = index
         }
       }
     }
   }
+
+  @IBAction func manageEventsMenuItemPressed(sender: UIButton) {
+    loadViewControllerWithIdentifier(kIdManageEventsTableViewController, beforePush: nil)
+  }
   
   @IBAction func settingsMenuItemPressed(sender: UIButton) {
-    loadViewControllerWithIdentifier("SettingsViewController", beforePush: nil)
+    loadViewControllerWithIdentifier(kIdSettingsViewController, beforePush: nil)
   }
   
   private func loadViewControllerWithIdentifier(identifier: String, beforePush: ((UINavigationController, UIViewController) -> ())?) {

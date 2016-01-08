@@ -12,6 +12,8 @@ import Foundation
 
 let kIdCreateAccountViewController = "CreateAccountViewController"
 let kIdManageAccountsTableViewController = "ManageAccountsTableViewController"
+let kIdManageEventsTableViewController = "ManageEventsTableViewController"
+let kIdSettingsViewController = "SettingsViewController"
 
 // Table View Cells
 
@@ -48,6 +50,7 @@ let kPlaceholderName = "Name"
 let kPlaceholderPassword = "Password"
 
 let kTitleManageAccounts = "Manage Accounts"
+let kTitleManageEvents = "Manage Events"
 let kTitleSettings = "Settings"
 let kTitleBackButton = "< Back"
 
