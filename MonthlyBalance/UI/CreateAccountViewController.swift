@@ -18,13 +18,7 @@ class CreateAccountViewController : UIViewController {
   override func viewDidLoad() {
     // remove line below the navigation bar
     self.navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-    self.navigationBar.shadowImage = UIImage()
-    
-    let placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)
-    let nameString = NSAttributedString(string: kPlaceholderName, attributes: [ NSForegroundColorAttributeName : placeholderColor ])
-    self.nameTextField.attributedPlaceholder = nameString
-    let pwdString = NSAttributedString(string: kPlaceholderPassword, attributes: [ NSForegroundColorAttributeName : placeholderColor ])
-    self.passwordTextField.attributedPlaceholder = pwdString
+    self.navigationBar.shadowImage = UIImage()    
   }
   
   @IBAction func createAccountButtonPressed(sender: UIButton) {

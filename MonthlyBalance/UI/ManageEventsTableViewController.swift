@@ -25,7 +25,7 @@ class ManageEventsTableViewController : UITableViewController {
     self.navigationItem.leftItemsSupplementBackButton = false
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
     self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editButtonPressed:")
+    self.navigationItem.rightBarButtonItem = editButtonItem()
     self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
   }
 
@@ -33,9 +33,11 @@ class ManageEventsTableViewController : UITableViewController {
     self.navigationController?.popToRootViewControllerAnimated(true)
   }
   
-  func editButtonPressed(sender: UIBarButtonItem) {
-    self.tableView.setEditing(!self.editing, animated: true)
-    self.setEditing(!self.editing, animated: true)
+  // MARK: - TableView DataSource
+  
+  override func setEditing(editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    self.tableView.setEditing(editing, animated: animated)
 
     let indexPath = NSIndexPath(forRow: self.account!.scheduledEvents!.count, inSection: 0)
     if self.editing {
@@ -44,8 +46,6 @@ class ManageEventsTableViewController : UITableViewController {
       self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
   }
-  
-  // MARK: - TableView DataSource
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
@@ -61,6 +61,8 @@ class ManageEventsTableViewController : UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if self.editing && indexPath.row >= self.account?.scheduledEvents?.count {
       let cell = tableView.dequeueReusableCellWithIdentifier("NewEventCell")
+      cell?.selectedBackgroundView = UIView(frame: cell!.frame)
+      cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorSelectedTableViewCell)
       return cell!
     }
     
@@ -96,11 +98,19 @@ class ManageEventsTableViewController : UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     addDummyEvent(indexPath)
-    //self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
   }
   
   func addDummyEvent(indexPath: NSIndexPath) {
-    self.account?.addEventWithTitle("Sample Event", icon: "", recurring: true, dayOfMonth: 1, interval: 1, amount: 29.99)
+    if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController") {
+      
+      self.presentViewController(editEventTableViewController, animated: true) {
+        
+      }
+    }
+    
+    /*
     self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    */
   }
 }

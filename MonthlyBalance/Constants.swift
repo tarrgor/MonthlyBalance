@@ -31,6 +31,7 @@ let kColorBalanceAmountText = "#1FF801"
 let kColorButtonBackground = "#468AFF"
 let kColorHighlightedButtonBackground = "#97BDFF"
 let kColorHighlightedTableViewSelection = "#97BDFF"
+let kColorSelectedTableViewCell = "#218AFF"
 
 let kColorTableViewSelection = "#97BDFF"
 
