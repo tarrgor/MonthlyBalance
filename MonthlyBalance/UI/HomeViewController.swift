@@ -65,14 +65,20 @@ class HomeViewController: UIViewController {
     incomeButton.enabled = false
     expenditureButton.enabled = false
 
-    openAmountPad(.Income)
+    openAmountPadInMode(.Income, delegate: self, maskRect: {
+      avc in
+      return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
+    })
   }
 
   @IBAction func expenditureButtonPressed(sender: UIButton) {
     incomeButton.enabled = false
     expenditureButton.enabled = false
 
-    openAmountPad(.Expenditure)
+    openAmountPadInMode(.Expenditure, delegate: self, maskRect: {
+      avc in
+      return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
+    })
   }
 
   @IBAction func mainMenuButtonPressed(sender: UIBarButtonItem) {
@@ -166,43 +172,18 @@ extension HomeViewController : AmountPadDelegate {
   func amountPadDidPressOk(amountPad: AmountPadViewController) {
     let title = amountPad.mode == .Income ? self.settings?.defaultTitleIncome :
         self.settings?.defaultTitleExpenditure
-    let finalAmount: Double = Double(amountPad.amount) + Double(amountPad.digits) / 100
-    self.settings?.selectedAccount?.addActivityForDate(NSDate(), title: title!, icon: "", amount: finalAmount)
+    self.settings?.selectedAccount?.addActivityForDate(NSDate(), title: title!, icon: "", amount: amountPad.finalAmount)
     self.activityTableView.reloadData()
     
-    closeAmountPad(amountPad)
+    closeAmountPad(amountPad) {
+      self.resetButtons()
+    }
   }
   
   func amountPadDidPressCancel(amountPad: AmountPadViewController) {
-    closeAmountPad(amountPad)
-  }
-  
-  func openAmountPad(mode: AmountPadMode) {
-    let amountPadViewController = AmountPadViewController()
-    amountPadViewController.delegate = self
-    amountPadViewController.mode = mode
-    self.addChildViewController(amountPadViewController)
-    self.view.addSubview(amountPadViewController.view)
-    
-    let amountPadHeight = self.view.bounds.size.height * 0.75;
-    amountPadViewController.view.frame = CGRect(x: 0, y: self.view.bounds.size.height + 100, width: self.view.bounds.size.width, height: amountPadHeight)
-    
-    let maskLayer = CAShapeLayer()
-    let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: amountPadViewController.view.bounds.size.height - self.incomeButton.bounds.size.height - 3))
-    maskLayer.path = path.CGPath
-    
-    amountPadViewController.view.layer.mask = maskLayer
-    
-    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-      let ypos = self.view.bounds.size.height - amountPadViewController.view.bounds.size.height
-      amountPadViewController.view.frame.origin = CGPoint(x: 0, y: ypos)
-      }, completion: nil)
-  }
-  
-  func closeAmountPad(amountPad: AmountPadViewController) {
-    animateAmountPadOutOfScreen(amountPad)
-    resetButtons()
-    amountPad.removeFromParentViewController()
+    closeAmountPad(amountPad) {
+      self.resetButtons()
+    }
   }
   
   func resetButtons() {
@@ -211,14 +192,6 @@ extension HomeViewController : AmountPadDelegate {
     
     incomeButton.backgroundColor = UIColor(hex: kColorButtonBackground)
     expenditureButton.backgroundColor = UIColor(hex: kColorButtonBackground)
-  }
-  
-  func animateAmountPadOutOfScreen(amountPad: AmountPadViewController) {
-    UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
-      amountPad.view.frame.origin.y += self.view.frame.size.height
-      }, completion: {_ in
-        amountPad.view.removeFromSuperview()
-    })
   }
 }
 

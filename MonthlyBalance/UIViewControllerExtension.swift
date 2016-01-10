@@ -37,4 +37,38 @@ extension UIViewController {
     self.presentViewController(alertController, animated: true, completion: nil)
   }
   
+  func openAmountPadInMode(mode: AmountPadMode, delegate: AmountPadDelegate, maskRect: ((AmountPadViewController) -> (CGRect))? = nil) {
+    let amountPadViewController = AmountPadViewController()
+    amountPadViewController.delegate = delegate
+    amountPadViewController.mode = mode
+    self.addChildViewController(amountPadViewController)
+    self.view.addSubview(amountPadViewController.view)
+    
+    let amountPadHeight = self.view.bounds.size.height * 0.75;
+    amountPadViewController.view.frame = CGRect(x: 0, y: self.view.bounds.size.height + 100, width: self.view.bounds.size.width, height: amountPadHeight)
+    
+    if maskRect != nil {
+      let maskLayer = CAShapeLayer()
+      let path = UIBezierPath(rect: maskRect!(amountPadViewController))
+      maskLayer.path = path.CGPath
+      amountPadViewController.view.layer.mask = maskLayer
+    }
+    
+    UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+      let ypos = self.view.bounds.size.height - amountPadViewController.view.bounds.size.height
+      amountPadViewController.view.frame.origin = CGPoint(x: 0, y: ypos)
+    }, completion: nil)
+  }
+  
+  func closeAmountPad(amountPad: AmountPadViewController, completion: (() -> ())? = nil) {
+    UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
+      amountPad.view.frame.origin.y += self.view.frame.size.height
+      }, completion: {_ in
+        amountPad.view.removeFromSuperview()
+    })
+    amountPad.removeFromParentViewController()
+    if let callback = completion {
+      callback()
+    }
+  }
 }

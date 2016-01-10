@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum AmountPadMode {
-  case Income, Expenditure
+enum AmountPadMode : Double {
+  case Income = 1.0, Expenditure = -1.0
 }
 
 class AmountPadViewController : UIViewController {
@@ -17,7 +17,11 @@ class AmountPadViewController : UIViewController {
   var amount: Int = 0
   var digits: Int = 0
   
-  var mode: AmountPadMode?
+  var finalAmount: Double {
+    return (Double(self.amount) + Double(self.digits) / 100) * self.mode.rawValue
+  }
+  
+  var mode: AmountPadMode = .Expenditure
   
   var delegate: AmountPadDelegate? = nil
   
