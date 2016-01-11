@@ -34,7 +34,7 @@ class ScheduledEvent: NSManagedObject {
   }
   
   func delete() {
-    let mutableEvents = NSMutableSet(set: self.account!.scheduledEvents!)
+    let mutableEvents = NSMutableOrderedSet(orderedSet: self.account!.scheduledEvents!)
     mutableEvents.removeObject(self)
     self.account!.scheduledEvents = mutableEvents
 

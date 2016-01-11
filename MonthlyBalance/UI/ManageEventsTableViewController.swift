@@ -12,6 +12,8 @@ class ManageEventsTableViewController : UITableViewController {
   
   var account: Account?
   
+  var selectedIndexPath: NSIndexPath?
+  
   override func viewDidLoad() {
     // Get selected account
     self.account = self.settings?.selectedAccount
@@ -36,14 +38,17 @@ class ManageEventsTableViewController : UITableViewController {
   // MARK: - TableView DataSource
   
   override func setEditing(editing: Bool, animated: Bool) {
-    super.setEditing(editing, animated: animated)
-    self.tableView.setEditing(editing, animated: animated)
-
-    let indexPath = NSIndexPath(forRow: self.account!.scheduledEvents!.count, inSection: 0)
-    if self.editing {
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    } else {
-      self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    print("Current event count \(self.account!.scheduledEvents!.count), new editing mode \(editing)")
+    if editing != self.editing {
+      super.setEditing(editing, animated: animated)
+      self.tableView.setEditing(editing, animated: animated)
+      
+      let indexPath = NSIndexPath(forRow: self.account!.scheduledEvents!.count, inSection: 0)
+      if self.editing {
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      } else {
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
     }
   }
   
@@ -68,18 +73,27 @@ class ManageEventsTableViewController : UITableViewController {
     
     let cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventTableViewCell
     let events = self.account!.scheduledEvents!
-    let event: ScheduledEvent = events.allObjects[indexPath.row] as! ScheduledEvent
+    let event: ScheduledEvent = events[indexPath.row] as! ScheduledEvent
     
     cell.titleLabel.text = event.title!
     cell.scheduleLabel.text = "Every \(event.dayOfMonth!) all \(event.interval!) months."
     cell.nextLabel.text = "\(event.nextDueDate!.day()).\(event.nextDueDate!.month()).\(event.nextDueDate!.year())"
-    cell.amountLabel.text = String(event.amount!)
+    if let amount = event.amount {
+      cell.amountLabel.amount = Double(amount)
+    } else {
+      cell.amountLabel.text = "ERR!"
+    }
     
     return cell
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    
+    if editingStyle == .Delete {
+      if let event = self.account?.scheduledEvents?[indexPath.row] as? ScheduledEvent {
+        event.delete()
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
+    }
   }
   
   override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -97,20 +111,31 @@ class ManageEventsTableViewController : UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    addDummyEvent(indexPath)
+    openEventDialog(indexPath)
     self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
   }
   
-  func addDummyEvent(indexPath: NSIndexPath) {
-    if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController") {
-      
-      self.presentViewController(editEventTableViewController, animated: true) {
-        
-      }
+  func openEventDialog(indexPath: NSIndexPath) {
+    if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
+        as? EditEventTableViewController {
+      editEventTableViewController.delegate = self
+          
+      self.selectedIndexPath = indexPath
+      self.presentViewController(editEventTableViewController, animated: true, completion: nil)
     }
-    
-    /*
-    self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    */
   }
 }
+
+extension ManageEventsTableViewController : EditEventDelegate {
+  func editEventViewControllerDidSaveEvent(viewController: EditEventTableViewController, event: ScheduledEvent?) {
+    if let _ = event, indexPath = self.selectedIndexPath {
+      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      self.selectedIndexPath = nil
+    }
+  }
+  
+  func editEventViewControllerDidCancelEvent(viewController: EditEventTableViewController) {
+    
+  }
+}
+

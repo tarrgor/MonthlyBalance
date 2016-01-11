@@ -110,7 +110,7 @@ class AmountPadView : UIVisualEffectView {
   
   func createNumericButtons() {
     for btn in 0...9 {
-      let button = UIButton.amountPadButtonWithTitle(String(btn))
+      let button = btn > 0 ? UIButton.amountPadButtonWithTitle(String(btn)) : UIButton.amountPadButtonWithNumberZero()
       self.addSubview(button)
       self.numericButtons[btn] = button
     }

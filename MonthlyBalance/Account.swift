@@ -97,16 +97,17 @@ class Account: NSManagedObject {
     // Check if there were any events due since the last update and apply them
     // to the account
     if let events = self.scheduledEvents {
-      for event: ScheduledEvent in events.allObjects as! [ScheduledEvent] {
-        if event.due {
+      events.enumerateObjectsUsingBlock({ event, index, _ in
+        let currentEvent = event as! ScheduledEvent
+        if currentEvent.due {
           // apply the event to the account
-          event.applyToAccount()
+          currentEvent.applyToAccount()
           
-          if !(event.recurring as! Bool) {
-            event.delete()
+          if !(currentEvent.recurring as! Bool) {
+            currentEvent.delete()
           }
         }
-      }
+      })
     }
     
     self.lastUpdated = NSDate()

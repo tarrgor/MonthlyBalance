@@ -50,6 +50,7 @@
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
 		F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */; };
+		F2EB15F51C42AF7900AE8562 /* EditEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagementDelegate.swift; sourceTree = "<group>"; };
+		F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEventDelegate.swift; path = ../EditEventDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */,
 				74194987C5C4AD2CBF53391B /* AmountPadView.swift */,
 				7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */,
+				F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */,
 				74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */,
 				7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */,
 				74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */,
@@ -422,6 +425,7 @@
 				F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */,
 				741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */,
 				F24D7ADF1C342B8400B7157F /* UIViewExtension.swift in Sources */,
+				F2EB15F51C42AF7900AE8562 /* EditEventDelegate.swift in Sources */,
 				F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */,
 				74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */,
 				7419454C62391038DA5BEE70 /* AmountPadViewController.swift in Sources */,

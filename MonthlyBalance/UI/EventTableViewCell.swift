@@ -14,5 +14,5 @@ class EventTableViewCell : UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var scheduleLabel: UILabel!
   @IBOutlet weak var nextLabel: UILabel!
-  @IBOutlet weak var amountLabel: UILabel!
+  @IBOutlet weak var amountLabel: MBAmountLabel!
 }

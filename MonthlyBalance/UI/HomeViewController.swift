@@ -135,7 +135,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
     
-    guard let activity: Activity = self.settings?.selectedAccount?.activities?.allObjects[indexPath.row] as? Activity
+    guard let activity: Activity = self.settings?.selectedAccount?.activities?[indexPath.row] as? Activity
       else {
         cell.titleLabel.text = "ERROR!"
         setSelectedBackgroundColorForCell(cell)
@@ -146,14 +146,14 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     cell.timeLabel.text = "Time"
     cell.iconImageView.image = UIImage()
     
-    guard let currencyAmount = try? CurrencyUtil.formattedValue(Double(activity.amount!))
+    guard let amount = activity.amount
       else {
         cell.amountLabel.text = "ERR!"
         setSelectedBackgroundColorForCell(cell)
         return cell
     }
     
-    cell.amountLabel.text = currencyAmount
+    cell.amountLabel.amount = Double(amount)
     
     setSelectedBackgroundColorForCell(cell)
     

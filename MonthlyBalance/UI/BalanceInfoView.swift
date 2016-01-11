@@ -39,17 +39,13 @@ class BalanceInfoView : UIView {
   var account: Account? {
     didSet {
       if account != nil {
-        do {
-          try setAmountLabelText()
-        } catch {
-          print("Could not set amount for label.")
-        }
+        setAmountLabelText()
       }
     }
   }
   
   var headlineLabel: UILabel!
-  var amountLabel: UILabel!
+  var amountLabel: MBAmountLabel!
   
   var referencedEntity: Account?
   var referenceKey: String = ""
@@ -76,11 +72,11 @@ class BalanceInfoView : UIView {
     
     self.addSubview(self.headlineLabel)
     
-    self.amountLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+    self.amountLabel = MBAmountLabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.amountLabel.textColor = UIColor(hex: kColorBalanceAmountText)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
     
-    try setAmountLabelText()
+    setAmountLabelText()
     
     self.amountLabel.textAlignment = .Center
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -112,10 +108,10 @@ class BalanceInfoView : UIView {
     super.updateConstraints()
   }
   
-  func setAmountLabelText() throws {
+  func setAmountLabelText() {
     if let account = self.account {
       let amount: Double = account.valueForKey(self.type.propertyName()) as! Double
-      try self.amountLabel.text = CurrencyUtil.formattedValue(amount)
+      self.amountLabel.amount = amount
     }
   }
 }

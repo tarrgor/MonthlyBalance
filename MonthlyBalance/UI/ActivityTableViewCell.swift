@@ -13,6 +13,6 @@ class ActivityTableViewCell : UITableViewCell {
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var timeLabel: UILabel!
   @IBOutlet var iconImageView: UIImageView!
-  @IBOutlet var amountLabel: UILabel!
+  @IBOutlet var amountLabel: MBAmountLabel!
 
 }
