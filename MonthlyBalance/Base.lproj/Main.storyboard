@@ -238,33 +238,43 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgx-T3-Kbv">
-                                <rect key="frame" x="20" y="81" width="161" height="36"/>
+                                <rect key="frame" x="20" y="81" width="85" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Manage accounts">
+                                <state key="normal" title="Accounts">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="manageAccountsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="i0W-cj-x0I"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-JA-Z44">
+                                <rect key="frame" x="20" y="137" width="61" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Events">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="manageEventsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="yvc-bc-5In"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJs-UW-RTq">
+                                <rect key="frame" x="20" y="193" width="81" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Activities">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="manageActivitiesMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="qdj-rN-wje"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4A-A3-ZXa">
-                                <rect key="frame" x="20" y="193" width="74" height="36"/>
+                                <rect key="frame" x="20" y="249" width="74" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Settings">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="settingsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="PLK-aw-MKS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-JA-Z44">
-                                <rect key="frame" x="20" y="137" width="137" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Manage events">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="manageEventsMenuItemPressed:" destination="eo8-hd-Um9" eventType="touchUpInside" id="yvc-bc-5In"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -274,11 +284,13 @@
                             <constraint firstItem="H4A-A3-ZXa" firstAttribute="leading" secondItem="dVe-uv-A2D" secondAttribute="leading" id="EmE-1W-Oiq"/>
                             <constraint firstItem="Zmj-Rr-F2Y" firstAttribute="top" secondItem="dVe-uv-A2D" secondAttribute="bottom" constant="6" id="Lwe-Qy-nNh"/>
                             <constraint firstItem="Qgx-T3-Kbv" firstAttribute="leading" secondItem="dVe-uv-A2D" secondAttribute="leading" id="M1e-eg-EZj"/>
+                            <constraint firstItem="AJs-UW-RTq" firstAttribute="top" secondItem="vkk-JA-Z44" secondAttribute="bottom" constant="20" id="OOW-sy-9Qd"/>
                             <constraint firstItem="dVe-uv-A2D" firstAttribute="top" secondItem="bbS-Hq-uU1" secondAttribute="bottom" id="Xrh-gm-usj"/>
                             <constraint firstItem="vkk-JA-Z44" firstAttribute="leading" secondItem="Qgx-T3-Kbv" secondAttribute="leading" id="Xzz-3D-4ZJ"/>
-                            <constraint firstItem="H4A-A3-ZXa" firstAttribute="top" secondItem="vkk-JA-Z44" secondAttribute="bottom" constant="20" id="cwd-R0-oj7"/>
+                            <constraint firstItem="AJs-UW-RTq" firstAttribute="leading" secondItem="Qgx-T3-Kbv" secondAttribute="leading" id="bNi-Ed-Nlu"/>
                             <constraint firstItem="Zmj-Rr-F2Y" firstAttribute="leading" secondItem="vop-WO-POd" secondAttribute="leading" id="d6V-QV-fFV"/>
                             <constraint firstAttribute="trailing" secondItem="Zmj-Rr-F2Y" secondAttribute="trailing" constant="20" id="euY-ru-VkJ"/>
+                            <constraint firstItem="H4A-A3-ZXa" firstAttribute="top" secondItem="AJs-UW-RTq" secondAttribute="bottom" constant="20" id="gaz-zO-sh9"/>
                             <constraint firstItem="Qgx-T3-Kbv" firstAttribute="top" secondItem="Zmj-Rr-F2Y" secondAttribute="bottom" constant="26" id="hFe-wG-KCf"/>
                             <constraint firstItem="dVe-uv-A2D" firstAttribute="leading" secondItem="vop-WO-POd" secondAttribute="leading" constant="20" symbolic="YES" id="zVb-tW-BTf"/>
                         </constraints>
@@ -571,7 +583,7 @@
         <scene sceneID="xEg-g8-33s">
             <objects>
                 <tableViewController storyboardIdentifier="ManageEventsTableViewController" id="e3M-6E-m08" customClass="ManageEventsTableViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SGC-ez-Qoz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SGC-ez-Qoz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14509803921568629" green="0.1803921568627451" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1049,6 +1061,107 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sy2-H4-ej6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="483" y="1024"/>
+        </scene>
+        <!--Manage Activities Table View Controller-->
+        <scene sceneID="Lo5-0V-DLQ">
+            <objects>
+                <tableViewController storyboardIdentifier="ManageActivitiesTableViewController" id="INR-bY-qq4" customClass="ManageActivitiesTableViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kjv-vC-0Re">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1450980392" green="0.18039215689999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCell" rowHeight="78" id="JYr-Ok-biL" customClass="ActivityTableViewCell" customModule="MonthlyBalance" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JYr-Ok-biL" id="Nzf-Ki-eYH">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="77.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hu7-3r-EI9">
+                                            <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="N01-pB-Qj8"/>
+                                                <constraint firstAttribute="height" constant="60" id="cPn-ZA-hjw"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQG-fi-Jvk">
+                                            <rect key="frame" x="80" y="8" width="45" height="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnw-1v-dQU">
+                                            <rect key="frame" x="80" y="36" width="56.5" height="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDO-kv-iAT" customClass="MBAmountLabel" customModule="MonthlyBalance" customModuleProvider="target">
+                                            <rect key="frame" x="507.5" y="8" width="84.5" height="28"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="amount">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.45098039220000002" green="0.62352941179999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="hu7-3r-EI9" firstAttribute="top" secondItem="Nzf-Ki-eYH" secondAttribute="topMargin" id="2Vu-Rz-aaq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="hu7-3r-EI9" secondAttribute="bottom" priority="999" constant="2" id="9Gp-aY-ZhF"/>
+                                        <constraint firstItem="JDO-kv-iAT" firstAttribute="trailing" secondItem="Nzf-Ki-eYH" secondAttribute="trailingMargin" id="C5j-nv-h2U"/>
+                                        <constraint firstItem="cnw-1v-dQU" firstAttribute="leading" secondItem="hu7-3r-EI9" secondAttribute="trailing" constant="12" id="Ugp-pd-Bzl"/>
+                                        <constraint firstItem="JDO-kv-iAT" firstAttribute="top" secondItem="oQG-fi-Jvk" secondAttribute="top" id="VGj-RI-WWi"/>
+                                        <constraint firstItem="hu7-3r-EI9" firstAttribute="leading" secondItem="Nzf-Ki-eYH" secondAttribute="leadingMargin" id="bPz-sc-8XU"/>
+                                        <constraint firstItem="oQG-fi-Jvk" firstAttribute="leading" secondItem="hu7-3r-EI9" secondAttribute="trailing" constant="12" id="i9h-BB-qeX"/>
+                                        <constraint firstItem="oQG-fi-Jvk" firstAttribute="top" secondItem="Nzf-Ki-eYH" secondAttribute="topMargin" id="syL-Hk-Khi"/>
+                                        <constraint firstItem="cnw-1v-dQU" firstAttribute="top" secondItem="oQG-fi-Jvk" secondAttribute="bottom" id="u2b-ND-u4c"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.3803921569" green="0.54117647059999996" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="amountLabel" destination="JDO-kv-iAT" id="MOq-iB-M7w"/>
+                                    <outlet property="iconImageView" destination="hu7-3r-EI9" id="ba1-Df-H4W"/>
+                                    <outlet property="timeLabel" destination="cnw-1v-dQU" id="2JH-nz-Mwl"/>
+                                    <outlet property="titleLabel" destination="oQG-fi-Jvk" id="c2l-os-yzI"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewActivityCell" textLabel="Oxt-jz-Zaa" rowHeight="45" style="IBUITableViewCellStyleDefault" id="gnk-Y2-fSu" customClass="EventTableViewCell" customModule="MonthlyBalance" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="106" width="600" height="45"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gnk-Y2-fSu" id="QIV-lC-21n">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Add new activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oxt-jz-Zaa">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.45098039220000002" green="0.62352941179999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.3803921569" green="0.54117647059999996" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="INR-bY-qq4" id="7LS-c8-hpW"/>
+                            <outlet property="delegate" destination="INR-bY-qq4" id="Dtt-mD-Fdc"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="kjv-vC-0Re" id="ME0-Ti-t6O"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEl-lF-f88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4002" y="1032"/>
         </scene>
     </scenes>
     <resources>

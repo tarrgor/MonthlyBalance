@@ -177,6 +177,7 @@ extension HomeViewController : AmountPadDelegate {
     
     closeAmountPad(amountPad) {
       self.resetButtons()
+      self.updateAccountOnPageViewController()
     }
   }
   

@@ -43,6 +43,7 @@
 		F27880D51C41B2630055AD2F /* MBAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27880D41C41B2630055AD2F /* MBAmountLabel.swift */; };
 		F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */; };
 		F2A9EF481BF1175600930EA6 /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */; };
+		F2AB67DF1C441A6600D8834E /* ManageActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */; };
 		F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */; };
 		F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */; };
 		F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		F27880D41C41B2630055AD2F /* MBAmountLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBAmountLabel.swift; sourceTree = "<group>"; };
 		F27B69771C010D7A00A3AED0 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		F2A9EF471BF1175600930EA6 /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
+		F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyUtil.swift; sourceTree = "<group>"; };
 		F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageAccountsTableViewController.swift; sourceTree = "<group>"; };
 		F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				F232F6221C18B4D600CB58CC /* MainMenuViewController.swift */,
 				F24D7AE21C34438C00B7157F /* SettingsViewController.swift */,
 				F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */,
+				F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */,
 				F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */,
 				F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */,
 				F26111B01C415C1F009378D5 /* MBTextField.swift */,
@@ -399,6 +402,7 @@
 				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
 				F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */,
 				F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */,
+				F2AB67DF1C441A6600D8834E /* ManageActivitiesTableViewController.swift in Sources */,
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
 				F24D7AE31C34438C00B7157F /* SettingsViewController.swift in Sources */,

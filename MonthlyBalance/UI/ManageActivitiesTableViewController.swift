@@ -1,19 +1,18 @@
 //
-//  ManageEventsTableViewController.swift
+//  ManageActivitiesTableViewController.swift
 //  MonthlyBalance
 //
-//  Created by Thorsten Klusemann on 06.01.16.
+//  Created by Thorsten Klusemann on 11.01.16.
 //  Copyright © 2016 Karrmarr Software. All rights reserved.
 //
 
 import UIKit
 
-class ManageEventsTableViewController : UITableViewController {
-  
+class ManageActivitiesTableViewController : UITableViewController {
   var account: Account?
   
   var selectedIndexPath: NSIndexPath?
-
+  
   var swipeToDelete = false
   
   override func viewDidLoad() {
@@ -25,14 +24,14 @@ class ManageEventsTableViewController : UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     
     // Setup navigationBar
-    self.navigationItem.title = kTitleManageEvents
+    self.navigationItem.title = kTitleManageActivities
     self.navigationItem.leftItemsSupplementBackButton = false
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
     self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
     self.navigationItem.rightBarButtonItem = editButtonItem()
     self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
   }
-
+  
   func backButtonPressed(sender: UIBarButtonItem) {
     self.navigationController?.popToRootViewControllerAnimated(true)
   }
@@ -43,19 +42,19 @@ class ManageEventsTableViewController : UITableViewController {
     super.setEditing(editing, animated: animated)
     if self.editing && !self.swipeToDelete {
       self.tableView.beginUpdates()
-
-      let indexPath = NSIndexPath(forRow: self.account!.scheduledEvents!.count, inSection: 0)
+      
+      let indexPath = NSIndexPath(forRow: self.account!.activities!.count, inSection: 0)
       self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       self.tableView.endUpdates()
-
+      
       self.tableView.setEditing(editing, animated: animated)
     } else {
       self.tableView.beginUpdates()
-
-      let indexPath = NSIndexPath(forRow: self.account!.scheduledEvents!.count, inSection: 0)
+      
+      let indexPath = NSIndexPath(forRow: self.account!.activities!.count, inSection: 0)
       self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       self.tableView.endUpdates()
-
+      
       self.tableView.setEditing(editing, animated: animated)
     }
   }
@@ -65,28 +64,27 @@ class ManageEventsTableViewController : UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let account: Account = self.account, events = account.scheduledEvents {
-      return self.editing ? events.count + 1 : events.count
+    if let account: Account = self.account, activities = account.activities {
+      return self.editing ? activities.count + 1 : activities.count
     }
     return 0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if self.editing && indexPath.row >= self.account?.scheduledEvents?.count {
-      let cell = tableView.dequeueReusableCellWithIdentifier("NewEventCell")
+    if self.editing && indexPath.row >= self.account?.activities?.count {
+      let cell = tableView.dequeueReusableCellWithIdentifier("NewActivityCell")
       cell?.selectedBackgroundView = UIView(frame: cell!.frame)
       cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorSelectedTableViewCell)
       return cell!
     }
     
-    let cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventTableViewCell
-    let events = self.account!.scheduledEvents!
-    let event: ScheduledEvent = events[indexPath.row] as! ScheduledEvent
+    let cell = tableView.dequeueReusableCellWithIdentifier("ActivityCell") as! ActivityTableViewCell
+    let activities = self.account!.activities!
+    let activity: Activity = activities[indexPath.row] as! Activity
     
-    cell.titleLabel.text = event.title!
-    cell.scheduleLabel.text = "Every \(event.dayOfMonth!) all \(event.interval!) months."
-    cell.nextLabel.text = "\(event.nextDueDate!.day()).\(event.nextDueDate!.month()).\(event.nextDueDate!.year())"
-    if let amount = event.amount {
+    cell.titleLabel.text = activity.title!
+    cell.timeLabel.text = "Time"
+    if let amount = activity.amount {
       cell.amountLabel.amount = Double(amount)
     } else {
       cell.amountLabel.text = "ERR!"
@@ -97,24 +95,24 @@ class ManageEventsTableViewController : UITableViewController {
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == .Delete {
-      if let event = self.account?.scheduledEvents?[indexPath.row] as? ScheduledEvent {
-        event.delete()
+      if let activity = self.account?.activities?[indexPath.row] as? Activity {
+        //activity.delete()
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       }
     } else if editingStyle == .Insert {
-      openEventDialog(indexPath)
+      //openEventDialog(indexPath)
     }
   }
   
   override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-    if indexPath.row >= self.account?.scheduledEvents?.count {
+    if indexPath.row >= self.account?.activities?.count {
       return .Insert
     }
     return .Delete
   }
   
   override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-    if self.editing && indexPath.row >= self.account?.scheduledEvents?.count {
+    if self.editing && indexPath.row >= self.account?.activities?.count {
       return indexPath
     }
     return nil
@@ -122,40 +120,28 @@ class ManageEventsTableViewController : UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    if indexPath.row >= self.account?.scheduledEvents?.count && editing {
+    if indexPath.row >= self.account?.activities?.count && editing {
       self.tableView(tableView, commitEditingStyle: .Insert, forRowAtIndexPath: indexPath)
     }
   }
-
+  
   override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
     self.swipeToDelete = true
   }
-
+  
   override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
     self.swipeToDelete = false
   }
-
+  
+  /*
   func openEventDialog(indexPath: NSIndexPath) {
     if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
-        as? EditEventTableViewController {
-      editEventTableViewController.delegate = self
-          
-      self.selectedIndexPath = indexPath
-      self.presentViewController(editEventTableViewController, animated: true, completion: nil)
+      as? EditEventTableViewController {
+        editEventTableViewController.delegate = self
+        
+        self.selectedIndexPath = indexPath
+        self.presentViewController(editEventTableViewController, animated: true, completion: nil)
     }
   }
+  */
 }
-
-extension ManageEventsTableViewController : EditEventDelegate {
-  func editEventViewControllerDidSaveEvent(viewController: EditEventTableViewController, event: ScheduledEvent?) {
-    if let _ = event, indexPath = self.selectedIndexPath {
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-      self.selectedIndexPath = nil
-    }
-  }
-  
-  func editEventViewControllerDidCancelEvent(viewController: EditEventTableViewController) {
-    
-  }
-}
-

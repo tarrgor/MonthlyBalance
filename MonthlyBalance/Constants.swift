@@ -13,6 +13,7 @@ import Foundation
 let kIdCreateAccountViewController = "CreateAccountViewController"
 let kIdManageAccountsTableViewController = "ManageAccountsTableViewController"
 let kIdManageEventsTableViewController = "ManageEventsTableViewController"
+let kIdManageActivitiesTableViewController = "ManageActivitiesTableViewController"
 let kIdSettingsViewController = "SettingsViewController"
 
 // Table View Cells
@@ -52,6 +53,7 @@ let kPlaceholderPassword = "Password"
 
 let kTitleManageAccounts = "Manage Accounts"
 let kTitleManageEvents = "Manage Events"
+let kTitleManageActivities = "Manage Activities"
 let kTitleSettings = "Settings"
 let kTitleBackButton = "< Back"
 

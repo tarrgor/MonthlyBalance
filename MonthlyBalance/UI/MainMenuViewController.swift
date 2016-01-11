@@ -26,6 +26,10 @@ class MainMenuViewController : UIViewController {
     loadViewControllerWithIdentifier(kIdManageEventsTableViewController, beforePush: nil)
   }
   
+  @IBAction func manageActivitiesMenuItemPressed(sender: UIButton) {
+    loadViewControllerWithIdentifier(kIdManageActivitiesTableViewController, beforePush: nil)
+  }
+  
   @IBAction func settingsMenuItemPressed(sender: UIButton) {
     loadViewControllerWithIdentifier(kIdSettingsViewController, beforePush: nil)
   }
