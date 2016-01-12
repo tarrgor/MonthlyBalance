@@ -1,29 +1,24 @@
 //
-//  EditEventTableViewController.swift
+//  EditActivityTableViewController.swift
 //  MonthlyBalance
 //
-//  Created by Thorsten Klusemann on 09.01.16.
+//  Created by Thorsten Klusemann on 12.01.16.
 //  Copyright © 2016 Karrmarr Software. All rights reserved.
 //
 
 import UIKit
 
-class EditEventTableViewController : UITableViewController {
+class EditActivityTableViewController : UITableViewController {
   
-  var event: ScheduledEvent?
+  var activity: Activity?
   
-  var delegate: EditEventDelegate?
+  var delegate: EditActivityDelegate?
   
   @IBOutlet weak var titleTextField: UITextField!
-  @IBOutlet weak var recurringSwitch: UISwitch!
   
   @IBOutlet weak var amountLabel: MBAmountLabel!
   
-  @IBOutlet weak var dayOfMonthSlider: UISlider!
-  @IBOutlet weak var dayOfMonthLabel: UILabel!
-  
-  @IBOutlet weak var intervalSlider: UISlider!
-  @IBOutlet weak var intervalLabel: UILabel!
+  @IBOutlet weak var dateButton: UIButton!
   
   override func viewDidLoad() {
     let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
@@ -39,23 +34,22 @@ class EditEventTableViewController : UITableViewController {
     }
     
     if let account = self.settings?.selectedAccount {
-      let recurring = self.recurringSwitch.on
-      let dayOfMonth = Int(self.dayOfMonthSlider.value)
-      let interval = Int(self.intervalSlider.value)
       let amount = self.amountLabel.amount
+      let title = self.titleTextField.text
+      let date: NSDate = NSDate()
       
-      self.event = account.addEventWithTitle(title!, icon: "", recurring: recurring, dayOfMonth: dayOfMonth, interval: interval, amount: amount)
+      self.activity = account.addActivityForDate(date, title: title!, icon: "", amount: amount)
     } else {
       print("No selected account found in the settings.")
     }
     
-    self.delegate?.editEventViewControllerDidSaveEvent(self, event: self.event)
+    self.delegate?.editActivityViewControllerDidSaveEvent(self, activity: self.activity)
     
     self.dismissViewControllerAnimated(true, completion: nil)
   }
   
   @IBAction func cancelButtonPressed(sender: UIButton) {
-    self.delegate?.editEventViewControllerDidCancelEvent(self)
+    self.delegate?.editActivityViewControllerDidCancelEvent(self)
     
     self.dismissViewControllerAnimated(true, completion: nil)
   }
@@ -68,12 +62,7 @@ class EditEventTableViewController : UITableViewController {
     openAmountPadInMode(.Expenditure, delegate: self)
   }
   
-  @IBAction func dayOfMonthSliderChanged(sender: UISlider) {
-    self.dayOfMonthLabel.text = String(Int(self.dayOfMonthSlider.value))
-  }
-  
-  @IBAction func intervalSliderChanged(sender: UISlider) {
-    self.intervalLabel.text = String(Int(self.intervalSlider.value))
+  @IBAction func dateButtonPressed(sender: UIButton) {
   }
   
   func viewTapped() {
@@ -81,7 +70,7 @@ class EditEventTableViewController : UITableViewController {
   }
 }
 
-extension EditEventTableViewController : AmountPadDelegate {
+extension EditActivityTableViewController : AmountPadDelegate {
   func amountPadDidPressOk(amountPad: AmountPadViewController) {
     self.amountLabel.amount = amountPad.finalAmount
     closeAmountPad(amountPad)
@@ -92,10 +81,9 @@ extension EditEventTableViewController : AmountPadDelegate {
   }
 }
 
-extension EditEventTableViewController : UITextFieldDelegate {
+extension EditActivityTableViewController : UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.titleTextField.resignFirstResponder()
     return true
   }
 }
-

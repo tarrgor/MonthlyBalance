@@ -20,7 +20,7 @@ class ManageActivitiesTableViewController : UITableViewController {
     self.account = self.settings?.selectedAccount
     
     // Setup autolayout for tableView
-    tableView.estimatedRowHeight = 78.0
+    tableView.estimatedRowHeight = 66.0
     tableView.rowHeight = UITableViewAutomaticDimension
     
     // Setup navigationBar
@@ -100,7 +100,7 @@ class ManageActivitiesTableViewController : UITableViewController {
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       }
     } else if editingStyle == .Insert {
-      //openEventDialog(indexPath)
+      openActivityDialog(indexPath)
     }
   }
   
@@ -133,15 +133,28 @@ class ManageActivitiesTableViewController : UITableViewController {
     self.swipeToDelete = false
   }
   
-  /*
-  func openEventDialog(indexPath: NSIndexPath) {
-    if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
-      as? EditEventTableViewController {
-        editEventTableViewController.delegate = self
+  func openActivityDialog(indexPath: NSIndexPath) {
+    if let editActivityTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditActivityTableViewController")
+      as? EditActivityTableViewController {
+        editActivityTableViewController.delegate = self
         
         self.selectedIndexPath = indexPath
-        self.presentViewController(editEventTableViewController, animated: true, completion: nil)
+        self.presentViewController(editActivityTableViewController, animated: true, completion: nil)
     }
   }
-  */
 }
+
+extension ManageActivitiesTableViewController : EditActivityDelegate {
+  func editActivityViewControllerDidSaveEvent(viewController: EditActivityTableViewController, activity: Activity?) {
+    if let _ = activity, indexPath = self.selectedIndexPath {
+      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      self.selectedIndexPath = nil
+    }
+  }
+  
+  func editActivityViewControllerDidCancelEvent(viewController: EditActivityTableViewController) {
+    
+  }
+}
+
+
