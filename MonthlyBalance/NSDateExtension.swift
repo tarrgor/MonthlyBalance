@@ -41,4 +41,19 @@ extension NSDate {
     components.year = year
     return calendar.dateFromComponents(components)
   }
+  
+  func isInCurrentMonth() -> Bool {
+    let currentDate = NSDate()
+    let currentMonth = currentDate.month()
+    let currentYear = currentDate.year()
+    
+    return self.month() == currentMonth && self.year() == currentYear
+  }
+  
+  func isInCurrentYear() -> Bool {
+    let currentDate = NSDate()
+    let currentYear = currentDate.year()
+    
+    return self.year() == currentYear
+  }
 }

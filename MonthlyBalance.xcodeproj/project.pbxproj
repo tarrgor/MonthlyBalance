@@ -21,6 +21,7 @@
 		F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */; };
 		F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */; };
 		F2435B791C4571D900F25006 /* EditActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B781C4571D900F25006 /* EditActivityDelegate.swift */; };
+		F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24470A91C4A6F6300626D29 /* Commons.swift */; };
 		F24D7ADF1C342B8400B7157F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D7ADE1C342B8400B7157F /* UIViewExtension.swift */; };
 		F24D7AE11C34372700B7157F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D7AE01C34372700B7157F /* Settings.swift */; };
 		F24D7AE31C34438C00B7157F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D7AE21C34438C00B7157F /* SettingsViewController.swift */; };
@@ -38,6 +39,7 @@
 		F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF8F1BEF54D900A6D7EB /* ScheduledEvent.swift */; };
 		F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */; };
 		F258EF991BEF5E6000A6D7EB /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */; };
+		F25CDF431C4A7CE600970290 /* CreateAccountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25CDF421C4A7CE600970290 /* CreateAccountDelegate.swift */; };
 		F26111AD1C41460B009378D5 /* EditEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */; };
 		F26111B11C415C1F009378D5 /* MBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26111B01C415C1F009378D5 /* MBTextField.swift */; };
 		F2779DA81C0CCAA700ECDCC5 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2779DA71C0CCAA700ECDCC5 /* CreateAccountViewController.swift */; };
@@ -88,6 +90,7 @@
 		F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityTableViewController.swift; sourceTree = "<group>"; };
 		F2435B781C4571D900F25006 /* EditActivityDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityDelegate.swift; sourceTree = "<group>"; };
+		F24470A91C4A6F6300626D29 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		F24D7ADE1C342B8400B7157F /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F24D7AE01C34372700B7157F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F24D7AE21C34438C00B7157F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		F258EF961BEF56AB00A6D7EB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F258EF981BEF5E6000A6D7EB /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		F258EF9A1BEF61D900A6D7EB /* MonthlyBalance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MonthlyBalance-Bridging-Header.h"; path = "MonthlyBalance/MonthlyBalance-Bridging-Header.h"; sourceTree = "<group>"; };
+		F25CDF421C4A7CE600970290 /* CreateAccountDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountDelegate.swift; sourceTree = "<group>"; };
 		F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEventTableViewController.swift; sourceTree = "<group>"; };
 		F26111B01C415C1F009378D5 /* MBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBTextField.swift; sourceTree = "<group>"; };
 		F2779DA71C0CCAA700ECDCC5 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */,
 				74194987C5C4AD2CBF53391B /* AmountPadView.swift */,
 				7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */,
+				F25CDF421C4A7CE600970290 /* CreateAccountDelegate.swift */,
 				F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */,
 				F2435B781C4571D900F25006 /* EditActivityDelegate.swift */,
 				74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */,
@@ -177,9 +182,9 @@
 				F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */,
 				F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */,
 				F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */,
+				F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */,
 				F26111B01C415C1F009378D5 /* MBTextField.swift */,
 				F27880D41C41B2630055AD2F /* MBAmountLabel.swift */,
-				F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				74194F79B764629A53735119 /* UI */,
 				F207F27B1BEFB9AF00143FD6 /* Extensions */,
 				F2E19ABA1BF794D100EEC70D /* Constants.swift */,
+				F24470A91C4A6F6300626D29 /* Commons.swift */,
 				F258EF461BEF460700A6D7EB /* AppDelegate.swift */,
 				F258EF4A1BEF460700A6D7EB /* Main.storyboard */,
 				F258EF501BEF460700A6D7EB /* Assets.xcassets */,
@@ -427,10 +433,12 @@
 				F258EF971BEF56AB00A6D7EB /* CoreDataManager.swift in Sources */,
 				F258EF471BEF460700A6D7EB /* AppDelegate.swift in Sources */,
 				F23BBC501C3D77AC00DB5E25 /* ManageEventsTableViewController.swift in Sources */,
+				F25CDF431C4A7CE600970290 /* CreateAccountDelegate.swift in Sources */,
 				741945E7EA10F0A5F3097818 /* ActivityTableViewCell.swift in Sources */,
 				F232F6211C18A43C00CB58CC /* SlideMenuViewController.swift in Sources */,
 				F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */,
 				F24D7AE11C34372700B7157F /* Settings.swift in Sources */,
+				F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */,
 				F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */,
 				F2779DA81C0CCAA700ECDCC5 /* CreateAccountViewController.swift in Sources */,
 				F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */,

@@ -620,8 +620,8 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZ7-Ep-vSW" customClass="MBAmountLabel" customModule="MonthlyBalance" customModuleProvider="target">
-                                            <rect key="frame" x="507.5" y="8" width="84.5" height="28"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZ7-Ep-vSW" customClass="MBAmountLabel" customModule="MonthlyBalance" customModuleProvider="target">
+                                            <rect key="frame" x="531.5" y="8" width="60.5" height="28"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1069,7 +1069,7 @@
         <scene sceneID="Lo5-0V-DLQ">
             <objects>
                 <tableViewController storyboardIdentifier="ManageActivitiesTableViewController" id="INR-bY-qq4" customClass="ManageActivitiesTableViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kjv-vC-0Re">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kjv-vC-0Re">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1450980392" green="0.18039215689999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1435,6 +1435,7 @@
                     <connections>
                         <outlet property="amountLabel" destination="Xj3-Hm-Osl" id="9RC-Qx-eJM"/>
                         <outlet property="dateButton" destination="0J0-Q3-d9u" id="kPL-On-Izi"/>
+                        <outlet property="titleLabel" destination="mw2-5H-Neb" id="sYf-Y0-aK6"/>
                         <outlet property="titleTextField" destination="Z27-34-1Ic" id="Pdn-Ub-5qB"/>
                     </connections>
                 </tableViewController>

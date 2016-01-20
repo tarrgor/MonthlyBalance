@@ -15,6 +15,8 @@ class CreateAccountViewController : UIViewController {
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   
+  var delegate: CreateAccountDelegate?
+  
   override func viewDidLoad() {
     // remove line below the navigation bar
     self.navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
@@ -30,6 +32,8 @@ class CreateAccountViewController : UIViewController {
     let newAccount = Account.create(self.nameTextField.text!)
     self.settings?.selectedAccount = newAccount
 
+    self.delegate?.createAccountViewControllerDidCreateAccount(self, account: newAccount!)
+    
     self.dismissViewControllerAnimated(true, completion: nil)
   }
 }

@@ -111,17 +111,14 @@ class ManageActivitiesTableViewController : UITableViewController {
     return .Delete
   }
   
-  override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-    if self.editing && indexPath.row >= self.account?.activities?.count {
-      return indexPath
-    }
-    return nil
-  }
-  
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
     if indexPath.row >= self.account?.activities?.count && editing {
       self.tableView(tableView, commitEditingStyle: .Insert, forRowAtIndexPath: indexPath)
+    } else {
+      if let activity = self.account?.activities?[indexPath.row] {
+        openActivityDialog(indexPath, activity: activity as? Activity)
+      }
     }
   }
   
@@ -133,10 +130,11 @@ class ManageActivitiesTableViewController : UITableViewController {
     self.swipeToDelete = false
   }
   
-  func openActivityDialog(indexPath: NSIndexPath) {
+  func openActivityDialog(indexPath: NSIndexPath, activity: Activity? = nil) {
     if let editActivityTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditActivityTableViewController")
       as? EditActivityTableViewController {
         editActivityTableViewController.delegate = self
+        editActivityTableViewController.activity = activity
         
         self.selectedIndexPath = indexPath
         self.presentViewController(editActivityTableViewController, animated: true, completion: nil)
@@ -147,7 +145,11 @@ class ManageActivitiesTableViewController : UITableViewController {
 extension ManageActivitiesTableViewController : EditActivityDelegate {
   func editActivityViewControllerDidSaveEvent(viewController: EditActivityTableViewController, activity: Activity?) {
     if let _ = activity, indexPath = self.selectedIndexPath {
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      if viewController.mode == .Add {
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      } else {
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
       self.selectedIndexPath = nil
     }
   }

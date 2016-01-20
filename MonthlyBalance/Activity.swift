@@ -12,6 +12,42 @@ import CoreData
 @objc(Activity)
 class Activity: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+  func update() {
+    CoreDataManager.sharedManager().saveContext()
+  }
+ 
+  func delete() {
+    let mutableActivities = NSMutableOrderedSet(orderedSet: self.account!.activities!)
+    mutableActivities.removeObject(self)
+    self.account!.activities = mutableActivities
+    
+    CoreDataManager.sharedManager().managedObjectContext.deleteObject(self)
+    CoreDataManager.sharedManager().saveContext()
+  }
+  
+  func isInCurrentMonth() -> Bool {
+    guard let activityDate = self.date else {
+      return false
+    }
+    
+    let currentDate = NSDate()
+    let currentMonth = currentDate.month()
+    let currentYear = currentDate.year()
+    let activityMonth = activityDate.month()
+    let activityYear = activityDate.year()
+    
+    return currentMonth == activityMonth && currentYear == activityYear
+  }
+  
+  func isInCurrentYear() -> Bool {
+    guard let activityDate = self.date else {
+      return false
+    }
 
+    let currentDate = NSDate()
+    let currentYear = currentDate.year()
+    let activityYear = activityDate.year()
+    
+    return currentYear == activityYear
+  }
 }

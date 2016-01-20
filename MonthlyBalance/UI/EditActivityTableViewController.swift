@@ -10,7 +10,11 @@ import UIKit
 
 class EditActivityTableViewController : UITableViewController {
   
+  let viewTitles = [ "Add new activity", "Edit activity" ]
+  
   var activity: Activity?
+  
+  var mode: ViewControllerMode = .Add
   
   var delegate: EditActivityDelegate?
   
@@ -20,10 +24,26 @@ class EditActivityTableViewController : UITableViewController {
   
   @IBOutlet weak var dateButton: UIButton!
   
+  @IBOutlet weak var titleLabel: UILabel!
+  
   override func viewDidLoad() {
+    // Add a gesture recognizer to remove keyboard when tapped somewhere
     let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
-    
     self.view.addGestureRecognizer(tap);
+    
+    // Check if controller is called in "edit" mode
+    if self.activity != nil {
+      self.mode = .Edit
+      self.titleLabel.text = self.viewTitles[1]
+      
+      self.titleTextField.text = self.activity!.title
+      self.amountLabel.amount = Double(self.activity!.amount!)
+      
+      let dateStr = NSDateFormatter.localizedStringFromDate(self.activity!.date!, dateStyle: .ShortStyle, timeStyle: .NoStyle)
+      self.dateButton.setTitle(dateStr, forState: .Normal)
+    } else {
+      self.titleLabel.text = self.viewTitles[0]
+    }
   }
   
   @IBAction func saveButtonPressed(sender: UIButton) {
@@ -38,7 +58,16 @@ class EditActivityTableViewController : UITableViewController {
       let title = self.titleTextField.text
       let date: NSDate = NSDate()
       
-      self.activity = account.addActivityForDate(date, title: title!, icon: "", amount: amount)
+      if self.activity == nil {
+        self.activity = account.addActivityForDate(date, title: title!, icon: "", amount: amount)
+      } else {
+        account.recalculateTotalsForUpdateActivity(self.activity!, newAmount: amount, newDate: date)
+        
+        self.activity!.title = title
+        self.activity!.amount = amount
+        self.activity!.date = date
+        self.activity!.update()
+      }
     } else {
       print("No selected account found in the settings.")
     }

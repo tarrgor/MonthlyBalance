@@ -114,20 +114,34 @@ class Account: NSManagedObject {
     CoreDataManager.sharedManager().saveContext()
   }
   
+  func recalculateTotalsForUpdateActivity(activity: Activity, newAmount: Double, newDate: NSDate) {
+    let difference = newAmount - Double(activity.amount!)
+    
+    self.balanceTotal = NSNumber(double: self.balanceTotal!.doubleValue + difference)
+
+    if activity.isInCurrentMonth() {
+      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue - activity.amount!.doubleValue)
+    }
+    if newDate.isInCurrentMonth() {
+      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue + newAmount)
+    }
+    
+    if activity.isInCurrentYear() {
+      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue - activity.amount!.doubleValue)
+    }
+    if newDate.isInCurrentYear() {
+      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + newAmount)
+    }
+  }
+  
   // MARK: - Private methods
   
   private func adjustBalancesForActivity(activity: Activity) {
-    let currentDate = NSDate()
-    let currentMonth = currentDate.month()
-    let currentYear = currentDate.year()
-    let activityMonth = activity.date!.month()
-    let activityYear = activity.date!.year()
-    
     self.balanceTotal = NSNumber(double: self.balanceTotal!.doubleValue + activity.amount!.doubleValue)
-    if currentMonth == activityMonth && currentYear == activityYear {
+    if activity.isInCurrentMonth() {
       self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue + activity.amount!.doubleValue)
     }
-    if currentYear == activityYear {
+    if activity.isInCurrentYear() {
       self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + activity.amount!.doubleValue)
     }
   }

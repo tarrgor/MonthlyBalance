@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
 
   @IBOutlet weak var activityTableView: UITableView!
   
-  var balancePageViewController: UIPageViewController!
+  var balancePageViewController: UIPageViewController?
 
   var mainMenuOpened: Bool = false
 
@@ -35,13 +35,16 @@ class HomeViewController: UIViewController {
 
     // Setup background gradient
     self.gradientBackgroundView.addGradientBackgroundLayer(UIColor(hex: kColorGradientBackground1), color2: UIColor(hex: kColorGradientBackground2))
+    
+    // initialize Page View Controller
+    initializePageViewController()
   }
   
   override func viewDidAppear(animated: Bool) {
     checkSelectedAccount()
 
-    // initialize Page View Controller
-    initializePageViewController()
+    updateAccountOnPageViewController()
+    self.activityTableView.reloadData()
   }
 
   override func viewDidLayoutSubviews() {
@@ -95,12 +98,14 @@ class HomeViewController: UIViewController {
 
   private func checkSelectedAccount() {
     if self.settings?.selectedAccount == nil {
-      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController)
+      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController) as? CreateAccountViewController
       else {
         print("Error")
         return
       }
 
+      createAccountViewController.delegate = self
+      
       self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
     }
   }
@@ -114,6 +119,13 @@ extension HomeViewController : AccountManagementDelegate {
     self.settings?.save()
     self.activityTableView.reloadData()
     updateAccountOnPageViewController()
+  }
+}
+
+extension HomeViewController : CreateAccountDelegate {
+  
+  func createAccountViewControllerDidCreateAccount(viewController: CreateAccountViewController, account: Account) {
+    initializePageViewController()
   }
 }
 
@@ -271,11 +283,13 @@ extension HomeViewController : UIPageViewControllerDataSource {
   }
   
   func updateAccountOnPageViewController() {
-    let viewControllers = self.balancePageViewController.childViewControllers
-    viewControllers.forEach { viewController in
-      if let bvc = viewController as? BalanceInfoViewController {
-        bvc.account = self.settings?.selectedAccount
-        bvc.view.setNeedsDisplay()
+    if self.balancePageViewController != nil {
+      let viewControllers = self.balancePageViewController!.childViewControllers
+      viewControllers.forEach { viewController in
+        if let bvc = viewController as? BalanceInfoViewController {
+          bvc.account = self.settings?.selectedAccount
+          bvc.view.setNeedsDisplay()
+        }
       }
     }
   }
