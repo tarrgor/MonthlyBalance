@@ -19,6 +19,7 @@
 		F232F6231C18B4D600CB58CC /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232F6221C18B4D600CB58CC /* MainMenuViewController.swift */; };
 		F23BBC501C3D77AC00DB5E25 /* ManageEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */; };
 		F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */; };
+		F2415BAE1C50016A00E84B9D /* MBDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */; };
 		F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */; };
 		F2435B791C4571D900F25006 /* EditActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B781C4571D900F25006 /* EditActivityDelegate.swift */; };
 		F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24470A91C4A6F6300626D29 /* Commons.swift */; };
@@ -88,6 +89,7 @@
 		F232F6221C18B4D600CB58CC /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageEventsTableViewController.swift; sourceTree = "<group>"; };
 		F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBDatePickerView.swift; sourceTree = "<group>"; };
 		F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityTableViewController.swift; sourceTree = "<group>"; };
 		F2435B781C4571D900F25006 /* EditActivityDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityDelegate.swift; sourceTree = "<group>"; };
 		F24470A91C4A6F6300626D29 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */,
 				F26111B01C415C1F009378D5 /* MBTextField.swift */,
 				F27880D41C41B2630055AD2F /* MBAmountLabel.swift */,
+				F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				F26111AD1C41460B009378D5 /* EditEventTableViewController.swift in Sources */,
 				F258EF921BEF54D900A6D7EB /* Activity+CoreDataProperties.swift in Sources */,
 				F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */,
+				F2415BAE1C50016A00E84B9D /* MBDatePickerView.swift in Sources */,
 				F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */,
 				F258EF901BEF54D900A6D7EB /* Account+CoreDataProperties.swift in Sources */,
 				F26111B11C415C1F009378D5 /* MBTextField.swift in Sources */,

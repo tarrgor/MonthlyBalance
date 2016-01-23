@@ -83,7 +83,7 @@ class ManageActivitiesTableViewController : UITableViewController {
     let activity: Activity = activities[indexPath.row] as! Activity
     
     cell.titleLabel.text = activity.title!
-    cell.timeLabel.text = "Time"
+    cell.timeLabel.text = activity.date!.displayText
     if let amount = activity.amount {
       cell.amountLabel.amount = Double(amount)
     } else {

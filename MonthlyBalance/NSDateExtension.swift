@@ -8,7 +8,48 @@
 
 import Foundation
 
+let ONE_DAY: NSTimeInterval = NSTimeInterval(60*60*24)
+
 extension NSDate {
+  
+  var displayText: String {
+    var result: String = NSDateFormatter.localizedStringFromDate(self, dateStyle: .ShortStyle, timeStyle: .NoStyle)
+    
+    let currentDate = NSDate()
+    let difference = currentDate.differenceInDaysToDate(self)
+    if difference == 0 {
+      result = "Today"
+    } else if difference < 0 && difference >= -3 {
+      if difference == -1 {
+        result = "Yesterday"
+      } else {
+        result = "\(abs(difference)) days ago"
+      }
+    } else if difference > 0 && difference <= 3 {
+      if difference == 1 {
+        result = "Tomorrow"
+      } else {
+        result = "In \(abs(difference)) days"
+      }
+    }
+    
+    return result
+  }
+  
+  func differenceInDaysToDate(date: NSDate) -> Int {
+    let calendar = NSCalendar.currentCalendar()
+    
+    var earlierDate = self.earlierDate(date)
+    let laterDate = self.laterDate(date)
+    let factor: Int = earlierDate == self ? 1 : -1
+    
+    earlierDate = calendar.startOfDayForDate(earlierDate)
+    
+    let timeInterval = laterDate.timeIntervalSinceDate(earlierDate)
+    let timeInDays = Int(timeInterval / ONE_DAY)
+    
+    return timeInDays * factor
+  }
   
   func year() -> Int {
     let calendar = NSCalendar.currentCalendar()
@@ -56,4 +97,5 @@ extension NSDate {
     
     return self.year() == currentYear
   }
+
 }
