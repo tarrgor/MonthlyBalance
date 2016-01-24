@@ -96,7 +96,8 @@ class ManageActivitiesTableViewController : UITableViewController {
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == .Delete {
       if let activity = self.account?.activities?[indexPath.row] as? Activity {
-        //activity.delete()
+        self.account?.recalculateTotalsForUpdateActivity(activity, newAmount: 0.0, newDate: activity.date!)
+        activity.delete()
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       }
     } else if editingStyle == .Insert {

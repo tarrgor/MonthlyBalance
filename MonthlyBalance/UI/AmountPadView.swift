@@ -32,18 +32,25 @@ class AmountPadView : UIVisualEffectView {
     createHorizontalLineView()
     createNumericButtons()
     
-    setupConstraints()
+    //setupConstraints()
   }
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
+  override func layoutSubviews() {
+    setupConstraints()
+  }
+  
   // MARK: - Autolayout
   
   func setupConstraints() {
+    let viewHeight = self.bounds.size.height
+    let viewWidth = self.bounds.size.width
+    
     // Amount label constraints
-    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: 37))
+    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: viewHeight * 0.05))
     self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: -22))
     
     // Line view constraints
@@ -53,7 +60,7 @@ class AmountPadView : UIVisualEffectView {
     self.lineView.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 2))
     
     // Constraints for numeric buttons
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 63))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: viewWidth * 0.1))
     self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .Top, relatedBy: .Equal, toItem: self.lineView, attribute: .Bottom, multiplier: 1, constant: 14))
     self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Trailing, multiplier: 1, constant: 16))
     self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Top, multiplier: 1, constant: 0))
@@ -79,7 +86,7 @@ class AmountPadView : UIVisualEffectView {
     self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[0]!, attribute: .Trailing, multiplier: 1, constant: 16))
     self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[0]!, attribute: .Top, multiplier: 1, constant: 0))
     
-    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[9]!, attribute: .Trailing, multiplier: 1, constant: 38))
+    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .Trailing, relatedBy: .Equal, toItem: self.lineView, attribute: .Trailing, multiplier: 1, constant: 0))
     self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Top, multiplier: 1, constant: 0))
     
     self.addConstraint(NSLayoutConstraint(item: self.okButton, attribute: .Leading, relatedBy: .Equal, toItem: self.cancelButton, attribute: .Leading, multiplier: 1, constant: 0))

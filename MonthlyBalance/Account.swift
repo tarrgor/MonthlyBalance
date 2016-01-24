@@ -21,6 +21,21 @@ class Account: NSManagedObject {
     return activities.sortedArrayUsingDescriptors(sortDescriptors) as! [Activity]
   }
   
+  var sortedActivitiesByDate: [Activity] {
+    guard let activities = self.activities else { return [] }
+    
+    let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+    let sortDescriptors = [ sortDescriptor ]
+    
+    return activities.sortedArrayUsingDescriptors(sortDescriptors) as! [Activity]
+  }
+  
+  func latestActivities(count: Int) -> [Activity] {
+    let sorted = sortedActivitiesByDate
+    let subArray: [Activity] = Array(sorted.suffix(count))
+    return subArray
+  }
+  
   static func create(name: String) -> Account? {
     let account: Account? = NSEntityDescription.insertNewObjectForEntityForName(kAccountEntity, inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Account
     if account != nil {

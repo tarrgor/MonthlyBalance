@@ -137,7 +137,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let count = self.settings?.selectedAccount?.activities?.count else {
+    guard let count = self.settings?.selectedAccount?.latestActivities(5).count else {
       print("Invalid data: Number of elements in TableView cannot be determined.")
       return 0
     }
@@ -147,7 +147,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
     
-    guard let activity: Activity = self.settings?.selectedAccount?.activities?[indexPath.row] as? Activity
+    guard let activity: Activity = self.settings?.selectedAccount?.latestActivities(5)[indexPath.row]
       else {
         cell.titleLabel.text = "ERROR!"
         setSelectedBackgroundColorForCell(cell)
@@ -155,7 +155,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     cell.titleLabel.text = activity.title
-    cell.timeLabel.text = "Time"
+    cell.timeLabel.text = activity.date?.displayText
     cell.iconImageView.image = UIImage()
     
     guard let amount = activity.amount

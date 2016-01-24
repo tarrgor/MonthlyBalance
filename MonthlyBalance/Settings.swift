@@ -48,9 +48,6 @@ class Settings : NSObject {
     if self.defaultTitleExpenditure == nil {
       self.defaultTitleExpenditure = kDefaultTitleExpenditure
     }
-
-    print("Loaded defaults:")
-    print("\(self.defaultTitleIncome) \(self.defaultTitleExpenditure)")
   }
   
   func save() {
