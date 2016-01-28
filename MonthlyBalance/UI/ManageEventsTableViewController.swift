@@ -75,7 +75,7 @@ class ManageEventsTableViewController : UITableViewController {
     if self.editing && indexPath.row >= self.account?.scheduledEvents?.count {
       let cell = tableView.dequeueReusableCellWithIdentifier("NewEventCell")
       cell?.selectedBackgroundView = UIView(frame: cell!.frame)
-      cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorSelectedTableViewCell)
+      cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
       return cell!
     }
     

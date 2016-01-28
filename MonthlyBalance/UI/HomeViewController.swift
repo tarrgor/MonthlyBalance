@@ -32,9 +32,6 @@ class HomeViewController: UIViewController {
       navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
       navigationBar.shadowImage = UIImage()
     }
-
-    // Setup background gradient
-    self.gradientBackgroundView.addGradientBackgroundLayer(UIColor(hex: kColorGradientBackground1), color2: UIColor(hex: kColorGradientBackground2))
     
     // initialize Page View Controller
     initializePageViewController()
@@ -44,7 +41,7 @@ class HomeViewController: UIViewController {
     checkSelectedAccount()
 
     updateAccountOnPageViewController()
-    self.activityTableView.reloadData()
+    updateActivityTableView()
   }
 
   override func viewDidLayoutSubviews() {
@@ -107,6 +104,15 @@ class HomeViewController: UIViewController {
       createAccountViewController.delegate = self
       
       self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
+    }
+  }
+  
+  private func updateActivityTableView() {
+    self.activityTableView.reloadData()
+    let count = tableView(self.activityTableView, numberOfRowsInSection: 0)
+    if count > 0 {
+      let indexPath = NSIndexPath(forRow: count - 1, inSection: 0)
+      self.activityTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
     }
   }
 }

@@ -52,6 +52,9 @@ class EditActivityTableViewController : UITableViewController {
       self.dateButton.setTitle(dateStr, forState: .Normal)
     } else {
       self.titleLabel.text = self.viewTitles[0]
+      
+      let dateStr = self.dateFormatter.stringFromDate(NSDate())
+      self.dateButton.setTitle(dateStr, forState: .Normal)
     }
   }
   

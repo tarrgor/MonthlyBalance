@@ -73,7 +73,6 @@ class BalanceInfoView : UIView {
     self.addSubview(self.headlineLabel)
     
     self.amountLabel = MBAmountLabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-    self.amountLabel.textColor = UIColor(hex: kColorBalanceAmountText)
     self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
     
     setAmountLabelText()

@@ -74,7 +74,7 @@ class ManageActivitiesTableViewController : UITableViewController {
     if self.editing && indexPath.row >= self.account?.activities?.count {
       let cell = tableView.dequeueReusableCellWithIdentifier("NewActivityCell")
       cell?.selectedBackgroundView = UIView(frame: cell!.frame)
-      cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorSelectedTableViewCell)
+      cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
       return cell!
     }
     
@@ -89,7 +89,9 @@ class ManageActivitiesTableViewController : UITableViewController {
     } else {
       cell.amountLabel.text = "ERR!"
     }
-    
+    cell.selectedBackgroundView = UIView(frame: cell.frame)
+    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
+
     return cell
   }
   

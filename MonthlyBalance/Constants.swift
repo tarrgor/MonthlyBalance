@@ -23,20 +23,15 @@ let kIdAccountCell = "AccountCell"
 
 // Colors
 
-let kColorGradientBackground1 = "#478EFF"
-let kColorGradientBackground2 = "#324EFF"
+let kColorBaseBackground = "#162687"
+let kColorSecondBackground = "#4D89D3"
 
-let kColorBaseBackground = "#324EFF"
-let kColorBalanceAmountText = "#1FF801"
+let kColorButtonBackground = "#4171C4"
+let kColorHighlightedButtonBackground = "#749ADB"
 
-let kColorButtonBackground = "#468AFF"
-let kColorHighlightedButtonBackground = "#97BDFF"
-let kColorHighlightedTableViewSelection = "#97BDFF"
-let kColorSelectedTableViewCell = "#218AFF"
+let kColorTableViewSelection = "#78ACE8"
 
-let kColorTableViewSelection = "#97BDFF"
-
-let kColorMainMenuBackground = "#85B1F7"
+let kColorMainMenuBackground = "#305CA3"
 
 // Fonts
 
