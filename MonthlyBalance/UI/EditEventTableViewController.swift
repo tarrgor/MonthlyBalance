@@ -29,6 +29,20 @@ class EditEventTableViewController : UITableViewController {
     let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
     
     self.view.addGestureRecognizer(tap);
+    
+    // TODO: Misplacement of title label
+    let title = "Monthly Balance"
+    let font = UIFont(name: "HelveticaNeue-Light", size: 18)!
+    let attrs: [String:AnyObject] = [NSFontAttributeName : font]
+    let titleSize: CGSize = title.sizeWithAttributes(attrs)
+    
+    let titleView = UILabel(frame: CGRect(x: 0, y: 0, width: titleSize.width, height: 30))
+    titleView.text = title
+    titleView.font = font
+    titleView.textAlignment = .Center
+    titleView.textColor = UIColor.whiteColor()
+    self.navigationItem.titleView = titleView
+    self.navigationItem.hidesBackButton = false
   }
   
   @IBAction func saveButtonPressed(sender: UIButton) {

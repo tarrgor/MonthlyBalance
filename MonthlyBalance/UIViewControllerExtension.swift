@@ -44,7 +44,14 @@ extension UIViewController {
     self.addChildViewController(amountPadViewController)
     self.view.addSubview(amountPadViewController.view)
     
-    let amountPadHeight = self.view.bounds.size.height * 0.75;
+    var factor: CGFloat = 0.75
+    if DeviceType.IS_IPHONE_4_OR_LESS {
+      factor = 1.0
+    } else if DeviceType.IS_IPHONE_5 {
+      factor = 0.9
+    }
+    
+    let amountPadHeight = self.view.bounds.size.height * factor;
     amountPadViewController.view.frame = CGRect(x: 0, y: self.view.bounds.size.height + 100, width: self.view.bounds.size.width, height: amountPadHeight)
     
     if maskRect != nil {

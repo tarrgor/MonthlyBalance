@@ -46,6 +46,7 @@ class BalanceInfoView : UIView {
   
   var headlineLabel: UILabel!
   var amountLabel: MBAmountLabel!
+  var wrapperView: UIView!
   
   var referencedEntity: Account?
   var referenceKey: String = ""
@@ -61,19 +62,27 @@ class BalanceInfoView : UIView {
     self.translatesAutoresizingMaskIntoConstraints = true
     // needs to be true because otherwise the PageViewController shows nothing
 
+    let isSmallPhone: Bool = DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5
+    let headlineFontSize: CGFloat = isSmallPhone ? 13 : 16
+    let amountFontSize: CGFloat = isSmallPhone ? 36 : 48
+    
     // initialize Labels
     self.headlineLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
     self.headlineLabel.textColor = UIColor.whiteColor()
     self.headlineLabel.text = self.type.rawValue
-    self.headlineLabel.font = UIFont(name: kMainFontName, size: 16)
+    self.headlineLabel.font = UIFont(name: kMainFontName, size: headlineFontSize)
     self.headlineLabel.textAlignment = .Center
     self.headlineLabel.translatesAutoresizingMaskIntoConstraints = false
     self.headlineLabel.sizeToFit()
     
     self.addSubview(self.headlineLabel)
     
+    self.wrapperView = UIView(frame: CGRectZero)
+    self.wrapperView.translatesAutoresizingMaskIntoConstraints = false
+    self.addSubview(self.wrapperView)
+    
     self.amountLabel = MBAmountLabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-    self.amountLabel.font = UIFont(name: kMainFontName, size: 48)
+    self.amountLabel.font = UIFont(name: kMainFontName, size: amountFontSize)
     
     setAmountLabelText()
     
@@ -81,7 +90,7 @@ class BalanceInfoView : UIView {
     self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
     self.amountLabel.sizeToFit()
     
-    self.addSubview(self.amountLabel)
+    self.wrapperView.addSubview(self.amountLabel)
     
     self.setNeedsUpdateConstraints()
   }
@@ -92,17 +101,27 @@ class BalanceInfoView : UIView {
     super.init(coder: aDecoder)
   }
   
-  override func updateConstraints() {
+  override func updateConstraints() {    
     // Add autolayout constraints
     if let superview = self.superview {
-      superview.addConstraint(NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1, constant: 0))
-      superview.addConstraint(NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: superview, attribute: .Height, multiplier: 1, constant: 0))
+      NSLayoutConstraint.activateConstraints([
+        self.widthAnchor.constraintEqualToAnchor(superview.widthAnchor),
+        self.heightAnchor.constraintEqualToAnchor(superview.heightAnchor)
+      ])
     }
     
-    self.addConstraint(NSLayoutConstraint(item: self.headlineLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: .Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.headlineLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .TopMargin, multiplier: 1.0, constant: 2))
-    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: .Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self.headlineLabel, attribute: .Bottom, multiplier: 1.0, constant: 2))
+    let topConstant: CGFloat = DeviceType.IS_IPHONE_4_OR_LESS ? -2 : 2
+    
+    NSLayoutConstraint.activateConstraints([
+      self.headlineLabel.centerXAnchor.constraintEqualToAnchor(self.centerXAnchor),
+      self.headlineLabel.topAnchor.constraintEqualToAnchor(self.layoutMarginsGuide.topAnchor, constant: topConstant),
+      self.wrapperView.topAnchor.constraintEqualToAnchor(self.headlineLabel.bottomAnchor),
+      self.wrapperView.leadingAnchor.constraintEqualToAnchor(self.leadingAnchor),
+      self.wrapperView.trailingAnchor.constraintEqualToAnchor(self.trailingAnchor),
+      self.wrapperView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor),
+      self.amountLabel.centerXAnchor.constraintEqualToAnchor(self.wrapperView.centerXAnchor),
+      self.amountLabel.centerYAnchor.constraintEqualToAnchor(self.wrapperView.centerYAnchor)
+    ])
 
     super.updateConstraints()
   }

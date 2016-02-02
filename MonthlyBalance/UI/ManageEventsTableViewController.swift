@@ -141,7 +141,7 @@ class ManageEventsTableViewController : UITableViewController {
       editEventTableViewController.delegate = self
           
       self.selectedIndexPath = indexPath
-      self.presentViewController(editEventTableViewController, animated: true, completion: nil)
+      self.navigationController?.pushViewController(editEventTableViewController, animated: true)
     }
   }
 }

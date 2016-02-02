@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
     updateAccountOnPageViewController()
     updateActivityTableView()
   }
-
+  
   override func viewDidLayoutSubviews() {
     if let gradientLayer = self.gradientBackgroundView.gradientBackgroundLayer {
       self.gradientBackgroundView.layer.frame = self.gradientBackgroundView.frame
