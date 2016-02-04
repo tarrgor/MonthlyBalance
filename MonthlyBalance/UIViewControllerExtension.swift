@@ -78,4 +78,14 @@ extension UIViewController {
       callback()
     }
   }
+  
+  func setupNavigationItemWithTitle(title: String, backButtonSelector: Selector, rightItem: UIBarButtonItem? = nil) {
+    // Setup navigationBar
+    self.navigationItem.title = title
+    self.navigationItem.leftItemsSupplementBackButton = false
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: backButtonSelector)
+    self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+    self.navigationItem.rightBarButtonItem = rightItem
+    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+  }
 }

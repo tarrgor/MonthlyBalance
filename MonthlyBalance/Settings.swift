@@ -58,7 +58,5 @@ class Settings : NSObject {
     defaults.setObject(self.defaultTitleIncome, forKey: kSettingDefaultTitleIncome)
     defaults.setObject(self.defaultTitleExpenditure, forKey: kSettingDefaultTitleExpenditure)
     defaults.synchronize()
-    print("Saved defaults:")
-    print("\(self.defaultTitleIncome) \(self.defaultTitleExpenditure)")
   }
 }

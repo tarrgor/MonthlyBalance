@@ -8,22 +8,25 @@
 
 import UIKit
 
-class CreateAccountViewController : UIViewController {
+typealias OnCreateAccount = (UIViewController, Account) -> ()
+
+class CreateAccountViewController : UITableViewController {
   
-  @IBOutlet weak var navigationBar: UINavigationBar!
+  @IBOutlet weak var nameTextField: MBTextField!
+  @IBOutlet weak var passwordTextField: MBTextField!
   
-  @IBOutlet weak var nameTextField: UITextField!
-  @IBOutlet weak var passwordTextField: UITextField!
-  
-  var delegate: CreateAccountDelegate?
+  var onCreateAccount: OnCreateAccount?
   
   override func viewDidLoad() {
-    // remove line below the navigation bar
-    self.navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-    self.navigationBar.shadowImage = UIImage()    
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
+    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: "backButtonPressed:", rightItem: saveButtonItem)
   }
   
-  @IBAction func createAccountButtonPressed(sender: UIButton) {
+  func backButtonPressed(sender: UIBarButtonItem) {
+    self.navigationController?.popViewControllerAnimated(true)    
+  }
+  
+  @IBAction func saveButtonPressed(sender: UIBarButtonItem) {
     if self.nameTextField.text! == "" {
       self.showAlertWithTitle("Error", message: "Please enter a name for your account!")
       return
@@ -32,9 +35,11 @@ class CreateAccountViewController : UIViewController {
     let newAccount = Account.create(self.nameTextField.text!)
     self.settings?.selectedAccount = newAccount
 
-    self.delegate?.createAccountViewControllerDidCreateAccount(self, account: newAccount!)
+    if let callback = self.onCreateAccount {
+      callback(self, newAccount!)
+    }
     
-    self.dismissViewControllerAnimated(true, completion: nil)
+    self.navigationController?.popViewControllerAnimated(true)
   }
 }
 

@@ -24,12 +24,7 @@ class ManageActivitiesTableViewController : UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     
     // Setup navigationBar
-    self.navigationItem.title = kTitleManageActivities
-    self.navigationItem.leftItemsSupplementBackButton = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
-    self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = editButtonItem()
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: "backButtonPressed:", rightItem: editButtonItem())
   }
   
   func backButtonPressed(sender: UIBarButtonItem) {
@@ -140,7 +135,7 @@ class ManageActivitiesTableViewController : UITableViewController {
         editActivityTableViewController.activity = activity
         
         self.selectedIndexPath = indexPath
-        self.presentViewController(editActivityTableViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(editActivityTableViewController, animated: true)
     }
   }
 }

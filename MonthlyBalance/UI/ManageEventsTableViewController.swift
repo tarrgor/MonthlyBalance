@@ -25,12 +25,7 @@ class ManageEventsTableViewController : UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     
     // Setup navigationBar
-    self.navigationItem.title = kTitleManageEvents
-    self.navigationItem.leftItemsSupplementBackButton = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
-    self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = editButtonItem()
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+    setupNavigationItemWithTitle(kTitleManageEvents, backButtonSelector: "backButtonPressed:", rightItem: editButtonItem())
   }
 
   func backButtonPressed(sender: UIBarButtonItem) {

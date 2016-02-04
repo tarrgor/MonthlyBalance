@@ -101,7 +101,9 @@ class HomeViewController: UIViewController {
         return
       }
 
-      createAccountViewController.delegate = self
+      createAccountViewController.onCreateAccount = { viewController, account in
+        self.initializePageViewController()
+      }
       
       self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
     }
@@ -125,13 +127,6 @@ extension HomeViewController : AccountManagementDelegate {
     self.settings?.save()
     self.activityTableView.reloadData()
     updateAccountOnPageViewController()
-  }
-}
-
-extension HomeViewController : CreateAccountDelegate {
-  
-  func createAccountViewControllerDidCreateAccount(viewController: CreateAccountViewController, account: Account) {
-    initializePageViewController()
   }
 }
 

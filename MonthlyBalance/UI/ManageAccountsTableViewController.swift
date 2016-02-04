@@ -18,12 +18,8 @@ class ManageAccountsTableViewController : UITableViewController {
   // MARK: - Initialization
   
   override func viewDidLoad() {
-    self.navigationItem.title = kTitleManageAccounts
-    self.navigationItem.leftItemsSupplementBackButton = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
-    self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed:")
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed:")
+    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: "backButtonPressed:", rightItem: addButtonItem)
   }
   
   // MARK: - Actions
@@ -33,9 +29,23 @@ class ManageAccountsTableViewController : UITableViewController {
   }
   
   func addButtonPressed(sender: UIBarButtonItem) {
-    Account.create("Test")
-    self.accounts = Account.findAll()
-    tableView.reloadData()
+    guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController) as? CreateAccountViewController
+      else {
+        showAlertWithTitle("ERROR", message: "There was an internal error while trying to display the 'Create Account' screen.")
+        return
+    }
+
+    createAccountViewController.onCreateAccount = { viewController, account in
+      self.accounts.append(account)
+
+      delay(400) {
+        let indexPath = NSIndexPath(forRow: self.accounts.count - 1, inSection: 0)
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+      }
+    }
+    
+    self.navigationController?.pushViewController(createAccountViewController, animated: true)
   }
   
   // MARK: TableView methods

@@ -14,12 +14,8 @@ class SettingsViewController : UITableViewController {
   @IBOutlet weak var defaultTitleExpenditureTextField: UITextField!
   
   override func viewDidLoad() {
-    self.navigationItem.title = kTitleSettings
-    self.navigationItem.leftItemsSupplementBackButton = false
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: kTitleBackButton, style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
-    self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
+    setupNavigationItemWithTitle(kTitleSettings, backButtonSelector: "backButtonPressed:", rightItem: saveButtonItem)
   }
 
   override func viewWillAppear(animated: Bool) {

@@ -35,6 +35,10 @@ class EditActivityTableViewController : UITableViewController {
     let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
     self.view.addGestureRecognizer(tap);
     
+    // Setup navigation bar
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
+    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: "cancelButtonPressed:", rightItem: saveButtonItem)
+    
     // Configure date formatter
     dateFormatter.locale = NSLocale.autoupdatingCurrentLocale()
     dateFormatter.dateStyle = .ShortStyle
@@ -91,13 +95,13 @@ class EditActivityTableViewController : UITableViewController {
     
     self.delegate?.editActivityViewControllerDidSaveEvent(self, activity: self.activity)
     
-    self.dismissViewControllerAnimated(true, completion: nil)
+    self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func cancelButtonPressed(sender: UIButton) {
     self.delegate?.editActivityViewControllerDidCancelEvent(self)
     
-    self.dismissViewControllerAnimated(true, completion: nil)
+    self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func incomeButtonPressed(sender: UIButton) {

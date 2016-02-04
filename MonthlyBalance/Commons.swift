@@ -35,3 +35,10 @@ struct DeviceType
   static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
   static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
 }
+
+func delay(ms: Int64, block: () -> ()) {
+  let time = dispatch_time(DISPATCH_TIME_NOW, ms * 1000)
+  dispatch_after(time, dispatch_get_main_queue(), block)
+}
+
+
