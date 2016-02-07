@@ -92,6 +92,12 @@ class Account: NSManagedObject {
     return event
   }
   
+  func delete() {
+    let context: NSManagedObjectContext = CoreDataManager.sharedManager().managedObjectContext
+    context.deleteObject(self)
+    CoreDataManager.sharedManager().saveContext()
+  }
+  
   func updateData() {
     let lastUpdateMonth = self.lastUpdated?.month()
     let lastUpdateYear = self.lastUpdated?.year()

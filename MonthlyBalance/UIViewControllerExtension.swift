@@ -37,6 +37,13 @@ extension UIViewController {
     self.presentViewController(alertController, animated: true, completion: nil)
   }
   
+  func showConfirmationDialogWithTitle(title: String, message: String, confirmed: ((UIAlertAction) -> Void)? = nil) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    alertController.addAction(UIAlertAction(title: kTitleCancelButton, style: UIAlertActionStyle.Default, handler: nil))
+    alertController.addAction(UIAlertAction(title: kTitleOkButton, style: UIAlertActionStyle.Default, handler: confirmed))
+    self.presentViewController(alertController, animated: true, completion: nil)
+  }
+  
   func openAmountPadInMode(mode: AmountPadMode, delegate: AmountPadDelegate, maskRect: ((AmountPadViewController) -> (CGRect))? = nil) {
     let amountPadViewController = AmountPadViewController()
     amountPadViewController.delegate = delegate

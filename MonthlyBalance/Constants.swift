@@ -53,6 +53,7 @@ let kTitleSettings = "Settings"
 let kTitleBackButton = "< Back"
 
 let kTitleOkButton = "OK"
+let kTitleCancelButton = "Cancel"
 
 // Assets
 

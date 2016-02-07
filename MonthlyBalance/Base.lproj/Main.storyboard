@@ -486,7 +486,7 @@
         <scene sceneID="xEg-g8-33s">
             <objects>
                 <tableViewController storyboardIdentifier="ManageEventsTableViewController" id="e3M-6E-m08" customClass="ManageEventsTableViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SGC-ez-Qoz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SGC-ez-Qoz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.086274509803921567" green="0.14901960784313725" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
@@ -876,6 +876,7 @@
                         <outlet property="intervalLabel" destination="pj5-07-MFW" id="NQ5-7I-I3d"/>
                         <outlet property="intervalSlider" destination="vKg-H1-Jxb" id="LfE-64-6Ed"/>
                         <outlet property="recurringSwitch" destination="igX-0z-xxp" id="yTw-sr-ha9"/>
+                        <outlet property="titleLabel" destination="cPY-Ed-Ix0" id="wak-E8-VvH"/>
                         <outlet property="titleTextField" destination="aWr-Cw-e8Q" id="1tZ-9U-y6N"/>
                     </connections>
                 </tableViewController>
@@ -887,7 +888,7 @@
         <scene sceneID="DvA-wi-VFK">
             <objects>
                 <tableViewController storyboardIdentifier="CreateAccountViewController" id="Zva-jp-37S" customClass="CreateAccountViewController" customModule="MonthlyBalance" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ua-Md-5BC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ua-Md-5BC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.14901960780000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -898,7 +899,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FF8-Ck-26Y" id="SVZ-eX-Z75">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create new account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfL-b9-dH5">
@@ -915,15 +916,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="QwV-Y5-Mrg">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="QwV-Y5-Mrg">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwV-Y5-Mrg" id="84H-pC-sh2">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="There is no account defined in your database yet. Please enter the details of your first account below." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omb-Se-z3T">
-                                                    <rect key="frame" x="28" y="24" width="544" height="33.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no account defined in your database yet. Please enter the details of your first account below." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omb-Se-z3T">
+                                                    <rect key="frame" x="28" y="18.5" width="544" height="33.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -937,15 +938,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="bpl-K9-wAB">
-                                        <rect key="frame" x="0.0" y="144" width="600" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="bpl-K9-wAB">
+                                        <rect key="frame" x="0.0" y="134" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpl-K9-wAB" id="qrf-DC-1S8">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3BP-Fo-mfd" customClass="MBTextField" customModule="MonthlyBalance" customModuleProvider="target">
-                                                    <rect key="frame" x="28" y="20" width="544" height="50"/>
+                                                    <rect key="frame" x="28" y="15" width="544" height="50"/>
                                                     <color key="backgroundColor" red="0.30196078430000001" green="0.53725490200000003" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="crC-2I-8fr"/>
@@ -961,6 +962,9 @@
                                                             <color key="value" red="1" green="1" blue="1" alpha="0.7005387931" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Zva-jp-37S" id="zzZ-sf-LiP"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" red="0.086274509799999996" green="0.14901960780000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -971,15 +975,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="LMw-Ty-aFz">
-                                        <rect key="frame" x="0.0" y="234" width="600" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="LMw-Ty-aFz">
+                                        <rect key="frame" x="0.0" y="214" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LMw-Ty-aFz" id="uxf-o3-Std">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhH-kf-dgG" customClass="MBTextField" customModule="MonthlyBalance" customModuleProvider="target">
-                                                    <rect key="frame" x="28" y="20" width="544" height="50"/>
+                                                    <rect key="frame" x="28" y="15" width="544" height="50"/>
                                                     <color key="backgroundColor" red="0.30196078430000001" green="0.53725490200000003" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="V8Z-HD-mmL"/>
@@ -995,6 +999,9 @@
                                                             <color key="value" red="1" green="1" blue="1" alpha="0.7005387931" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Zva-jp-37S" id="KbQ-bb-zGG"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" red="0.086274509799999996" green="0.14901960780000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>

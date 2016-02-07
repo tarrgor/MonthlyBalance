@@ -41,4 +41,8 @@ class ScheduledEvent: NSManagedObject {
     CoreDataManager.sharedManager().managedObjectContext.deleteObject(self)
     CoreDataManager.sharedManager().saveContext()
   }
+  
+  func update() {
+    CoreDataManager.sharedManager().saveContext()
+  }
 }

@@ -76,4 +76,17 @@ class ManageAccountsTableViewController : UITableViewController {
     tableView.reloadData()
     self.accountManagementDelegate?.didChangeAccountSelection(self.accounts[self.selectedAccountIndex])
   }
+  
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if editingStyle == .Delete {
+      let accountToDelete: Account = self.accounts[indexPath.row]
+      self.showConfirmationDialogWithTitle("ATTENTION!", message: "Do you really want to delete account \(accountToDelete.name!)") {
+        action in
+        accountToDelete.delete()
+        self.accounts.removeAtIndex(indexPath.row)
+        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
+    }
+  }
 }

@@ -20,6 +20,9 @@ class CreateAccountViewController : UITableViewController {
   override func viewDidLoad() {
     let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
     setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: "backButtonPressed:", rightItem: saveButtonItem)
+    
+    let tapRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped")
+    self.view.addGestureRecognizer(tapRecognizer)
   }
   
   func backButtonPressed(sender: UIBarButtonItem) {
@@ -40,6 +43,14 @@ class CreateAccountViewController : UITableViewController {
     }
     
     self.navigationController?.popViewControllerAnimated(true)
+  }
+  
+  func viewTapped() {
+    if self.nameTextField.isFirstResponder() {
+      self.nameTextField.resignFirstResponder()
+    } else if self.passwordTextField.isFirstResponder() {
+      self.passwordTextField.resignFirstResponder()
+    }
   }
 }
 

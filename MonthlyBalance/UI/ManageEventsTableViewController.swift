@@ -86,6 +86,8 @@ class ManageEventsTableViewController : UITableViewController {
     } else {
       cell.amountLabel.text = "ERR!"
     }
+    cell.selectedBackgroundView = UIView(frame: cell.frame)
+    cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
     
     return cell
   }
@@ -108,17 +110,14 @@ class ManageEventsTableViewController : UITableViewController {
     return .Delete
   }
   
-  override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-    if self.editing && indexPath.row >= self.account?.scheduledEvents?.count {
-      return indexPath
-    }
-    return nil
-  }
-  
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
     if indexPath.row >= self.account?.scheduledEvents?.count && editing {
       self.tableView(tableView, commitEditingStyle: .Insert, forRowAtIndexPath: indexPath)
+    } else {
+      if let event = self.account?.scheduledEvents?[indexPath.row] {
+        openEventDialog(indexPath, event: event as? ScheduledEvent)
+      }
     }
   }
 
@@ -130,10 +129,11 @@ class ManageEventsTableViewController : UITableViewController {
     self.swipeToDelete = false
   }
 
-  func openEventDialog(indexPath: NSIndexPath) {
+  func openEventDialog(indexPath: NSIndexPath, event: ScheduledEvent? = nil) {
     if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
         as? EditEventTableViewController {
       editEventTableViewController.delegate = self
+      editEventTableViewController.event = event
           
       self.selectedIndexPath = indexPath
       self.navigationController?.pushViewController(editEventTableViewController, animated: true)
@@ -144,7 +144,11 @@ class ManageEventsTableViewController : UITableViewController {
 extension ManageEventsTableViewController : EditEventDelegate {
   func editEventViewControllerDidSaveEvent(viewController: EditEventTableViewController, event: ScheduledEvent?) {
     if let _ = event, indexPath = self.selectedIndexPath {
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      if viewController.mode == .Add {
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      } else {
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      }
       self.selectedIndexPath = nil
     }
   }
