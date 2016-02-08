@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // white status bar
+    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+
     // remove line below the navigation bar
     if let navigationBar = self.navigationController?.navigationBar {
       navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
@@ -65,7 +68,7 @@ class HomeViewController: UIViewController {
     incomeButton.enabled = false
     expenditureButton.enabled = false
 
-    openAmountPadInMode(.Income, delegate: self, maskRect: {
+    openAmountPadInMode(.Income, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
       avc in
       return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
     })
@@ -75,7 +78,7 @@ class HomeViewController: UIViewController {
     incomeButton.enabled = false
     expenditureButton.enabled = false
 
-    openAmountPadInMode(.Expenditure, delegate: self, maskRect: {
+    openAmountPadInMode(.Expenditure, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
       avc in
       return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
     })
@@ -107,6 +110,10 @@ class HomeViewController: UIViewController {
       
       self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
     }
+    
+    if let account = self.settings?.selectedAccount {
+      account.updateData()
+    }
   }
   
   private func updateActivityTableView() {
@@ -119,9 +126,7 @@ class HomeViewController: UIViewController {
   }
 }
 
-extension HomeViewController : AccountManagementDelegate {
-  // MARK: - AccountManagementDelegate
-  
+extension HomeViewController {
   func didChangeAccountSelection(account: Account) {
     self.settings?.selectedAccount = account
     self.settings?.save()
@@ -180,7 +185,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   }
 }
 
-extension HomeViewController : AmountPadDelegate {
+extension HomeViewController {
   
   func amountPadDidPressOk(amountPad: AmountPadViewController) {
     let title = amountPad.mode == .Income ? self.settings?.defaultTitleIncome :

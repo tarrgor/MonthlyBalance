@@ -44,9 +44,10 @@ extension UIViewController {
     self.presentViewController(alertController, animated: true, completion: nil)
   }
   
-  func openAmountPadInMode(mode: AmountPadMode, delegate: AmountPadDelegate, maskRect: ((AmountPadViewController) -> (CGRect))? = nil) {
+  func openAmountPadInMode(mode: AmountPadMode, okHandler: AmountPadViewOk?, cancelHandler: AmountPadViewCancel? = nil, maskRect: ((AmountPadViewController) -> (CGRect))? = nil) {
     let amountPadViewController = AmountPadViewController()
-    amountPadViewController.delegate = delegate
+    amountPadViewController.onOk = okHandler
+    amountPadViewController.onCancel = cancelHandler
     amountPadViewController.mode = mode
     self.addChildViewController(amountPadViewController)
     self.view.addSubview(amountPadViewController.view)

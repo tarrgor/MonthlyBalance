@@ -8,6 +8,9 @@
 
 import UIKit
 
+typealias EditEventOnSave = (EditEventTableViewController, ScheduledEvent?) -> ()
+typealias EditEventOnCancel = (EditEventTableViewController) -> ()
+
 class EditEventTableViewController : UITableViewController {
   
   var event: ScheduledEvent?
@@ -16,7 +19,8 @@ class EditEventTableViewController : UITableViewController {
   
   var mode: ViewControllerMode = .Add
 
-  var delegate: EditEventDelegate?
+  var onSave: EditEventOnSave?
+  var onCancel: EditEventOnCancel?
   
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var titleTextField: UITextField!
@@ -75,29 +79,44 @@ class EditEventTableViewController : UITableViewController {
         self.event!.dayOfMonth = dayOfMonth
         self.event!.interval = interval
         self.event!.amount = amount
+        self.event!.nextDueDate = NSDate().nextDateWithDayOfMonth(dayOfMonth)
         self.event!.update()
       }
     } else {
       print("No selected account found in the settings.")
     }
     
-    self.delegate?.editEventViewControllerDidSaveEvent(self, event: self.event)
+    if let callback = self.onSave {
+      callback(self, self.event)
+    }
     
     self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func cancelButtonPressed(sender: UIButton) {
-    self.delegate?.editEventViewControllerDidCancelEvent(self)
+    if let callback = self.onCancel {
+      callback(self)
+    }
     
     self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func incomeButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Income, delegate: self)
+    openAmountPadInMode(.Income, okHandler: { amountPad in
+      self.amountLabel.amount = amountPad.finalAmount
+      self.closeAmountPad(amountPad)
+    }, cancelHandler: { amountPad in
+      self.closeAmountPad(amountPad)
+    })
   }
   
   @IBAction func expenditureButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Expenditure, delegate: self)
+    openAmountPadInMode(.Expenditure, okHandler: { amountPad in
+      self.amountLabel.amount = amountPad.finalAmount
+      self.closeAmountPad(amountPad)
+    }, cancelHandler: { amountPad in
+      self.closeAmountPad(amountPad)
+    })
   }
   
   @IBAction func dayOfMonthSliderChanged(sender: UISlider) {
@@ -110,17 +129,6 @@ class EditEventTableViewController : UITableViewController {
   
   func viewTapped() {
     self.titleTextField.resignFirstResponder()
-  }
-}
-
-extension EditEventTableViewController : AmountPadDelegate {
-  func amountPadDidPressOk(amountPad: AmountPadViewController) {
-    self.amountLabel.amount = amountPad.finalAmount
-    closeAmountPad(amountPad)
-  }
-  
-  func amountPadDidPressCancel(amountPad: AmountPadViewController) {
-    closeAmountPad(amountPad)
   }
 }
 

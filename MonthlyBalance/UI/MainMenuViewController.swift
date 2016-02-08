@@ -14,7 +14,7 @@ class MainMenuViewController : UIViewController {
     loadViewControllerWithIdentifier(kIdManageAccountsTableViewController) { navController, viewController in
       let homeViewController = navController.topViewController as! HomeViewController
       if let manageAccountsViewController = viewController as? ManageAccountsTableViewController {
-        manageAccountsViewController.accountManagementDelegate = homeViewController
+        manageAccountsViewController.onChangeSelection = homeViewController.didChangeAccountSelection
         if let account = self.settings?.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
           manageAccountsViewController.selectedAccountIndex = index
         }

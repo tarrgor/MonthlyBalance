@@ -13,7 +13,6 @@
 		74194BD9D1AF0DD8AE408ED2 /* BalanceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */; };
 		74194BE4E5DFA5CC7982EFC5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741946F21E2835E93CE95383 /* HomeViewController.swift */; };
 		74194CC9C2FCB1B41895D270 /* BalanceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */; };
-		74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */; };
 		F207F27D1BEFB9C100143FD6 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207F27C1BEFB9C100143FD6 /* NSDateExtension.swift */; };
 		F232F6211C18A43C00CB58CC /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232F6201C18A43C00CB58CC /* SlideMenuViewController.swift */; };
 		F232F6231C18B4D600CB58CC /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F232F6221C18B4D600CB58CC /* MainMenuViewController.swift */; };
@@ -21,7 +20,6 @@
 		F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */; };
 		F2415BAE1C50016A00E84B9D /* MBDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */; };
 		F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */; };
-		F2435B791C4571D900F25006 /* EditActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B781C4571D900F25006 /* EditActivityDelegate.swift */; };
 		F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24470A91C4A6F6300626D29 /* Commons.swift */; };
 		F24D7ADF1C342B8400B7157F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D7ADE1C342B8400B7157F /* UIViewExtension.swift */; };
 		F24D7AE11C34372700B7157F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D7AE01C34372700B7157F /* Settings.swift */; };
@@ -54,8 +52,6 @@
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
-		F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */; };
-		F2EB15F51C42AF7900AE8562 /* EditEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +72,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPadDelegate.swift; sourceTree = "<group>"; };
 		741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceInfoViewController.swift; sourceTree = "<group>"; };
 		741946F21E2835E93CE95383 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +85,6 @@
 		F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBDatePickerView.swift; sourceTree = "<group>"; };
 		F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityTableViewController.swift; sourceTree = "<group>"; };
-		F2435B781C4571D900F25006 /* EditActivityDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityDelegate.swift; sourceTree = "<group>"; };
 		F24470A91C4A6F6300626D29 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		F24D7ADE1C342B8400B7157F /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F24D7AE01C34372700B7157F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -130,8 +124,6 @@
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountManagementDelegate.swift; path = ../AccountManagementDelegate.swift; sourceTree = "<group>"; };
-		F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEventDelegate.swift; path = ../EditEventDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,30 +154,16 @@
 		74194F79B764629A53735119 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */,
-				74194987C5C4AD2CBF53391B /* AmountPadView.swift */,
-				7419433C8468E868AA186DC4 /* AmountPadDelegate.swift */,
-				F2EB15F41C42AF7900AE8562 /* EditEventDelegate.swift */,
-				F2E567FD1C1DEF01001421AE /* AccountManagementDelegate.swift */,
-				F2435B781C4571D900F25006 /* EditActivityDelegate.swift */,
-				74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */,
-				7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */,
-				74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */,
+				F222CE4C1C6900AF00927FA9 /* Custom Views */,
+				F222CE4B1C69009300927FA9 /* BalanceInfo */,
+				F222CE4A1C68FE8B00927FA9 /* Accounts */,
+				F222CE491C68FC9100927FA9 /* Events */,
+				F222CE481C68FA7D00927FA9 /* Activities */,
+				F222CE471C68F47E00927FA9 /* AmountPad */,
 				741946F21E2835E93CE95383 /* HomeViewController.swift */,
-				F2779DA71C0CCAA700ECDCC5 /* CreateAccountViewController.swift */,
-				F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */,
-				F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */,
 				F232F6201C18A43C00CB58CC /* SlideMenuViewController.swift */,
 				F232F6221C18B4D600CB58CC /* MainMenuViewController.swift */,
 				F24D7AE21C34438C00B7157F /* SettingsViewController.swift */,
-				F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */,
-				F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */,
-				F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */,
-				F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */,
-				F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */,
-				F26111B01C415C1F009378D5 /* MBTextField.swift */,
-				F27880D41C41B2630055AD2F /* MBAmountLabel.swift */,
-				F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -201,6 +179,64 @@
 				F24D7ADE1C342B8400B7157F /* UIViewExtension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F222CE471C68F47E00927FA9 /* AmountPad */ = {
+			isa = PBXGroup;
+			children = (
+				74194987C5C4AD2CBF53391B /* AmountPadView.swift */,
+				74194E1BAC95BDFE33310BAD /* AmountPadViewController.swift */,
+			);
+			name = AmountPad;
+			sourceTree = "<group>";
+		};
+		F222CE481C68FA7D00927FA9 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				741945CD28BCC95A3445D196 /* ActivityTableViewCell.swift */,
+				F2AB67DE1C441A6600D8834E /* ManageActivitiesTableViewController.swift */,
+				F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */,
+			);
+			name = Activities;
+			sourceTree = "<group>";
+		};
+		F222CE491C68FC9100927FA9 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */,
+				F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */,
+				F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		F222CE4A1C68FE8B00927FA9 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				F2779DA71C0CCAA700ECDCC5 /* CreateAccountViewController.swift */,
+				F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */,
+				F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */,
+			);
+			name = Accounts;
+			sourceTree = "<group>";
+		};
+		F222CE4B1C69009300927FA9 /* BalanceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7419462E2C2AE4290F2D580D /* BalanceInfoViewController.swift */,
+				74194D0C98ED02DE2F1F37CC /* BalanceInfoView.swift */,
+			);
+			name = BalanceInfo;
+			sourceTree = "<group>";
+		};
+		F222CE4C1C6900AF00927FA9 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				F26111B01C415C1F009378D5 /* MBTextField.swift */,
+				F27880D41C41B2630055AD2F /* MBAmountLabel.swift */,
+				F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */,
+			);
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		F258EF3A1BEF460700A6D7EB = {
@@ -413,7 +449,6 @@
 				F27B69781C010D7A00A3AED0 /* UIButtonExtension.swift in Sources */,
 				F258EF951BEF54D900A6D7EB /* ScheduledEvent.swift in Sources */,
 				F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */,
-				F2E567FE1C1DEF01001421AE /* AccountManagementDelegate.swift in Sources */,
 				F2AB67DF1C441A6600D8834E /* ManageActivitiesTableViewController.swift in Sources */,
 				F258EF911BEF54D900A6D7EB /* Account.swift in Sources */,
 				F258EF4F1BEF460700A6D7EB /* MonthlyBalance.xcdatamodeld in Sources */,
@@ -442,12 +477,9 @@
 				F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */,
 				F2779DA81C0CCAA700ECDCC5 /* CreateAccountViewController.swift in Sources */,
 				F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */,
-				F2435B791C4571D900F25006 /* EditActivityDelegate.swift in Sources */,
 				741942BF77A9FCA042F50FA9 /* AmountPadView.swift in Sources */,
 				F24D7ADF1C342B8400B7157F /* UIViewExtension.swift in Sources */,
-				F2EB15F51C42AF7900AE8562 /* EditEventDelegate.swift in Sources */,
 				F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */,
-				74194E89DA4B9270BB2123E3 /* AmountPadDelegate.swift in Sources */,
 				7419454C62391038DA5BEE70 /* AmountPadViewController.swift in Sources */,
 				74194CC9C2FCB1B41895D270 /* BalanceInfoViewController.swift in Sources */,
 				74194BD9D1AF0DD8AE408ED2 /* BalanceInfoView.swift in Sources */,

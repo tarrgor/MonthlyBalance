@@ -12,6 +12,9 @@ enum AmountPadMode : Double {
   case Income = 1.0, Expenditure = -1.0
 }
 
+typealias AmountPadViewOk = (AmountPadViewController) -> ()
+typealias AmountPadViewCancel = (AmountPadViewController) -> ()
+
 class AmountPadViewController : UIViewController {
   
   var amount: Int = 0
@@ -23,7 +26,8 @@ class AmountPadViewController : UIViewController {
   
   var mode: AmountPadMode = .Expenditure
   
-  var delegate: AmountPadDelegate? = nil
+  var onOk: AmountPadViewOk?
+  var onCancel: AmountPadViewCancel?
   
   private var _decimalMode = false
   private var _currentDigit = 1
@@ -42,14 +46,18 @@ class AmountPadViewController : UIViewController {
   // TODO: Create a builder class for the amount
   
   func okPressed(sender: UIButton) {
-    self.delegate?.amountPadDidPressOk(self)
+    if let callback = self.onOk {
+      callback(self)
+    }
   }
   
   func cancelPressed(sender: UIButton) {
     self.amount = 0
     self.digits = 0
     
-    self.delegate?.amountPadDidPressCancel(self)
+    if let callback = self.onCancel {
+      callback(self)
+    }
   }
   
   func numberPressed(sender: UIButton) {

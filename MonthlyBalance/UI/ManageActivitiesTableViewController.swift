@@ -131,7 +131,7 @@ class ManageActivitiesTableViewController : UITableViewController {
   func openActivityDialog(indexPath: NSIndexPath, activity: Activity? = nil) {
     if let editActivityTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditActivityTableViewController")
       as? EditActivityTableViewController {
-        editActivityTableViewController.delegate = self
+        editActivityTableViewController.onSave = editActivityViewControllerDidSaveEvent
         editActivityTableViewController.activity = activity
         
         self.selectedIndexPath = indexPath
@@ -140,7 +140,7 @@ class ManageActivitiesTableViewController : UITableViewController {
   }
 }
 
-extension ManageActivitiesTableViewController : EditActivityDelegate {
+extension ManageActivitiesTableViewController {
   func editActivityViewControllerDidSaveEvent(viewController: EditActivityTableViewController, activity: Activity?) {
     if let _ = activity, indexPath = self.selectedIndexPath {
       if viewController.mode == .Add {
@@ -150,10 +150,6 @@ extension ManageActivitiesTableViewController : EditActivityDelegate {
       }
       self.selectedIndexPath = nil
     }
-  }
-  
-  func editActivityViewControllerDidCancelEvent(viewController: EditActivityTableViewController) {
-    
   }
 }
 

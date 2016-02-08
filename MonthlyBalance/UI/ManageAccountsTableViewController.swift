@@ -8,12 +8,14 @@
 
 import UIKit
 
+typealias ManageAccountsOnChangeSelection = (Account) -> ()
+
 class ManageAccountsTableViewController : UITableViewController {
   
   var accounts: [Account] = Account.findAll()
   var selectedAccountIndex = 0
   
-  var accountManagementDelegate: AccountManagementDelegate?
+  var onChangeSelection: ManageAccountsOnChangeSelection?
   
   // MARK: - Initialization
   
@@ -73,8 +75,12 @@ class ManageAccountsTableViewController : UITableViewController {
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.selectedAccountIndex = indexPath.row
+    // TODO reloadData??
     tableView.reloadData()
-    self.accountManagementDelegate?.didChangeAccountSelection(self.accounts[self.selectedAccountIndex])
+    
+    if let callback = self.onChangeSelection {
+      callback(self.accounts[self.selectedAccountIndex])
+    }
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

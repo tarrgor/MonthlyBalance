@@ -8,6 +8,9 @@
 
 import UIKit
 
+typealias EditActivityOnSave = (EditActivityTableViewController, Activity?) -> ()
+typealias EditActivityOnCancel = (EditActivityTableViewController) -> ()
+
 class EditActivityTableViewController : UITableViewController {
   
   let viewTitles = [ "Add new activity", "Edit activity" ]
@@ -16,7 +19,8 @@ class EditActivityTableViewController : UITableViewController {
   
   var mode: ViewControllerMode = .Add
   
-  var delegate: EditActivityDelegate?
+  var onSave: EditActivityOnSave?
+  var onCancel: EditActivityOnCancel?
   
   var dateFormatter: NSDateFormatter = NSDateFormatter()
   
@@ -93,23 +97,37 @@ class EditActivityTableViewController : UITableViewController {
       print("No selected account found in the settings.")
     }
     
-    self.delegate?.editActivityViewControllerDidSaveEvent(self, activity: self.activity)
+    if let callback = self.onSave {
+      callback(self, self.activity)
+    }
     
     self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func cancelButtonPressed(sender: UIButton) {
-    self.delegate?.editActivityViewControllerDidCancelEvent(self)
+    if let callback = self.onCancel {
+      callback(self)
+    }
     
     self.navigationController?.popViewControllerAnimated(true)
   }
   
   @IBAction func incomeButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Income, delegate: self)
+    openAmountPadInMode(.Income, okHandler: { amountPad in
+      self.amountLabel.amount = amountPad.finalAmount
+      self.closeAmountPad(amountPad)
+    }, cancelHandler: { amountPad in
+      self.closeAmountPad(amountPad)
+    })
   }
   
   @IBAction func expenditureButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Expenditure, delegate: self)
+    openAmountPadInMode(.Expenditure, okHandler: { amountPad in
+      self.amountLabel.amount = amountPad.finalAmount
+      self.closeAmountPad(amountPad)
+    }, cancelHandler: { amountPad in
+      self.closeAmountPad(amountPad)
+    })
   }
   
   @IBAction func dateButtonPressed(sender: UIButton) {
@@ -172,17 +190,6 @@ class EditActivityTableViewController : UITableViewController {
     return picker
   }
   
-}
-
-extension EditActivityTableViewController : AmountPadDelegate {
-  func amountPadDidPressOk(amountPad: AmountPadViewController) {
-    self.amountLabel.amount = amountPad.finalAmount
-    closeAmountPad(amountPad)
-  }
-  
-  func amountPadDidPressCancel(amountPad: AmountPadViewController) {
-    closeAmountPad(amountPad)
-  }
 }
 
 extension EditActivityTableViewController : UITextFieldDelegate {

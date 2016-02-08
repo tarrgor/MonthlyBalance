@@ -132,7 +132,7 @@ class ManageEventsTableViewController : UITableViewController {
   func openEventDialog(indexPath: NSIndexPath, event: ScheduledEvent? = nil) {
     if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
         as? EditEventTableViewController {
-      editEventTableViewController.delegate = self
+      editEventTableViewController.onSave = editEventViewControllerDidSaveEvent
       editEventTableViewController.event = event
           
       self.selectedIndexPath = indexPath
@@ -141,7 +141,7 @@ class ManageEventsTableViewController : UITableViewController {
   }
 }
 
-extension ManageEventsTableViewController : EditEventDelegate {
+extension ManageEventsTableViewController {
   func editEventViewControllerDidSaveEvent(viewController: EditEventTableViewController, event: ScheduledEvent?) {
     if let _ = event, indexPath = self.selectedIndexPath {
       if viewController.mode == .Add {
@@ -151,10 +151,6 @@ extension ManageEventsTableViewController : EditEventDelegate {
       }
       self.selectedIndexPath = nil
     }
-  }
-  
-  func editEventViewControllerDidCancelEvent(viewController: EditEventTableViewController) {
-    
   }
 }
 
