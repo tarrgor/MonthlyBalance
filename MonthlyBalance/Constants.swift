@@ -33,6 +33,8 @@ let kColorTableViewSelection = "#78ACE8"
 
 let kColorMainMenuBackground = "#305CA3"
 
+let kColorHighlightedText = "#B9E4FF"
+
 // Fonts
 
 let kMainFontName = "HelveticaNeue-Light"
@@ -51,6 +53,7 @@ let kTitleManageEvents = "Manage Events"
 let kTitleManageActivities = "Manage Activities"
 let kTitleSettings = "Settings"
 let kTitleBackButton = "< Back"
+let kTitleCreateAccount = "Create Account"
 
 let kTitleOkButton = "OK"
 let kTitleCancelButton = "Cancel"

@@ -17,6 +17,9 @@ DerivedData
 !default.perspectivev3
 xcuserdata
 
+## Carthage
+Carthage/
+
 ## Other
 *.xccheckout
 *.moved-aside
