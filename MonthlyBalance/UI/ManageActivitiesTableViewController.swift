@@ -129,26 +129,26 @@ class ManageActivitiesTableViewController : UITableViewController {
   }
   
   func openActivityDialog(indexPath: NSIndexPath, activity: Activity? = nil) {
-    if let editActivityTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditActivityTableViewController")
-      as? EditActivityTableViewController {
-        editActivityTableViewController.onSave = editActivityViewControllerDidSaveEvent
-        editActivityTableViewController.activity = activity
-        
-        self.selectedIndexPath = indexPath
-        self.navigationController?.pushViewController(editActivityTableViewController, animated: true)
-    }
+    let editActivityFormViewController = EditActivityFormViewController()
+    editActivityFormViewController.onSave = editActivityViewControllerDidSaveEvent
+    editActivityFormViewController.activity = activity
+
+    self.selectedIndexPath = indexPath
+    self.navigationController?.pushViewController(editActivityFormViewController, animated: true)
   }
 }
 
 extension ManageActivitiesTableViewController {
-  func editActivityViewControllerDidSaveEvent(viewController: EditActivityTableViewController, activity: Activity?) {
+  func editActivityViewControllerDidSaveEvent(viewController: EditActivityFormViewController, activity: Activity?) {
     if let _ = activity, indexPath = self.selectedIndexPath {
+      
       if viewController.mode == .Add {
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       } else {
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
       }
       self.selectedIndexPath = nil
+      
     }
   }
 }

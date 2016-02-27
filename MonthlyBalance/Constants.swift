@@ -33,7 +33,10 @@ let kColorTableViewSelection = "#78ACE8"
 
 let kColorMainMenuBackground = "#305CA3"
 
-let kColorHighlightedText = "#B9E4FF"
+let kColorHighlightedText = "#F8E71C"
+
+let kColorIncome = "#C0F2CA"
+let kColorExpenditure = "#F3C2C6"
 
 // Fonts
 
@@ -65,3 +68,8 @@ let kImageNameNumericButtonCircle = "NumericButtonCircle"
 let kImageNameZeroButtonOval = "ZeroButtonOval"
 let kImageNameOkButton = "OkButton"
 let kImageNameCancelButton = "CancelButton"
+
+// Explanations
+let kExplanationActivity = "An activity is a single income or expenditure assigned to your account. It immediately affects all balances."
+
+

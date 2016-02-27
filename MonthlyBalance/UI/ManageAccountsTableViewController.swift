@@ -31,15 +31,7 @@ class ManageAccountsTableViewController : UITableViewController {
   }
   
   func addButtonPressed(sender: UIBarButtonItem) {
-    let createAccountViewController = CreateAccountViewController()
-    /*
-    guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController) as? CreateAccountViewController
-      else {
-        showAlertWithTitle("ERROR", message: "There was an internal error while trying to display the 'Create Account' screen.")
-        return
-    }
-    */
-
+    let createAccountViewController = CreateAccountFormViewController()
     createAccountViewController.onCreateAccount = { viewController, account in
       self.accounts.append(account)
 

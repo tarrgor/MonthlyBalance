@@ -8,8 +8,8 @@
 
 import UIKit
 
-typealias EditActivityOnSave = (EditActivityTableViewController, Activity?) -> ()
-typealias EditActivityOnCancel = (EditActivityTableViewController) -> ()
+//typealias EditActivityOnSave = (EditActivityTableViewController, Activity?) -> ()
+//typealias EditActivityOnCancel = (EditActivityTableViewController) -> ()
 
 class EditActivityTableViewController : UITableViewController {
   
@@ -98,7 +98,7 @@ class EditActivityTableViewController : UITableViewController {
     }
     
     if let callback = self.onSave {
-      callback(self, self.activity)
+      //callback(self, self.activity)
     }
     
     self.navigationController?.popViewControllerAnimated(true)
@@ -106,7 +106,7 @@ class EditActivityTableViewController : UITableViewController {
   
   @IBAction func cancelButtonPressed(sender: UIButton) {
     if let callback = self.onCancel {
-      callback(self)
+      //callback(self)
     }
     
     self.navigationController?.popViewControllerAnimated(true)

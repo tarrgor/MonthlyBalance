@@ -98,12 +98,7 @@ class HomeViewController: UIViewController {
 
   private func checkSelectedAccount() {
     if self.settings?.selectedAccount == nil {
-      guard let createAccountViewController = self.storyboard?.instantiateViewControllerWithIdentifier(kIdCreateAccountViewController) as? CreateAccountViewController
-      else {
-        print("Error")
-        return
-      }
-
+      let createAccountViewController = CreateAccountFormViewController()
       createAccountViewController.onCreateAccount = { viewController, account in
         self.initializePageViewController()
       }
