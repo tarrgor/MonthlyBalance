@@ -44,7 +44,7 @@ class EditActivityFormViewController : FormViewController {
     form +++=
 
     Section("Manage Activity") { section in
-      FormUtil.configureSectionHeader(section, title: self.mode == .Add ? "Add Activity" : "Edit activity")
+      FormUtil.configureSectionHeader(section, title: viewTitles[mode.rawValue])
     }
       
     <<< LabelRow() {

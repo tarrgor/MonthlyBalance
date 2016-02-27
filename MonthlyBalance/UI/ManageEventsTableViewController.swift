@@ -130,14 +130,13 @@ class ManageEventsTableViewController : UITableViewController {
   }
 
   func openEventDialog(indexPath: NSIndexPath, event: ScheduledEvent? = nil) {
-    if let editEventTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("EditEventTableViewController")
-        as? EditEventTableViewController {
-      editEventTableViewController.onSave = editEventViewControllerDidSaveEvent
-      editEventTableViewController.event = event
+    let editEventFormViewController = EditEventFormViewController()
+    
+//      editEventTableViewController.onSave = editEventViewControllerDidSaveEvent
+//      editEventTableViewController.event = event
           
-      self.selectedIndexPath = indexPath
-      self.navigationController?.pushViewController(editEventTableViewController, animated: true)
-    }
+    self.selectedIndexPath = indexPath
+    self.navigationController?.pushViewController(editEventFormViewController, animated: true)
   }
 }
 

@@ -57,6 +57,7 @@
 		F2ABADAD1C21DE860027EE38 /* CurrencyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */; };
 		F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */; };
 		F2AD89391C12210B00ABC1FB /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */; };
+		F2D9390B1C822A67001FA122 /* EditEventFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9390A1C822A67001FA122 /* EditEventFormViewController.swift */; };
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
@@ -137,6 +138,7 @@
 		F2ABADAC1C21DE860027EE38 /* CurrencyUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyUtil.swift; sourceTree = "<group>"; };
 		F2AD89361C120CE700ABC1FB /* ManageAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageAccountsTableViewController.swift; sourceTree = "<group>"; };
 		F2AD89381C12210B00ABC1FB /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		F2D9390A1C822A67001FA122 /* EditEventFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEventFormViewController.swift; sourceTree = "<group>"; };
 		F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F2E19AB81BF7925F00EEC70D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F2E19ABA1BF794D100EEC70D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */,
 				F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */,
 				F26111AC1C41460B009378D5 /* EditEventTableViewController.swift */,
+				F2D9390A1C822A67001FA122 /* EditEventFormViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				F232F6211C18A43C00CB58CC /* SlideMenuViewController.swift in Sources */,
 				F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */,
 				F25BB8061C73B07500943B5C /* MBDateCell.swift in Sources */,
+				F2D9390B1C822A67001FA122 /* EditEventFormViewController.swift in Sources */,
 				F24D7AE11C34372700B7157F /* Settings.swift in Sources */,
 				F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */,
 				F2AD89371C120CE700ABC1FB /* ManageAccountsTableViewController.swift in Sources */,

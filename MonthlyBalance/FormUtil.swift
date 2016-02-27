@@ -66,6 +66,26 @@ class FormUtil {
       let c = cell as MBDateCell
       c.textLabel?.textColor = UIColor.whiteColor()      
     }
+    SwitchRow.defaultCellSetup = { cell, row in
+      let c = cell as SwitchCell
+      c.backgroundColor = UIColor(hex: kColorSecondBackground)
+      c.tintColor = UIColor(hex: kColorHighlightedText)
+      c.switchControl?.onTintColor = UIColor(hex: kColorSwitchOnTintColor)
+    }
+    SwitchRow.defaultCellUpdate = { cell, row in
+      let c = cell as SwitchCell
+      c.textLabel?.textColor = UIColor.whiteColor()
+    }
+    IntRow.defaultCellSetup = { cell, row in
+      let c = cell as IntCell
+      c.backgroundColor = UIColor(hex: kColorSecondBackground)
+      c.tintColor = UIColor(hex: kColorHighlightedText)
+    }
+    IntRow.defaultCellUpdate = { cell, row in
+      let c = cell as IntCell
+      c.textLabel?.textColor = UIColor.whiteColor()
+      c.textField.textColor = UIColor(hex: kColorBaseBackground)
+    }
   }
 
   static func configureSectionHeader(section: Section, title: String, height: CGFloat = 40) {

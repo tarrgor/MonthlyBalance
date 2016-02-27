@@ -30,6 +30,7 @@ let kColorButtonBackground = "#4171C4"
 let kColorHighlightedButtonBackground = "#749ADB"
 
 let kColorTableViewSelection = "#78ACE8"
+let kColorSwitchOnTintColor = "#78ACE8"
 
 let kColorMainMenuBackground = "#305CA3"
 
@@ -71,5 +72,6 @@ let kImageNameCancelButton = "CancelButton"
 
 // Explanations
 let kExplanationActivity = "An activity is a single income or expenditure assigned to your account. It immediately affects all balances."
+let kExplanationEvent = "An event describes a recurring income or expenditure activity which will automatically be applied to your account at the specified time."
 
 
