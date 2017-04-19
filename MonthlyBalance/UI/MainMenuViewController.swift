@@ -10,36 +10,36 @@ import UIKit
 
 class MainMenuViewController : UIViewController {
   
-  @IBAction func manageAccountsMenuItemPressed(sender: UIButton) {
+  @IBAction func manageAccountsMenuItemPressed(_ sender: UIButton) {
     loadViewControllerWithIdentifier(kIdManageAccountsTableViewController) { navController, viewController in
       let homeViewController = navController.topViewController as! HomeViewController
       if let manageAccountsViewController = viewController as? ManageAccountsTableViewController {
         manageAccountsViewController.onChangeSelection = homeViewController.didChangeAccountSelection
-        if let account = self.settings?.selectedAccount, index = manageAccountsViewController.accounts.indexOf(account) {
+        if let account = self.settings?.selectedAccount, let index = manageAccountsViewController.accounts.index(of: account) {
           manageAccountsViewController.selectedAccountIndex = index
         }
       }
     }
   }
 
-  @IBAction func manageEventsMenuItemPressed(sender: UIButton) {
+  @IBAction func manageEventsMenuItemPressed(_ sender: UIButton) {
     loadViewControllerWithIdentifier(kIdManageEventsTableViewController, beforePush: nil)
   }
   
-  @IBAction func manageActivitiesMenuItemPressed(sender: UIButton) {
+  @IBAction func manageActivitiesMenuItemPressed(_ sender: UIButton) {
     loadViewControllerWithIdentifier(kIdManageActivitiesTableViewController, beforePush: nil)
   }
   
-  @IBAction func settingsMenuItemPressed(sender: UIButton) {
+  @IBAction func settingsMenuItemPressed(_ sender: UIButton) {
     loadViewControllerWithIdentifier(kIdSettingsViewController, beforePush: nil)
   }
   
-  private func loadViewControllerWithIdentifier(identifier: String, beforePush: ((UINavigationController, UIViewController) -> ())?) {
+  fileprivate func loadViewControllerWithIdentifier(_ identifier: String, beforePush: ((UINavigationController, UIViewController) -> ())?) {
     if let svc = self.slideMenuViewController {
       svc.closeMenu(true)
       
       if let navController = svc.contentViewController as? UINavigationController {
-        if let newViewController = self.storyboard?.instantiateViewControllerWithIdentifier(identifier) {
+        if let newViewController = self.storyboard?.instantiateViewController(withIdentifier: identifier) {
           if let callback = beforePush {
             callback(navController, newViewController)
           }

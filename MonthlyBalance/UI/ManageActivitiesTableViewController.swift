@@ -7,11 +7,35 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class ManageActivitiesTableViewController : UITableViewController {
   var account: Account?
   
-  var selectedIndexPath: NSIndexPath?
+  var selectedIndexPath: IndexPath?
   
   var swipeToDelete = false
   
@@ -24,56 +48,56 @@ class ManageActivitiesTableViewController : UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     
     // Setup navigationBar
-    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: "backButtonPressed:", rightItem: editButtonItem())
+    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: #selector(backButtonPressed(_:)), rightItem: editButtonItem)
   }
   
-  func backButtonPressed(sender: UIBarButtonItem) {
-    self.navigationController?.popToRootViewControllerAnimated(true)
+  func backButtonPressed(_ sender: UIBarButtonItem) {
+    self.navigationController?.popToRootViewController(animated: true)
   }
   
   // MARK: - TableView DataSource
   
-  override func setEditing(editing: Bool, animated: Bool) {
+  override func setEditing(_ editing: Bool, animated: Bool) {
     super.setEditing(editing, animated: animated)
-    if self.editing && !self.swipeToDelete {
+    if self.isEditing && !self.swipeToDelete {
       self.tableView.beginUpdates()
       
-      let indexPath = NSIndexPath(forRow: self.account!.activities!.count, inSection: 0)
-      self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      let indexPath = IndexPath(row: self.account!.activities!.count, section: 0)
+      self.tableView.insertRows(at: [indexPath], with: .automatic)
       self.tableView.endUpdates()
       
       self.tableView.setEditing(editing, animated: animated)
     } else {
       self.tableView.beginUpdates()
       
-      let indexPath = NSIndexPath(forRow: self.account!.activities!.count, inSection: 0)
-      self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      let indexPath = IndexPath(row: self.account!.activities!.count, section: 0)
+      self.tableView.deleteRows(at: [indexPath], with: .automatic)
       self.tableView.endUpdates()
       
       self.tableView.setEditing(editing, animated: animated)
     }
   }
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let account: Account = self.account, activities = account.activities {
-      return self.editing ? activities.count + 1 : activities.count
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if let account: Account = self.account, let activities = account.activities {
+      return self.isEditing ? activities.count + 1 : activities.count
     }
     return 0
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if self.editing && indexPath.row >= self.account?.activities?.count {
-      let cell = tableView.dequeueReusableCellWithIdentifier("NewActivityCell")
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if self.isEditing && indexPath.row >= self.account?.activities?.count {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "NewActivityCell")
       cell?.selectedBackgroundView = UIView(frame: cell!.frame)
       cell?.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
       return cell!
     }
     
-    let cell = tableView.dequeueReusableCellWithIdentifier("ActivityCell") as! ActivityTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell") as! ActivityTableViewCell
     let activities = self.account!.activities!
     let activity: Activity = activities[indexPath.row] as! Activity
     
@@ -90,29 +114,29 @@ class ManageActivitiesTableViewController : UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
       if let activity = self.account?.activities?[indexPath.row] as? Activity {
         self.account?.recalculateTotalsForUpdateActivity(activity, newAmount: 0.0, newDate: activity.date!)
         activity.delete()
-        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
       }
-    } else if editingStyle == .Insert {
+    } else if editingStyle == .insert {
       openActivityDialog(indexPath)
     }
   }
   
-  override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
     if indexPath.row >= self.account?.activities?.count {
-      return .Insert
+      return .insert
     }
-    return .Delete
+    return .delete
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    if indexPath.row >= self.account?.activities?.count && editing {
-      self.tableView(tableView, commitEditingStyle: .Insert, forRowAtIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.tableView.deselectRow(at: indexPath, animated: false)
+    if indexPath.row >= self.account?.activities?.count && isEditing {
+      self.tableView(tableView, commit: .insert, forRowAt: indexPath)
     } else {
       if let activity = self.account?.activities?[indexPath.row] {
         openActivityDialog(indexPath, activity: activity as? Activity)
@@ -120,15 +144,15 @@ class ManageActivitiesTableViewController : UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
     self.swipeToDelete = true
   }
   
-  override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
     self.swipeToDelete = false
   }
   
-  func openActivityDialog(indexPath: NSIndexPath, activity: Activity? = nil) {
+  func openActivityDialog(_ indexPath: IndexPath, activity: Activity? = nil) {
     let editActivityFormViewController = EditActivityFormViewController()
     editActivityFormViewController.onSave = editActivityViewControllerDidSaveEvent
     editActivityFormViewController.activity = activity
@@ -139,13 +163,13 @@ class ManageActivitiesTableViewController : UITableViewController {
 }
 
 extension ManageActivitiesTableViewController {
-  func editActivityViewControllerDidSaveEvent(viewController: EditActivityFormViewController, activity: Activity?) {
-    if let _ = activity, indexPath = self.selectedIndexPath {
+  func editActivityViewControllerDidSaveEvent(_ viewController: EditActivityFormViewController, activity: Activity?) {
+    if let _ = activity, let indexPath = self.selectedIndexPath {
       
-      if viewController.mode == .Add {
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      if viewController.mode == .add {
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
       } else {
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
       }
       self.selectedIndexPath = nil
       

@@ -23,13 +23,13 @@ class NSDateExtensionTests: XCTestCase {
   }
   
   func testDayMonthAndYear_IsSetCorrectly() {
-    let calendar = NSCalendar.currentCalendar()
-    let components = NSDateComponents()
+    let calendar = Calendar.current
+    var components = DateComponents()
     components.day = 27
     components.month = 4
     components.year = 2015
     
-    let date: NSDate = calendar.dateFromComponents(components)!
+    let date: Date = calendar.date(from: components)!
     
     XCTAssert(date.day() == 27)
     XCTAssert(date.month() == 4)
@@ -37,13 +37,13 @@ class NSDateExtensionTests: XCTestCase {
   }
   
   func testNextDateWithDayOfWeek_IsReturnedCorrectly() {
-    let calendar = NSCalendar.currentCalendar()
-    let components = NSDateComponents()
+    let calendar = Calendar.current
+    var components = DateComponents()
     components.day = 27
     components.month = 4
     components.year = 2015
     
-    let date: NSDate = calendar.dateFromComponents(components)!
+    let date: Date = calendar.date(from: components)!
     
     let nextDate = date.nextDateWithDayOfMonth(20)
     
@@ -53,7 +53,7 @@ class NSDateExtensionTests: XCTestCase {
   }
   
   func testDateWithDayMonthYear_ReturnsCorrectDate() {
-    let date = NSDate.dateWithDay(24, month: 12, year: 2014)
+    let date = Date.dateWithDay(24, month: 12, year: 2014)
     
     XCTAssert(date?.day() == 24)
     XCTAssert(date?.month() == 12)

@@ -20,25 +20,25 @@ class ManageAccountsTableViewController : UITableViewController {
   // MARK: - Initialization
   
   override func viewDidLoad() {
-    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: "backButtonPressed:", rightItem: addButtonItem)
+    let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ManageAccountsTableViewController.addButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: #selector(backButtonPressed(_:)), rightItem: addButtonItem)
   }
   
   // MARK: - Actions
   
-  func backButtonPressed(sender: UIBarButtonItem) {
-    self.navigationController?.popToRootViewControllerAnimated(true)
+  func backButtonPressed(_ sender: UIBarButtonItem) {
+    self.navigationController?.popToRootViewController(animated: true)
   }
   
-  func addButtonPressed(sender: UIBarButtonItem) {
+  func addButtonPressed(_ sender: UIBarButtonItem) {
     let createAccountViewController = CreateAccountFormViewController()
     createAccountViewController.onCreateAccount = { viewController, account in
       self.accounts.append(account)
 
       delay(400) {
-        let indexPath = NSIndexPath(forRow: self.accounts.count - 1, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+        let indexPath = IndexPath(row: self.accounts.count - 1, section: 0)
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
       }
     }
     
@@ -47,15 +47,15 @@ class ManageAccountsTableViewController : UITableViewController {
   
   // MARK: TableView methods
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.accounts.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(kIdAccountCell) as! AccountTableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: kIdAccountCell) as! AccountTableViewCell
     
     cell.accountNameLabel.text = self.accounts[indexPath.row].name!
-    cell.balanceLabel.text = String(self.accounts[indexPath.row].balanceCurrentMonth!)
+    cell.balanceLabel.text = String(describing: self.accounts[indexPath.row].balanceCurrentMonth!)
     cell.selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
     cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
     
@@ -68,7 +68,7 @@ class ManageAccountsTableViewController : UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.selectedAccountIndex = indexPath.row
     // TODO reloadData??
     tableView.reloadData()
@@ -78,15 +78,15 @@ class ManageAccountsTableViewController : UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
-    if editingStyle == .Delete {
+    if editingStyle == .delete {
       let accountToDelete: Account = self.accounts[indexPath.row]
       self.showConfirmationDialogWithTitle("ATTENTION!", message: "Do you really want to delete account \(accountToDelete.name!)") {
         action in
         accountToDelete.delete()
-        self.accounts.removeAtIndex(indexPath.row)
-        self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        self.accounts.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
       }
     }
   }

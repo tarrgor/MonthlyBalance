@@ -17,12 +17,12 @@ class EditActivityTableViewController : UITableViewController {
   
   var activity: Activity?
   
-  var mode: ViewControllerMode = .Add
+  var mode: ViewControllerMode = .add
   
   var onSave: EditActivityOnSave?
   var onCancel: EditActivityOnCancel?
   
-  var dateFormatter: NSDateFormatter = NSDateFormatter()
+  var dateFormatter: DateFormatter = DateFormatter()
   
   var datePickerView: MBDatePickerView?
   
@@ -36,37 +36,37 @@ class EditActivityTableViewController : UITableViewController {
   
   override func viewDidLoad() {
     // Add a gesture recognizer to remove keyboard when tapped somewhere
-    let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
+    let tap = UITapGestureRecognizer(target: self, action: #selector(EditActivityTableViewController.viewTapped))
     self.view.addGestureRecognizer(tap);
     
     // Setup navigation bar
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: "cancelButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditActivityTableViewController.saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: #selector(cancelButtonPressed(_:)), rightItem: saveButtonItem)
     
     // Configure date formatter
-    dateFormatter.locale = NSLocale.autoupdatingCurrentLocale()
-    dateFormatter.dateStyle = .ShortStyle
-    dateFormatter.timeStyle = .NoStyle
+    dateFormatter.locale = Locale.autoupdatingCurrent
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .none
     
     // Check if controller is called in "edit" mode
     if self.activity != nil {
-      self.mode = .Edit
+      self.mode = .edit
       self.titleLabel.text = self.viewTitles[1]
       
       self.titleTextField.text = self.activity!.title
       self.amountLabel.amount = Double(self.activity!.amount!)
       
-      let dateStr = self.dateFormatter.stringFromDate(self.activity!.date!)
-      self.dateButton.setTitle(dateStr, forState: .Normal)
+      let dateStr = self.dateFormatter.string(from: self.activity!.date! as Date)
+      self.dateButton.setTitle(dateStr, for: UIControlState())
     } else {
       self.titleLabel.text = self.viewTitles[0]
       
-      let dateStr = self.dateFormatter.stringFromDate(NSDate())
-      self.dateButton.setTitle(dateStr, forState: .Normal)
+      let dateStr = self.dateFormatter.string(from: Date())
+      self.dateButton.setTitle(dateStr, for: UIControlState())
     }
   }
   
-  @IBAction func saveButtonPressed(sender: UIButton) {
+  @IBAction func saveButtonPressed(_ sender: UIButton) {
     let title = self.titleTextField.text
     if title == nil || title?.characters.count == 0 {
       self.showAlertWithTitle("Error!", message: "Please enter a title.")
@@ -77,10 +77,10 @@ class EditActivityTableViewController : UITableViewController {
       let amount = self.amountLabel.amount
       let title = self.titleTextField.text
       let dateStr = self.dateButton.titleLabel?.text
-      var date: NSDate? = dateStr != nil ? dateFormatter.dateFromString(dateStr!) : NSDate()
+      var date: Date? = dateStr != nil ? dateFormatter.date(from: dateStr!) : Date()
       
       if date == nil {
-        date = NSDate()
+        date = Date()
       }
 
       if self.activity == nil {
@@ -89,7 +89,7 @@ class EditActivityTableViewController : UITableViewController {
         account.recalculateTotalsForUpdateActivity(self.activity!, newAmount: amount, newDate: date!)
         
         self.activity!.title = title
-        self.activity!.amount = amount
+        self.activity!.amount = amount as NSNumber
         self.activity!.date = date
         self.activity!.update()
       }
@@ -101,19 +101,19 @@ class EditActivityTableViewController : UITableViewController {
       //callback(self, self.activity)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func cancelButtonPressed(sender: UIButton) {
+  @IBAction func cancelButtonPressed(_ sender: UIButton) {
     if let callback = self.onCancel {
       //callback(self)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func incomeButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Income, okHandler: { amountPad in
+  @IBAction func incomeButtonPressed(_ sender: UIButton) {
+    openAmountPadInMode(.income, okHandler: { amountPad in
       self.amountLabel.amount = amountPad.finalAmount
       self.closeAmountPad(amountPad)
     }, cancelHandler: { amountPad in
@@ -121,8 +121,8 @@ class EditActivityTableViewController : UITableViewController {
     })
   }
   
-  @IBAction func expenditureButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Expenditure, okHandler: { amountPad in
+  @IBAction func expenditureButtonPressed(_ sender: UIButton) {
+    openAmountPadInMode(.expenditure, okHandler: { amountPad in
       self.amountLabel.amount = amountPad.finalAmount
       self.closeAmountPad(amountPad)
     }, cancelHandler: { amountPad in
@@ -130,7 +130,7 @@ class EditActivityTableViewController : UITableViewController {
     })
   }
   
-  @IBAction func dateButtonPressed(sender: UIButton) {
+  @IBAction func dateButtonPressed(_ sender: UIButton) {
     if self.datePickerView == nil {
       showDatePicker()
     } else {
@@ -142,28 +142,28 @@ class EditActivityTableViewController : UITableViewController {
     self.titleTextField.resignFirstResponder()
   }
 
-  private func showDatePicker() {
-    var activityDate: NSDate? = nil
+  fileprivate func showDatePicker() {
+    var activityDate: Date? = nil
     if let date = self.activity?.date {
-      activityDate = date
+      activityDate = date as Date
     } else {
-      activityDate = NSDate()
+      activityDate = Date()
     }
     
     self.datePickerView = createDatePickerViewWithDate(activityDate!)
     
     // animate datePicker into View
     self.datePickerView!.frame.origin.y += self.datePickerView!.frame.size.height
-    UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [ .CurveEaseOut ], animations: {
+    UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [ .curveEaseOut ], animations: {
       self.datePickerView!.frame.origin.y -= self.datePickerView!.frame.size.height
       }, completion: nil)
     
     self.view.addSubview(self.datePickerView!)
   }
 
-  private func hideDatePicker() {
+  fileprivate func hideDatePicker() {
     // animate datePicker out of View
-    UIView.animateWithDuration(0.4, delay: 0.0, options: [], animations: {
+    UIView.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
       self.datePickerView!.frame.origin.y += self.datePickerView!.frame.size.height
       }, completion: { _ in
         self.datePickerView?.removeFromSuperview()
@@ -171,9 +171,9 @@ class EditActivityTableViewController : UITableViewController {
     })
   }
   
-  private func createDatePickerViewWithDate(date: NSDate) -> MBDatePickerView {
+  fileprivate func createDatePickerViewWithDate(_ date: Date) -> MBDatePickerView {
     let rect = CGRect(x: 0, y: self.view.bounds.size.height * 0.65, width: self.view.bounds.width, height: self.view.bounds.size.height - self.view.bounds.size.height * 0.65)
-    let blurEffect = UIBlurEffect(style: .ExtraLight)
+    let blurEffect = UIBlurEffect(style: .extraLight)
     let picker = MBDatePickerView(effect: blurEffect)
     picker.frame = rect
     picker.date = date
@@ -183,8 +183,8 @@ class EditActivityTableViewController : UITableViewController {
     picker.onSelect = { date in
       self.hideDatePicker()
       
-      let dateStr = NSDateFormatter.localizedStringFromDate(date, dateStyle: .ShortStyle, timeStyle: .NoStyle)
-      self.dateButton.setTitle(dateStr, forState: .Normal)
+      let dateStr = DateFormatter.localizedString(from: date as Date, dateStyle: .short, timeStyle: .none)
+      self.dateButton.setTitle(dateStr, for: UIControlState())
     }
     
     return picker
@@ -193,7 +193,7 @@ class EditActivityTableViewController : UITableViewController {
 }
 
 extension EditActivityTableViewController : UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     self.titleTextField.resignFirstResponder()
     return true
   }

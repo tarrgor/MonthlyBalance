@@ -12,7 +12,7 @@ class AmountPadView : UIVisualEffectView {
   
   var amountLabel: UILabel!
   var lineView: UIView!
-  var numericButtons = [UIButton?](count: 10, repeatedValue: nil)
+  var numericButtons = [UIButton?](repeating: nil, count: 10)
   var commaButton: UIButton!
   var okButton: UIButton!
   var cancelButton: UIButton!
@@ -22,7 +22,7 @@ class AmountPadView : UIVisualEffectView {
   override init(effect: UIVisualEffect?) {
     super.init(effect: effect)
     
-    self.backgroundColor = UIColor.clearColor()
+    self.backgroundColor = UIColor.clear
     self.layer.cornerRadius = 30
     
     self.clipsToBounds = true
@@ -66,47 +66,47 @@ class AmountPadView : UIVisualEffectView {
     }
     
     // Amount label constraints
-    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: topGap))
-    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: -22))
+    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: topGap))
+    self.addConstraint(NSLayoutConstraint(item: self.amountLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -22))
     
     // Line view constraints
-    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .LeadingMargin, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .TrailingMargin, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Top, relatedBy: .Equal, toItem: self.amountLabel, attribute: .Bottom, multiplier: 1, constant: 4))
-    self.lineView.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 2))
+    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leadingMargin, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailingMargin, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .top, relatedBy: .equal, toItem: self.amountLabel, attribute: .bottom, multiplier: 1, constant: 4))
+    self.lineView.addConstraint(NSLayoutConstraint(item: self.lineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 2))
     
     // Constraints for numeric buttons
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: leftGap))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .Top, relatedBy: .Equal, toItem: self.lineView, attribute: .Bottom, multiplier: 1, constant: 14))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Top, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[9]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[8]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[9]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: leftGap))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[7]!, attribute: .top, relatedBy: .equal, toItem: self.lineView, attribute: .bottom, multiplier: 1, constant: 14))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[8]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[9]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[8]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[9]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .top, multiplier: 1, constant: 0))
 
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[4]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Leading, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[4]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Bottom, multiplier: 1, constant: keyGapVertical))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[5]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[4]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[5]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[4]!, attribute: .Top, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[6]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[5]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[6]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[4]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[4]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .leading, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[4]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .bottom, multiplier: 1, constant: keyGapVertical))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[5]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[4]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[5]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[4]!, attribute: .top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[6]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[5]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[6]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[4]!, attribute: .top, multiplier: 1, constant: 0))
 
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[1]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Leading, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[1]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[4]!, attribute: .Bottom, multiplier: 1, constant: keyGapVertical))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[2]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[1]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[2]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[1]!, attribute: .Top, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[3]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[2]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[3]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[1]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[1]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .leading, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[1]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[4]!, attribute: .bottom, multiplier: 1, constant: keyGapVertical))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[2]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[1]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[2]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[1]!, attribute: .top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[3]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[2]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[3]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[1]!, attribute: .top, multiplier: 1, constant: 0))
     
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[0]!, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Leading, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[0]!, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[1]!, attribute: .Bottom, multiplier: 1, constant: keyGapVertical))
-    self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .Leading, relatedBy: .Equal, toItem: self.numericButtons[0]!, attribute: .Trailing, multiplier: 1, constant: keyGapHorizontal - keyGapReduction))
-    self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[0]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[0]!, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .leading, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.numericButtons[0]!, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[1]!, attribute: .bottom, multiplier: 1, constant: keyGapVertical))
+    self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .leading, relatedBy: .equal, toItem: self.numericButtons[0]!, attribute: .trailing, multiplier: 1, constant: keyGapHorizontal - keyGapReduction))
+    self.addConstraint(NSLayoutConstraint(item: self.commaButton, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[0]!, attribute: .top, multiplier: 1, constant: 0))
     
-    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .Trailing, relatedBy: .Equal, toItem: self.lineView, attribute: .Trailing, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[7]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .trailing, relatedBy: .equal, toItem: self.lineView, attribute: .trailing, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.cancelButton, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[7]!, attribute: .top, multiplier: 1, constant: 0))
     
-    self.addConstraint(NSLayoutConstraint(item: self.okButton, attribute: .Leading, relatedBy: .Equal, toItem: self.cancelButton, attribute: .Leading, multiplier: 1, constant: 0))
-    self.addConstraint(NSLayoutConstraint(item: self.okButton, attribute: .Top, relatedBy: .Equal, toItem: self.numericButtons[0]!, attribute: .Top, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.okButton, attribute: .leading, relatedBy: .equal, toItem: self.cancelButton, attribute: .leading, multiplier: 1, constant: 0))
+    self.addConstraint(NSLayoutConstraint(item: self.okButton, attribute: .top, relatedBy: .equal, toItem: self.numericButtons[0]!, attribute: .top, multiplier: 1, constant: 0))
   }
   
   // MARK: - Create user interface components
@@ -114,7 +114,7 @@ class AmountPadView : UIVisualEffectView {
   func createAmountLabel() {
     let amountFont = UIFont(name: kMainFontName, size: 48)
     
-    self.amountLabel = UILabel(frame: CGRectZero)
+    self.amountLabel = UILabel(frame: CGRect.zero)
     self.amountLabel.text = "0 €"
     self.amountLabel.font = amountFont
     self.amountLabel.sizeToFit()
@@ -124,8 +124,8 @@ class AmountPadView : UIVisualEffectView {
   }
   
   func createHorizontalLineView() {
-    self.lineView = UIView(frame: CGRectZero)
-    self.lineView.backgroundColor = UIColor.blackColor()
+    self.lineView = UIView(frame: CGRect.zero)
+    self.lineView.backgroundColor = UIColor.black
     self.lineView.translatesAutoresizingMaskIntoConstraints = false
     
     self.addSubview(lineView)

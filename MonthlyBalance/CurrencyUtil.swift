@@ -8,19 +8,19 @@
 
 import Foundation
 
-enum CurrencyError: ErrorType {
-  case InvalidAmount
+enum CurrencyError: Error {
+  case invalidAmount
 }
 
 class CurrencyUtil {
   
-  static func formattedValue(amount: Double) throws -> String {
-    let numberFormatter = NSNumberFormatter()
-    numberFormatter.numberStyle = .CurrencyStyle
+  static func formattedValue(_ amount: Double) throws -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
     
-    guard let result = numberFormatter.stringFromNumber(amount)
+    guard let result = numberFormatter.string(from: NSNumber(value: amount))
     else {
-      throw CurrencyError.InvalidAmount
+      throw CurrencyError.invalidAmount
     }
     
     return result

@@ -14,11 +14,11 @@ class SettingsViewController : UITableViewController {
   @IBOutlet weak var defaultTitleExpenditureTextField: UITextField!
   
   override func viewDidLoad() {
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleSettings, backButtonSelector: "backButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(SettingsViewController.saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleSettings, backButtonSelector: #selector(backButtonPressed(_:)), rightItem: saveButtonItem)
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     initializeFormFields()
@@ -26,23 +26,23 @@ class SettingsViewController : UITableViewController {
 
   // MARK: - Actions
   
-  func backButtonPressed(sender: UIBarButtonItem) {
-    self.navigationController?.popToRootViewControllerAnimated(true)
+  func backButtonPressed(_ sender: UIBarButtonItem) {
+    self.navigationController?.popToRootViewController(animated: true)
   }
   
-  func saveButtonPressed(sender: UIBarButtonItem) {
+  func saveButtonPressed(_ sender: UIBarButtonItem) {
     updateSettings()
-    self.navigationController?.popToRootViewControllerAnimated(true)
+    self.navigationController?.popToRootViewController(animated: true)
   }
 
   // Private methods
 
-  private func initializeFormFields() {
+  fileprivate func initializeFormFields() {
       self.defaultTitleIncomeTextField.text = self.settings?.defaultTitleIncome
       self.defaultTitleExpenditureTextField.text = self.settings?.defaultTitleExpenditure
   }
 
-  private func updateSettings() {
+  fileprivate func updateSettings() {
     if let defaultTitleIncome = self.defaultTitleIncomeTextField.text {
       self.settings?.defaultTitleIncome = defaultTitleIncome
     }
@@ -59,22 +59,22 @@ extension SettingsViewController {
     return [ "Default titles" ]
   }
 
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 42.0
   }
 
-  override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
     guard let headerView = view as? UITableViewHeaderFooterView else {
       return
     }
 
-    headerView.textLabel!.textColor = UIColor.whiteColor()
+    headerView.textLabel!.textColor = UIColor.white
     headerView.textLabel!.font = UIFont(name: kMainFontName, size: 20)
     headerView.textLabel!.text = headerTitles[section]
 
     let separator = UIView(frame: CGRect(x: 20, y: headerView.bounds.size.height - 1,
       width: headerView.bounds.size.width - 20, height: 1))
-    separator.backgroundColor = UIColor.whiteColor()
+    separator.backgroundColor = UIColor.white
     headerView.addSubview(separator)
   }
 

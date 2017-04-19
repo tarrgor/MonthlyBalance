@@ -16,7 +16,7 @@ class EditActivityFormViewController : FormViewController {
   
   var activity: Activity?
   
-  var mode: ViewControllerMode = .Add
+  var mode: ViewControllerMode = .add
   
   var selectedActivityType = 0
 
@@ -26,22 +26,22 @@ class EditActivityFormViewController : FormViewController {
     super.viewDidLoad()
 
     // Setup navigation bar
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: "cancelButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageActivities, backButtonSelector: #selector(cancelButtonPressed(_:)), rightItem: saveButtonItem)
 
-    let formatter = NSNumberFormatter()
-    formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+    let formatter = NumberFormatter()
+    formatter.numberStyle = NumberFormatter.Style.currency
 
     
     // Check if controller is called in "edit" mode
     if self.activity != nil {
-      self.mode = .Edit
+      self.mode = .edit
     }
 
     // Setup the form
     FormUtil.setupForm(self)
 
-    form +++=
+    form +++
 
     Section("Manage Activity") { section in
       FormUtil.configureSectionHeader(section, title: viewTitles[mode.rawValue])
@@ -51,7 +51,7 @@ class EditActivityFormViewController : FormViewController {
       $0.title = kExplanationActivity
     }
 
-    form +++=
+    form +++
 
     Section("Title") { section in
       FormUtil.configureSectionHeader(section, title: "Title")
@@ -61,12 +61,12 @@ class EditActivityFormViewController : FormViewController {
       $0.title = "Title"
       $0.placeholder = "Title"
       
-      if self.mode == .Edit {
+      if self.mode == .edit {
         $0.value = self.activity!.title
       }
     }
     
-    form +++=
+    form +++
     
     Section("Activity") { section in
       FormUtil.configureSectionHeader(section, title: "Activity")
@@ -75,7 +75,7 @@ class EditActivityFormViewController : FormViewController {
     <<< SegmentedRow<String>("Type") {
       $0.options = [ "Income", "Expenditure" ]
     }.cellUpdate() { cell, row in
-      if self.mode == .Edit {
+      if self.mode == .edit {
         if Float(self.activity!.amount!) > 0 {
           cell.segmentedControl.selectedSegmentIndex = 0
           self.selectedActivityType = 0
@@ -101,8 +101,8 @@ class EditActivityFormViewController : FormViewController {
       $0.title = "Amount"
       $0.formatter = formatter
       
-      if self.mode == .Edit {
-        $0.value = abs(Float(self.activity!.amount!))
+      if self.mode == .edit {
+        $0.value = abs(self.activity!.amount!.doubleValue)
       } else {
         $0.value = 0
       }
@@ -110,7 +110,7 @@ class EditActivityFormViewController : FormViewController {
       self.updateTextFieldColor()
     }).onChange({ row in
       if (row.value != nil) {
-        row.value = abs(Float(row.value!))
+        row.value = abs(row.value!)
         row.displayValueFor?(row.value)
       }
     })
@@ -118,15 +118,15 @@ class EditActivityFormViewController : FormViewController {
     <<< MBDateRow("Date") {
       $0.title = "Date of activity"
       
-      if self.mode == .Edit {
+      if self.mode == .edit {
         $0.value = self.activity!.date!
       } else {
-        $0.value = NSDate()
+        $0.value = Date()
       }
     }
   }
 
-  func saveButtonPressed(sender: UIButton) {
+  func saveButtonPressed(_ sender: UIButton) {
     let values = form.values()
     
     guard let title = values["Title"]! as? String else {
@@ -137,9 +137,9 @@ class EditActivityFormViewController : FormViewController {
       self.showAlertWithTitle("Error", message: "Please enter an amount for your activity!")
       return
     }
-    var date = values["Date"]! as? NSDate
+    var date = values["Date"]! as? Date
     if date == nil {
-      date = NSDate()
+      date = Date()
     }
 
     var factor: Float = 1.0
@@ -158,7 +158,7 @@ class EditActivityFormViewController : FormViewController {
         account.recalculateTotalsForUpdateActivity(self.activity!, newAmount: Double(amount), newDate: date!)
         
         self.activity!.title = title
-        self.activity!.amount = abs(amount) * factor
+        self.activity!.amount = NSNumber(value: abs(amount) * factor)
         self.activity!.date = date!
         self.activity!.update()
       }
@@ -170,28 +170,28 @@ class EditActivityFormViewController : FormViewController {
       callback(self, self.activity)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-  func cancelButtonPressed(sender: UIButton) {
+  func cancelButtonPressed(_ sender: UIButton) {
     if let callback = self.onCancel {
       callback(self)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
   func updateTextFieldColor() {
-    if let row = form.rowByTag("Amount") as? DecimalRow {
+    if let row = form.rowBy(tag: "Amount") as? DecimalRow {
       if self.selectedActivityType == 1 {
-        row.cell.textField.textColor = UIColor.redColor()
+        row.cell.textField.textColor = UIColor.red
       } else {
-        row.cell.textField.textColor = UIColor.greenColor()
+        row.cell.textField.textColor = UIColor.green
       }
     }
   }
   
-  func updateSegmentColor(segmentedControl: UISegmentedControl) {
+  func updateSegmentColor(_ segmentedControl: UISegmentedControl) {
     if segmentedControl.selectedSegmentIndex == 0 {
       segmentedControl.tintColor = UIColor(hex: kColorIncome)
     } else {

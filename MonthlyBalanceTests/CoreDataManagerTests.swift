@@ -43,7 +43,7 @@ class CoreDataManagerTests: XCTestCase {
     
     XCTAssertNotNil(acct)
 
-    let activity = acct!.addActivityForDate(NSDate(), title: "TestActivity", icon: "Default", amount: 50.0)
+    let activity = acct!.addActivityForDate(Date(), title: "TestActivity", icon: "Default", amount: 50.0)
     
     XCTAssertNotNil(activity)
 
@@ -81,7 +81,7 @@ class CoreDataManagerTests: XCTestCase {
     
     XCTAssertNotNil(acct)
     
-    acct!.addActivityForDate(NSDate(), title: "TestDeposit", icon: "Default", amount: 35.0)
+    acct!.addActivityForDate(Date(), title: "TestDeposit", icon: "Default", amount: 35.0)
     
     XCTAssert(acct!.balanceTotal == 35.0)
     XCTAssert(acct!.balanceCurrentMonth == 35.0)
@@ -93,11 +93,11 @@ class CoreDataManagerTests: XCTestCase {
     
     XCTAssertNotNil(acct)
     
-    let calendar = NSCalendar.currentCalendar()
-    let currentDate = NSDate()
-    let activityDate = currentDate.dateByAddingTimeInterval(NSTimeInterval(60 * 60 * 24 * 40)) // 40 days
-    let currentYear = calendar.components(NSCalendarUnit.Year, fromDate: currentDate)
-    let activityYear = calendar.components(NSCalendarUnit.Year, fromDate: activityDate)
+    let calendar = Calendar.current
+    let currentDate = Date()
+    let activityDate = currentDate.addingTimeInterval(TimeInterval(60 * 60 * 24 * 40)) // 40 days
+    let currentYear = (calendar as NSCalendar).components(NSCalendar.Unit.year, from: currentDate)
+    let activityYear = (calendar as NSCalendar).components(NSCalendar.Unit.year, from: activityDate)
     
     acct!.addActivityForDate(activityDate, title: "TestDeposit", icon: "Default", amount: 35.0)
     
@@ -116,7 +116,7 @@ class CoreDataManagerTests: XCTestCase {
     XCTAssertNotNil(acct)
     
     // 55 days ago
-    let olderDate = NSDate().dateByAddingTimeInterval(NSTimeInterval(-60 * 60 * 24 * 55))
+    let olderDate = Date().addingTimeInterval(TimeInterval(-60 * 60 * 24 * 55))
     fakeOlderAccount(acct!, olderDate: olderDate)
     
     // run the updateData() method on the account, when the user starts the app again now
@@ -127,7 +127,7 @@ class CoreDataManagerTests: XCTestCase {
     
     // If the year has changed, the currentYear-Balance should be 0.0 too
     // otherwise it should be 1200.0
-    let currentDate = NSDate()
+    let currentDate = Date()
     if currentDate.year() > olderDate.year() {
       XCTAssert(acct!.balanceCurrentYear == 0.0)
     } else {
@@ -141,7 +141,7 @@ class CoreDataManagerTests: XCTestCase {
     XCTAssertNotNil(acct)
 
     // 55 days ago
-    let olderDate = NSDate.dateWithDay(10, month: 1, year: 2015)!
+    let olderDate = Date.dateWithDay(10, month: 1, year: 2015)!
     fakeOlderAccount(acct!, olderDate: olderDate)
     
     // Create two scheduled events which were due in the timeframe between olderDate and now
@@ -150,9 +150,9 @@ class CoreDataManagerTests: XCTestCase {
     
     // Fake the events to make them fit into the time range from 55 days ago until today,
     // so they are due and updateData() applies them to the account
-    let dateEvent1 = NSDate.dateWithDay(20, month: 1, year: 2015)
+    let dateEvent1 = Date.dateWithDay(20, month: 1, year: 2015)
     event1?.nextDueDate = dateEvent1
-    let dateEvent2 = NSDate.dateWithDay(25, month: 1, year: 2015)
+    let dateEvent2 = Date.dateWithDay(25, month: 1, year: 2015)
     event2?.nextDueDate = dateEvent2
     coreDataManager.saveContext()
     
@@ -170,12 +170,12 @@ class CoreDataManagerTests: XCTestCase {
     
     XCTAssertNotNil(acct)
     
-    acct!.addActivityForDate(NSDate(), title: "UUU", icon: "", amount: 99.0)
-    acct!.addActivityForDate(NSDate(), title: "RRR", icon: "", amount: 99.0)
-    acct!.addActivityForDate(NSDate(), title: "AAA", icon: "", amount: 99.0)
-    acct!.addActivityForDate(NSDate(), title: "JJJ", icon: "", amount: 99.0)
-    acct!.addActivityForDate(NSDate(), title: "BBB", icon: "", amount: 99.0)
-    acct!.addActivityForDate(NSDate(), title: "MMM", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "UUU", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "RRR", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "AAA", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "JJJ", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "BBB", icon: "", amount: 99.0)
+    acct!.addActivityForDate(Date(), title: "MMM", icon: "", amount: 99.0)
     
     let verifyAcct = Account.findByName("TestAccount")[0]
     
@@ -186,7 +186,7 @@ class CoreDataManagerTests: XCTestCase {
     }
   }
   
-  private func fakeOlderAccount(account: Account, olderDate: NSDate) {
+  fileprivate func fakeOlderAccount(_ account: Account, olderDate: Date) {
     account.addActivityForDate(olderDate, title: "Test1", icon: "Default", amount: -30.0)
     account.addActivityForDate(olderDate, title: "Test2", icon: "Default", amount: 145.0)
     account.addActivityForDate(olderDate, title: "Test3", icon: "Default", amount: -99.0)

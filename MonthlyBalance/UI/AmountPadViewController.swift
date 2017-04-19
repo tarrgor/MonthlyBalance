@@ -9,7 +9,7 @@
 import UIKit
 
 enum AmountPadMode : Double {
-  case Income = 1.0, Expenditure = -1.0
+  case income = 1.0, expenditure = -1.0
 }
 
 typealias AmountPadViewOk = (AmountPadViewController) -> ()
@@ -24,18 +24,18 @@ class AmountPadViewController : UIViewController {
     return (Double(self.amount) + Double(self.digits) / 100) * self.mode.rawValue
   }
   
-  var mode: AmountPadMode = .Expenditure
+  var mode: AmountPadMode = .expenditure
   
   var onOk: AmountPadViewOk?
   var onCancel: AmountPadViewCancel?
   
-  private var _decimalMode = false
-  private var _currentDigit = 1
+  fileprivate var _decimalMode = false
+  fileprivate var _currentDigit = 1
   
   // MARK: - Initialization
   
   override func loadView() {
-    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
     self.view = AmountPadView(effect: blurEffect)
     
     setupActions()
@@ -45,13 +45,13 @@ class AmountPadViewController : UIViewController {
   
   // TODO: Create a builder class for the amount
   
-  func okPressed(sender: UIButton) {
+  func okPressed(_ sender: UIButton) {
     if let callback = self.onOk {
       callback(self)
     }
   }
   
-  func cancelPressed(sender: UIButton) {
+  func cancelPressed(_ sender: UIButton) {
     self.amount = 0
     self.digits = 0
     
@@ -60,7 +60,7 @@ class AmountPadViewController : UIViewController {
     }
   }
   
-  func numberPressed(sender: UIButton) {
+  func numberPressed(_ sender: UIButton) {
     if sender.tag >= 1 && sender.tag <= 10 {
       let number = sender.tag < 10 ? sender.tag : 0
       if (_decimalMode) {
@@ -78,7 +78,7 @@ class AmountPadViewController : UIViewController {
     }
   }
   
-  func commaPressed(sender: UIButton) {
+  func commaPressed(_ sender: UIButton) {
     if !self._decimalMode {
       _decimalMode = true
       updateAmountDisplay()
@@ -87,30 +87,30 @@ class AmountPadViewController : UIViewController {
   
   // MARK: - Private methods
   
-  private func updateAmountDisplay() {
+  fileprivate func updateAmountDisplay() {
     let amountPadView = self.view as! AmountPadView
     
     var amountString = String(self.amount)
     if self.digits > 0 {
-      amountString.appendContentsOf("." + String(self.digits))
+      amountString.append("." + String(self.digits))
     } else if _decimalMode {
-      amountString.appendContentsOf(".")
+      amountString.append(".")
     }
-    amountString.appendContentsOf(" €")
+    amountString.append(" €")
     amountPadView.amountLabel.text = amountString
   }
   
-  private func setupActions() {
+  fileprivate func setupActions() {
     let amountPadView = self.view as! AmountPadView
     
-    amountPadView.okButton.addTarget(self, action: "okPressed:", forControlEvents: .TouchUpInside)
-    amountPadView.cancelButton.addTarget(self, action: "cancelPressed:", forControlEvents: .TouchUpInside)
+    amountPadView.okButton.addTarget(self, action: #selector(AmountPadViewController.okPressed(_:)), for: .touchUpInside)
+    amountPadView.cancelButton.addTarget(self, action: #selector(AmountPadViewController.cancelPressed(_:)), for: .touchUpInside)
     
     for numericButton in amountPadView.numericButtons {
-      numericButton?.addTarget(self, action: "numberPressed:", forControlEvents: .TouchUpInside)
+      numericButton?.addTarget(self, action: #selector(numberPressed(_:)), for: .touchUpInside)
     }
     
-    amountPadView.commaButton.addTarget(self, action: "commaPressed:", forControlEvents: .TouchUpInside)
+    amountPadView.commaButton.addTarget(self, action: #selector(AmountPadViewController.commaPressed(_:)), for: .touchUpInside)
   }
 
 }

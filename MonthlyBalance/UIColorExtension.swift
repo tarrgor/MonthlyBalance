@@ -11,16 +11,16 @@ import UIKit
 extension UIColor {
   
   convenience init(hex: String) {
-    let rgbValue = UnsafeMutablePointer<UInt32>.alloc(1)
+    let rgbValue = UnsafeMutablePointer<UInt32>.allocate(capacity: 1)
     
-    let scanner = NSScanner(string: hex)
+    let scanner = Scanner(string: hex)
     if hex[0] == "#"  {
       scanner.scanLocation = 1
     }
-    scanner.scanHexInt(rgbValue)
+    scanner.scanHexInt32(rgbValue)
     
-    let cval = rgbValue.memory
-    rgbValue.destroy()
+    let cval = rgbValue.pointee
+    rgbValue.deinitialize()
     
     self.init(red: CGFloat(((cval & 0xFF0000) >> 16)) / 255.0,
       green: CGFloat(((cval & 0xFF00) >> 8)) / 255.0,

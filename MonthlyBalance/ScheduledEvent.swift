@@ -13,19 +13,20 @@ import CoreData
 class ScheduledEvent: NSManagedObject {
 
   var due: Bool {
-    let currentDate = NSDate()
-    let comparison = currentDate.compare(self.nextDueDate!)
-    return comparison == NSComparisonResult.OrderedDescending
+    let currentDate = Date()
+    let comparison = currentDate.compare(self.nextDueDate! as Date)
+    return comparison == ComparisonResult.orderedDescending
   }
 
+  @discardableResult
   func applyToAccount() -> Bool {
     if !self.due || self.account == nil {
       return false
     }
     
     self.account!.addActivityForDate(self.nextDueDate!, title: self.title!, icon: self.icon!, amount: self.amount!.doubleValue)
-    if self.recurring! as Bool {
-      self.nextDueDate = self.nextDueDate?.nextDateWithDayOfMonth(self.dayOfMonth!.integerValue)
+    if self.recurring! as! Bool {
+      self.nextDueDate = self.nextDueDate?.nextDateWithDayOfMonth(self.dayOfMonth!.intValue)
     } else {
       self.nextDueDate = nil
     }
@@ -35,10 +36,10 @@ class ScheduledEvent: NSManagedObject {
   
   func delete() {
     let mutableEvents = NSMutableOrderedSet(orderedSet: self.account!.scheduledEvents!)
-    mutableEvents.removeObject(self)
+    mutableEvents.remove(self)
     self.account!.scheduledEvents = mutableEvents
 
-    CoreDataManager.sharedManager().managedObjectContext.deleteObject(self)
+    CoreDataManager.sharedManager().managedObjectContext.delete(self)
     CoreDataManager.sharedManager().saveContext()
   }
   

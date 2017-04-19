@@ -17,9 +17,9 @@ extension Account {
     @NSManaged var balanceCurrentMonth: NSNumber?
     @NSManaged var balanceCurrentYear: NSNumber?
     @NSManaged var balanceTotal: NSNumber?
-    @NSManaged var lastUpdated: NSDate?
+    @NSManaged var lastUpdated: Date?
     @NSManaged var name: String?
-    @NSManaged var password: NSData?
+    @NSManaged var password: Data?
     @NSManaged var activities: NSOrderedSet?
     @NSManaged var scheduledEvents: NSOrderedSet?
 

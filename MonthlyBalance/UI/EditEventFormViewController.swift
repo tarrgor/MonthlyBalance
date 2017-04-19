@@ -12,7 +12,7 @@ import Eureka
 class EditEventFormViewController : FormViewController {
   
   var event: ScheduledEvent?
-  var mode: ViewControllerMode = .Add
+  var mode: ViewControllerMode = .add
   var selectedEventType = 0
 
   let viewTitles = [ "Add new event", "Edit event" ]
@@ -21,21 +21,21 @@ class EditEventFormViewController : FormViewController {
     super.viewDidLoad()
     
     // Setup navigation bar
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageEvents, backButtonSelector: "cancelButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageEvents, backButtonSelector: #selector(cancelButtonPressed(_:)), rightItem: saveButtonItem)
     
-    let formatter = NSNumberFormatter()
-    formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+    let formatter = NumberFormatter()
+    formatter.numberStyle = NumberFormatter.Style.currency
 
     // Check if controller is called in "edit" mode
     if self.event != nil {
-      self.mode = .Edit
+      self.mode = .edit
     }
 
     // Setup the form
     FormUtil.setupForm(self)
 
-    form +++=
+    form +++
     
     Section("Manage Event") { section in
       FormUtil.configureSectionHeader(section, title: viewTitles[mode.rawValue])
@@ -45,7 +45,7 @@ class EditEventFormViewController : FormViewController {
       $0.title = kExplanationEvent
     }
 
-    form +++=
+    form +++
       
     Section("Title") { section in
       FormUtil.configureSectionHeader(section, title: "Title")
@@ -55,12 +55,12 @@ class EditEventFormViewController : FormViewController {
       $0.title = "Title"
       $0.placeholder = "Title"
         
-      if self.mode == .Edit {
+      if self.mode == .edit {
         $0.value = self.event!.title
       }
     }
 
-    form +++=
+    form +++
       
     Section("Event") { section in
       FormUtil.configureSectionHeader(section, title: "Event")
@@ -69,7 +69,7 @@ class EditEventFormViewController : FormViewController {
     <<< SegmentedRow<String>("Type") {
       $0.options = [ "Income", "Expenditure" ]
     }.cellUpdate() { cell, row in
-      if self.mode == .Edit {
+      if self.mode == .edit {
         if Float(self.event!.amount!) > 0 {
           cell.segmentedControl.selectedSegmentIndex = 0
           self.selectedEventType = 0
@@ -95,8 +95,8 @@ class EditEventFormViewController : FormViewController {
       $0.title = "Amount"
       $0.formatter = formatter
         
-      if self.mode == .Edit {
-        $0.value = abs(Float(self.event!.amount!))
+      if self.mode == .edit {
+        $0.value = abs(self.event!.amount!.doubleValue)
       } else {
         $0.value = 0
       }
@@ -104,7 +104,7 @@ class EditEventFormViewController : FormViewController {
       self.updateTextFieldColor()
     }).onChange({ row in
       if (row.value != nil) {
-        row.value = abs(Float(row.value!))
+        row.value = abs(row.value!)
         row.displayValueFor?(row.value)
       }
     })
@@ -113,7 +113,7 @@ class EditEventFormViewController : FormViewController {
       $0.title = "Recurring"
     }
     
-    form +++=
+    form +++
     
     Section("Schedule") { section in
       FormUtil.configureSectionHeader(section, title: "Schedule")
@@ -128,25 +128,25 @@ class EditEventFormViewController : FormViewController {
     }
   }
 
-  func saveButtonPressed(sender: UIButton) {
-    self.navigationController?.popViewControllerAnimated(true)
+  func saveButtonPressed(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
   }
   
-  func cancelButtonPressed(sender: UIButton) {
-    self.navigationController?.popViewControllerAnimated(true)    
+  func cancelButtonPressed(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)    
   }
   
   func updateTextFieldColor() {
-    if let row = form.rowByTag("Amount") as? DecimalRow {
+    if let row = form.rowBy(tag: "amount") as? DecimalRow {
       if self.selectedEventType == 1 {
-        row.cell.textField.textColor = UIColor.redColor()
+        row.cell.textField.textColor = UIColor.red
       } else {
-        row.cell.textField.textColor = UIColor.greenColor()
+        row.cell.textField.textColor = UIColor.green
       }
     }
   }
   
-  func updateSegmentColor(segmentedControl: UISegmentedControl) {
+  func updateSegmentColor(_ segmentedControl: UISegmentedControl) {
     if segmentedControl.selectedSegmentIndex == 0 {
       segmentedControl.tintColor = UIColor(hex: kColorIncome)
     } else {

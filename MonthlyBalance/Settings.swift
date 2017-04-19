@@ -27,8 +27,8 @@ class Settings : NSObject {
   }
   
   func load() {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    if let accountName = defaults.stringForKey(kSettingSelectedAccount) {
+    let defaults = UserDefaults.standard
+    if let accountName = defaults.string(forKey: kSettingSelectedAccount) {
       if let account = Account.findByName(accountName).first {
         self.selectedAccount = account
       }
@@ -39,24 +39,24 @@ class Settings : NSObject {
       self.selectedAccount = accounts.first
     }
 
-    self.defaultTitleIncome = defaults.stringForKey(kSettingDefaultTitleIncome)
+    self.defaultTitleIncome = defaults.string(forKey: kSettingDefaultTitleIncome)
     if self.defaultTitleIncome == nil {
       self.defaultTitleIncome = kDefaultTitleIncome
     }
 
-    self.defaultTitleExpenditure = defaults.stringForKey(kSettingDefaultTitleExpenditure)
+    self.defaultTitleExpenditure = defaults.string(forKey: kSettingDefaultTitleExpenditure)
     if self.defaultTitleExpenditure == nil {
       self.defaultTitleExpenditure = kDefaultTitleExpenditure
     }
   }
   
   func save() {
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     if let account = self.selectedAccount {
-      defaults.setObject(account.name!, forKey: kSettingSelectedAccount)
+      defaults.set(account.name!, forKey: kSettingSelectedAccount)
     }
-    defaults.setObject(self.defaultTitleIncome, forKey: kSettingDefaultTitleIncome)
-    defaults.setObject(self.defaultTitleExpenditure, forKey: kSettingDefaultTitleExpenditure)
+    defaults.set(self.defaultTitleIncome, forKey: kSettingDefaultTitleIncome)
+    defaults.set(self.defaultTitleExpenditure, forKey: kSettingDefaultTitleExpenditure)
     defaults.synchronize()
   }
 }

@@ -18,7 +18,7 @@ class Account: NSManagedObject {
     let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
     let sortDescriptors = [ sortDescriptor ]
     
-    return activities.sortedArrayUsingDescriptors(sortDescriptors) as! [Activity]
+    return activities.sortedArray(using: sortDescriptors) as! [Activity]
   }
   
   var sortedActivitiesByDate: [Activity] {
@@ -27,23 +27,23 @@ class Account: NSManagedObject {
     let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
     let sortDescriptors = [ sortDescriptor ]
     
-    return activities.sortedArrayUsingDescriptors(sortDescriptors) as! [Activity]
+    return activities.sortedArray(using: sortDescriptors) as! [Activity]
   }
   
-  func latestActivities(count: Int) -> [Activity] {
+  func latestActivities(_ count: Int) -> [Activity] {
     let sorted = sortedActivitiesByDate
     let subArray: [Activity] = Array(sorted.suffix(count))
     return subArray
   }
   
-  static func create(name: String) -> Account? {
-    let account: Account? = NSEntityDescription.insertNewObjectForEntityForName(kAccountEntity, inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Account
+  static func create(_ name: String) -> Account? {
+    let account: Account? = NSEntityDescription.insertNewObject(forEntityName: kAccountEntity, into: CoreDataManager.sharedManager().managedObjectContext) as? Account
     if account != nil {
       account!.name = name
       account!.balanceTotal = 0.0
       account!.balanceCurrentMonth = 0.0
       account!.balanceCurrentYear = 0.0
-      account!.lastUpdated = NSDate()
+      account!.lastUpdated = Date()
       CoreDataManager.sharedManager().saveContext()
     }
     return account
@@ -53,40 +53,41 @@ class Account: NSManagedObject {
     return fetchAccounts(nil)
   }
   
-  static func findByName(name: String) -> [Account] {
+  static func findByName(_ name: String) -> [Account] {
     return fetchAccounts(NSPredicate(format: "name == %@", name))
   }
   
-  func addActivityForDate(date: NSDate, title: String, icon: String, amount: Double) -> Activity? {
-    let activity: Activity? = NSEntityDescription.insertNewObjectForEntityForName("Activity", inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? Activity
+  @discardableResult
+  func addActivityForDate(_ date: Date, title: String, icon: String, amount: Double) -> Activity? {
+    let activity: Activity? = NSEntityDescription.insertNewObject(forEntityName: "Activity", into: CoreDataManager.sharedManager().managedObjectContext) as? Activity
     if activity != nil {
       activity!.date = date
       activity!.title = title
       activity!.icon = icon
-      activity!.amount = amount
+      activity!.amount = amount as NSNumber
       activity!.account = self
       
       adjustBalancesForActivity(activity!)
       
-      self.lastUpdated = NSDate()
+      self.lastUpdated = Date()
       
       CoreDataManager.sharedManager().saveContext()
     }
     return activity
   }
   
-  func addEventWithTitle(title: String, icon: String, recurring: Bool, dayOfMonth: Int, interval: Int,
+  func addEventWithTitle(_ title: String, icon: String, recurring: Bool, dayOfMonth: Int, interval: Int,
     amount: Double) -> ScheduledEvent? {
-    let event: ScheduledEvent? = NSEntityDescription.insertNewObjectForEntityForName("ScheduledEvent", inManagedObjectContext: CoreDataManager.sharedManager().managedObjectContext) as? ScheduledEvent
+    let event: ScheduledEvent? = NSEntityDescription.insertNewObject(forEntityName: "ScheduledEvent", into: CoreDataManager.sharedManager().managedObjectContext) as? ScheduledEvent
     if event != nil {
-      event!.recurring = recurring
+      event!.recurring = recurring as NSNumber
       event!.title = title
       event!.icon = icon
-      event!.dayOfMonth = dayOfMonth
-      event!.interval = interval
-      event!.amount = amount
+      event!.dayOfMonth = dayOfMonth as NSNumber
+      event!.interval = interval as NSNumber
+      event!.amount = amount as NSNumber
       event!.account = self
-      event!.nextDueDate = NSDate().nextDateWithDayOfMonth(dayOfMonth)
+      event!.nextDueDate = Date().nextDateWithDayOfMonth(dayOfMonth)
       CoreDataManager.sharedManager().saveContext()
     }
     return event
@@ -94,14 +95,14 @@ class Account: NSManagedObject {
   
   func delete() {
     let context: NSManagedObjectContext = CoreDataManager.sharedManager().managedObjectContext
-    context.deleteObject(self)
+    context.delete(self)
     CoreDataManager.sharedManager().saveContext()
   }
   
   func updateData() {
     let lastUpdateMonth = self.lastUpdated?.month()
     let lastUpdateYear = self.lastUpdated?.year()
-    let currentDate = NSDate()
+    let currentDate = Date()
     let currentMonth = currentDate.month()
     let currentYear = currentDate.year()
     
@@ -118,7 +119,7 @@ class Account: NSManagedObject {
     // Check if there were any events due since the last update and apply them
     // to the account
     if let events = self.scheduledEvents {
-      events.enumerateObjectsUsingBlock({ event, index, _ in
+      events.enumerateObjects({ event, index, _ in
         let currentEvent = event as! ScheduledEvent
         if currentEvent.due {
           // apply the event to the account
@@ -131,48 +132,48 @@ class Account: NSManagedObject {
       })
     }
     
-    self.lastUpdated = NSDate()
+    self.lastUpdated = Date()
     CoreDataManager.sharedManager().saveContext()
   }
   
-  func recalculateTotalsForUpdateActivity(activity: Activity, newAmount: Double, newDate: NSDate) {
+  func recalculateTotalsForUpdateActivity(_ activity: Activity, newAmount: Double, newDate: Date) {
     let difference = newAmount - Double(activity.amount!)
     
-    self.balanceTotal = NSNumber(double: self.balanceTotal!.doubleValue + difference)
+    self.balanceTotal = NSNumber(value: self.balanceTotal!.doubleValue + difference as Double)
 
     if activity.isInCurrentMonth() {
-      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue - activity.amount!.doubleValue)
+      self.balanceCurrentMonth = NSNumber(value: self.balanceCurrentMonth!.doubleValue - activity.amount!.doubleValue as Double)
     }
     if newDate.isInCurrentMonth() {
-      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue + newAmount)
+      self.balanceCurrentMonth = NSNumber(value: self.balanceCurrentMonth!.doubleValue + newAmount as Double)
     }
     
     if activity.isInCurrentYear() {
-      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue - activity.amount!.doubleValue)
+      self.balanceCurrentYear = NSNumber(value: self.balanceCurrentYear!.doubleValue - activity.amount!.doubleValue as Double)
     }
     if newDate.isInCurrentYear() {
-      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + newAmount)
+      self.balanceCurrentYear = NSNumber(value: self.balanceCurrentYear!.doubleValue + newAmount as Double)
     }
   }
   
   // MARK: - Private methods
   
-  private func adjustBalancesForActivity(activity: Activity) {
-    self.balanceTotal = NSNumber(double: self.balanceTotal!.doubleValue + activity.amount!.doubleValue)
+  fileprivate func adjustBalancesForActivity(_ activity: Activity) {
+    self.balanceTotal = NSNumber(value: self.balanceTotal!.doubleValue + activity.amount!.doubleValue as Double)
     if activity.isInCurrentMonth() {
-      self.balanceCurrentMonth = NSNumber(double: self.balanceCurrentMonth!.doubleValue + activity.amount!.doubleValue)
+      self.balanceCurrentMonth = NSNumber(value: self.balanceCurrentMonth!.doubleValue + activity.amount!.doubleValue as Double)
     }
     if activity.isInCurrentYear() {
-      self.balanceCurrentYear = NSNumber(double: self.balanceCurrentYear!.doubleValue + activity.amount!.doubleValue)
+      self.balanceCurrentYear = NSNumber(value: self.balanceCurrentYear!.doubleValue + activity.amount!.doubleValue as Double)
     }
   }
   
-  private static func fetchAccounts(predicate: NSPredicate?) -> [Account] {
-    let request = NSFetchRequest(entityName: kAccountEntity)
+  fileprivate static func fetchAccounts(_ predicate: NSPredicate?) -> [Account] {
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: kAccountEntity)
     if predicate != nil {
       request.predicate = predicate!
     }
-    let results = try! CoreDataManager.sharedManager().managedObjectContext.executeFetchRequest(request)
+    let results = try! CoreDataManager.sharedManager().managedObjectContext.fetch(request)
     return results as! [Account]
   }
 }

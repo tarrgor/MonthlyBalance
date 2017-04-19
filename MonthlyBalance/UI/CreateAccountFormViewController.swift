@@ -19,13 +19,13 @@ class CreateAccountFormViewController: FormViewController {
     super.viewDidLoad()
     
     // init navigation bar
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: "backButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CreateAccountFormViewController.saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageAccounts, backButtonSelector: #selector(backButtonPressed(_:)), rightItem: saveButtonItem)
 
     // customize appearance of form
     FormUtil.setupForm(self)
     
-    form +++=
+    form +++
       
       Section("Create account") { section in
         FormUtil.configureSectionHeader(section, title: kTitleCreateAccount)
@@ -40,11 +40,11 @@ class CreateAccountFormViewController: FormViewController {
     }
   }
   
-  func backButtonPressed(sender: UIBarButtonItem) {
-    self.navigationController?.popViewControllerAnimated(true)    
+  func backButtonPressed(_ sender: UIBarButtonItem) {
+    self.navigationController?.popViewController(animated: true)    
   }
   
-  @IBAction func saveButtonPressed(sender: UIBarButtonItem) {
+  @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
     let values = form.values()
 
     if values["Name"]! == nil {
@@ -59,7 +59,7 @@ class CreateAccountFormViewController: FormViewController {
       callback(self, newAccount!)
     }
 
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
 }

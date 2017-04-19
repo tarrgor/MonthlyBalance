@@ -17,13 +17,13 @@ class MBAmountLabel : UILabel {
     }
   }
   
-  private func setAmountLabelText() {
+  fileprivate func setAmountLabelText() {
     do {
       try self.text = CurrencyUtil.formattedValue(abs(self.amount))
       if self.amount < 0 {
-        self.textColor = UIColor.redColor()
+        self.textColor = UIColor.red
       } else {
-        self.textColor = UIColor.greenColor()
+        self.textColor = UIColor.green
       }
     } catch {
       self.text = "ERROR!"

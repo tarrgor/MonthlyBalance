@@ -20,7 +20,7 @@ extension ScheduledEvent {
     @NSManaged var recurring: NSNumber?
     @NSManaged var title: String?
     @NSManaged var amount: NSNumber?
-    @NSManaged var nextDueDate: NSDate?
+    @NSManaged var nextDueDate: Date?
     @NSManaged var account: Account?
 
 }

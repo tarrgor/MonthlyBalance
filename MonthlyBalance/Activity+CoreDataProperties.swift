@@ -14,7 +14,7 @@ import CoreData
 
 extension Activity {
 
-    @NSManaged var date: NSDate?
+    @NSManaged var date: Date?
     @NSManaged var amount: NSNumber?
     @NSManaged var icon: String?
     @NSManaged var title: String?

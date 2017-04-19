@@ -14,7 +14,7 @@ class MBSectionHeaderView : UIView {
   var titleLabel: UILabel!
   var title: String? {
     didSet {
-      self.titleLabel.text = title?.uppercaseString
+      self.titleLabel.text = title?.uppercased()
     }
   }
   var titleColor: UIColor? {
@@ -40,12 +40,12 @@ class MBSectionHeaderView : UIView {
   
   func setup() {
     titleLabel = UILabel()
-    titleLabel.text = title?.uppercaseString ?? "NO TITLE"
+    titleLabel.text = title?.uppercased() ?? "NO TITLE"
     addSubview(titleLabel)
 
     backgroundColor = UIColor(hex: kColorBaseBackground)
     titleColor = UIColor(hex: kColorHighlightedText)
-    titleFont = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
+    titleFont = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
   }
   
   func setupAutolayout() {

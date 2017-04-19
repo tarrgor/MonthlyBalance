@@ -9,15 +9,15 @@
 import UIKit
 import Eureka
 
-final class MBDateRow : Row<NSDate, MBDateCell>, RowType {
+final class MBDateRow : Row<MBDateCell>, RowType {
 
   required init(tag: String?) {
     super.init(tag: tag)
     displayValueFor = dateToString
   }
   
-  func dateToString(date: NSDate?) -> String {
-    cell.dateButton.setTitle(date?.displayText, forState: .Normal)
+  func dateToString(_ date: Date?) -> String {
+    cell.dateButton.setTitle(date?.displayText, for: UIControlState())
     return ""
   }
 }

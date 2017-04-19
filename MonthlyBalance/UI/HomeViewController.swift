@@ -28,11 +28,11 @@ class HomeViewController: UIViewController {
     super.viewDidLoad()
     
     // white status bar
-    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
     // remove line below the navigation bar
     if let navigationBar = self.navigationController?.navigationBar {
-      navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
+      navigationBar.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
       navigationBar.shadowImage = UIImage()
     }
     
@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
     initializePageViewController()
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     checkSelectedAccount()
 
     updateAccountOnPageViewController()
@@ -56,35 +56,35 @@ class HomeViewController: UIViewController {
     super.viewDidLayoutSubviews()
   }
 
-  @IBAction func incomeButtonTouchDown(sender: UIButton) {
+  @IBAction func incomeButtonTouchDown(_ sender: UIButton) {
     sender.backgroundColor = UIColor(hex: kColorHighlightedButtonBackground)
   }
 
-  @IBAction func expenditureButtonTouchDown(sender: UIButton) {
+  @IBAction func expenditureButtonTouchDown(_ sender: UIButton) {
     sender.backgroundColor = UIColor(hex: kColorHighlightedButtonBackground)
   }
 
-  @IBAction func incomeButtonPressed(sender: UIButton) {
-    incomeButton.enabled = false
-    expenditureButton.enabled = false
+  @IBAction func incomeButtonPressed(_ sender: UIButton) {
+    incomeButton.isEnabled = false
+    expenditureButton.isEnabled = false
 
-    openAmountPadInMode(.Income, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
+    openAmountPadInMode(.income, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
       avc in
       return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
     })
   }
 
-  @IBAction func expenditureButtonPressed(sender: UIButton) {
-    incomeButton.enabled = false
-    expenditureButton.enabled = false
+  @IBAction func expenditureButtonPressed(_ sender: UIButton) {
+    incomeButton.isEnabled = false
+    expenditureButton.isEnabled = false
 
-    openAmountPadInMode(.Expenditure, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
+    openAmountPadInMode(.expenditure, okHandler: amountPadDidPressOk, cancelHandler: nil, maskRect: {
       avc in
       return CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: avc.view.bounds.size.height - self.incomeButton.bounds.size.height - 3)
     })
   }
 
-  @IBAction func mainMenuButtonPressed(sender: UIBarButtonItem) {
+  @IBAction func mainMenuButtonPressed(_ sender: UIBarButtonItem) {
     if let svc = self.slideMenuViewController {
       if svc.menuOpened {
         svc.closeMenu(true)
@@ -96,14 +96,15 @@ class HomeViewController: UIViewController {
 
   // MARK: - Private methods
 
-  private func checkSelectedAccount() {
+  fileprivate func checkSelectedAccount() {
     if self.settings?.selectedAccount == nil {
       let createAccountViewController = CreateAccountFormViewController()
       createAccountViewController.onCreateAccount = { viewController, account in
         self.initializePageViewController()
       }
       
-      self.navigationController?.presentViewController(createAccountViewController, animated: true, completion: nil)
+      //self.navigationController?.present(createAccountViewController, animated: true, completion: nil)
+      self.navigationController?.pushViewController(createAccountViewController, animated: true)
     }
     
     if let account = self.settings?.selectedAccount {
@@ -111,18 +112,18 @@ class HomeViewController: UIViewController {
     }
   }
   
-  private func updateActivityTableView() {
+  fileprivate func updateActivityTableView() {
     self.activityTableView.reloadData()
     let count = tableView(self.activityTableView, numberOfRowsInSection: 0)
     if count > 0 {
-      let indexPath = NSIndexPath(forRow: count - 1, inSection: 0)
-      self.activityTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+      let indexPath = IndexPath(row: count - 1, section: 0)
+      self.activityTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
   }
 }
 
 extension HomeViewController {
-  func didChangeAccountSelection(account: Account) {
+  func didChangeAccountSelection(_ account: Account) {
     self.settings?.selectedAccount = account
     self.settings?.save()
     self.activityTableView.reloadData()
@@ -133,11 +134,11 @@ extension HomeViewController {
 extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   // MARK: - UITableViewDataSource, UITableViewDelegate
   
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let count = self.settings?.selectedAccount?.latestActivities(5).count else {
       print("Invalid data: Number of elements in TableView cannot be determined.")
       return 0
@@ -145,8 +146,8 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
     return count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(kIdActivityCell) as! ActivityTableViewCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: kIdActivityCell) as! ActivityTableViewCell
     
     guard let activity: Activity = self.settings?.selectedAccount?.latestActivities(5)[indexPath.row]
       else {
@@ -174,7 +175,7 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
   }
   
   // MARK: - Private methods
-  private func setSelectedBackgroundColorForCell(cell: UITableViewCell) {
+  fileprivate func setSelectedBackgroundColorForCell(_ cell: UITableViewCell) {
     cell.selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
     cell.selectedBackgroundView?.backgroundColor = UIColor(hex: kColorTableViewSelection)
   }
@@ -182,10 +183,10 @@ extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension HomeViewController {
   
-  func amountPadDidPressOk(amountPad: AmountPadViewController) {
-    let title = amountPad.mode == .Income ? self.settings?.defaultTitleIncome :
+  func amountPadDidPressOk(_ amountPad: AmountPadViewController) {
+    let title = amountPad.mode == .income ? self.settings?.defaultTitleIncome :
         self.settings?.defaultTitleExpenditure
-    self.settings?.selectedAccount?.addActivityForDate(NSDate(), title: title!, icon: "", amount: amountPad.finalAmount)
+    self.settings?.selectedAccount?.addActivityForDate(Date(), title: title!, icon: "", amount: amountPad.finalAmount)
     self.activityTableView.reloadData()
     
     closeAmountPad(amountPad) {
@@ -194,15 +195,15 @@ extension HomeViewController {
     }
   }
   
-  func amountPadDidPressCancel(amountPad: AmountPadViewController) {
+  func amountPadDidPressCancel(_ amountPad: AmountPadViewController) {
     closeAmountPad(amountPad) {
       self.resetButtons()
     }
   }
   
   func resetButtons() {
-    incomeButton.enabled = true
-    expenditureButton.enabled = true
+    incomeButton.isEnabled = true
+    expenditureButton.isEnabled = true
     
     incomeButton.backgroundColor = UIColor(hex: kColorButtonBackground)
     expenditureButton.backgroundColor = UIColor(hex: kColorButtonBackground)
@@ -213,15 +214,15 @@ extension HomeViewController : UIPageViewControllerDataSource {
   
   // MARK: - PageViewController DataSource
   
-  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationCount(for pageViewController: UIPageViewController) -> Int {
     return BalanceInfoType.count()
   }
   
-  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationIndex(for pageViewController: UIPageViewController) -> Int {
     return 0
   }
   
-  func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     let balanceInfoViewController = viewController as! BalanceInfoViewController
     var index = balanceInfoViewController.pageIndex
     
@@ -229,11 +230,11 @@ extension HomeViewController : UIPageViewControllerDataSource {
       return nil
     }
     
-    index--
+    index -= 1
     return self.balanceInfoViewControllerAtIndex(index)
   }
   
-  func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
     let balanceInfoViewController = viewController as! BalanceInfoViewController
     var index = balanceInfoViewController.pageIndex
     
@@ -241,13 +242,13 @@ extension HomeViewController : UIPageViewControllerDataSource {
       return nil
     }
     
-    index++
+    index += 1
     return self.balanceInfoViewControllerAtIndex(index)
   }
   
   // MARK: - Helper methods for PageViewController
   
-  func balanceInfoViewControllerAtIndex(index: Int) -> BalanceInfoViewController? {
+  func balanceInfoViewControllerAtIndex(_ index: Int) -> BalanceInfoViewController? {
     if index < 0 || index >= BalanceInfoType.count() {
       return nil
     }
@@ -265,12 +266,12 @@ extension HomeViewController : UIPageViewControllerDataSource {
     }
 
     // Initialize page view controller
-    let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: [:])
+    let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: [:])
     pageViewController.view.backgroundColor = UIColor(hex: kColorBaseBackground)
     pageViewController.dataSource = self
     
     let startPage = self.balanceInfoViewControllerAtIndex(0)
-    pageViewController.setViewControllers([startPage!], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+    pageViewController.setViewControllers([startPage!], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
     
     // add page view controller as a child view controller
     self.addChildViewController(pageViewController)
@@ -278,7 +279,7 @@ extension HomeViewController : UIPageViewControllerDataSource {
     pageViewController.view.frame = CGRect(x: 0, y: 0, width: self.balanceInfoContainerView.bounds.size.width, height: self.balanceInfoContainerView.bounds.size.height)
     self.balanceInfoContainerView.addSubview(pageViewController.view)
     
-    pageViewController.didMoveToParentViewController(self)
+    pageViewController.didMove(toParentViewController: self)
     
     self.balancePageViewController = pageViewController
   }

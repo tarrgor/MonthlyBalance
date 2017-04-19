@@ -21,9 +21,7 @@
 		F23BBC501C3D77AC00DB5E25 /* ManageEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC4F1C3D77AC00DB5E25 /* ManageEventsTableViewController.swift */; };
 		F23BBC521C3D7C3100DB5E25 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23BBC511C3D7C3100DB5E25 /* EventTableViewCell.swift */; };
 		F23F62571C6F608800E5ECB1 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F23F62561C6F608800E5ECB1 /* Cartfile */; };
-		F23F625A1C6F617A00E5ECB1 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23F62591C6F617A00E5ECB1 /* Eureka.framework */; };
 		F23F625D1C6F6E0700E5ECB1 /* MBSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23F625C1C6F6E0700E5ECB1 /* MBSectionHeaderView.swift */; };
-		F23F625F1C6F72AF00E5ECB1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23F625E1C6F72AF00E5ECB1 /* SnapKit.framework */; };
 		F2415BAE1C50016A00E84B9D /* MBDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2415BAD1C50016A00E84B9D /* MBDatePickerView.swift */; };
 		F2435B771C456E5E00F25006 /* EditActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2435B761C456E5E00F25006 /* EditActivityTableViewController.swift */; };
 		F24470AA1C4A6F6300626D29 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24470A91C4A6F6300626D29 /* Commons.swift */; };
@@ -61,6 +59,8 @@
 		F2E19AB71BF7915C00EEC70D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB61BF7915C00EEC70D /* UIColorExtension.swift */; };
 		F2E19AB91BF7925F00EEC70D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19AB81BF7925F00EEC70D /* StringExtension.swift */; };
 		F2E19ABB1BF794D100EEC70D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E19ABA1BF794D100EEC70D /* Constants.swift */; };
+		F2F9C6281EA7D9AC0028875B /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23F62591C6F617A00E5ECB1 /* Eureka.framework */; };
+		F2F9C6291EA7D9AC0028875B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23F625E1C6F72AF00E5ECB1 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,8 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F23F625A1C6F617A00E5ECB1 /* Eureka.framework in Frameworks */,
-				F23F625F1C6F72AF00E5ECB1 /* SnapKit.framework in Frameworks */,
+				F2F9C6281EA7D9AC0028875B /* Eureka.framework in Frameworks */,
+				F2F9C6291EA7D9AC0028875B /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,19 +430,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Karrmarr Software";
 				TargetAttributes = {
 					F258EF421BEF460700A6D7EB = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = YZB6HYGFR3;
+						LastSwiftMigration = 0830;
 					};
 					F258EF591BEF460700A6D7EB = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = F258EF421BEF460700A6D7EB;
 					};
 					F258EF641BEF460700A6D7EB = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = F258EF421BEF460700A6D7EB;
 					};
 				};
@@ -631,8 +634,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -675,8 +680,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -695,6 +702,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -717,6 +725,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -737,6 +746,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MonthlyBalance/MonthlyBalance-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -750,6 +760,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonthlyBalance.app/MonthlyBalance";
 			};
 			name = Debug;
@@ -763,6 +774,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonthlyBalance.app/MonthlyBalance";
 			};
 			name = Release;
@@ -774,6 +786,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MonthlyBalance;
 				USES_XCTRUNNER = YES;
 			};
@@ -786,6 +799,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karrmarrsoftware.MonthlyBalanceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MonthlyBalance;
 				USES_XCTRUNNER = YES;
 			};

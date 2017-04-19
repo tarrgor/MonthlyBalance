@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build_code:
+  stage: build
+  script:
+    - xcodebuild clean -project MonthlyBalance.xcodeproj -scheme MonthlyBalance | xcpretty
+    - xcodebuild test -project MonthlyBalance.xcodeproj -scheme MonthlyBalance | xcpretty -c && exit ${PIPESTATUS[0]}
+  tags:
+    - ios

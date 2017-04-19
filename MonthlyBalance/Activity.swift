@@ -18,10 +18,10 @@ class Activity: NSManagedObject {
  
   func delete() {
     let mutableActivities = NSMutableOrderedSet(orderedSet: self.account!.activities!)
-    mutableActivities.removeObject(self)
+    mutableActivities.remove(self)
     self.account!.activities = mutableActivities
     
-    CoreDataManager.sharedManager().managedObjectContext.deleteObject(self)
+    CoreDataManager.sharedManager().managedObjectContext.delete(self)
     CoreDataManager.sharedManager().saveContext()
   }
   
@@ -30,7 +30,7 @@ class Activity: NSManagedObject {
       return false
     }
     
-    let currentDate = NSDate()
+    let currentDate = Date()
     let currentMonth = currentDate.month()
     let currentYear = currentDate.year()
     let activityMonth = activityDate.month()
@@ -44,7 +44,7 @@ class Activity: NSManagedObject {
       return false
     }
 
-    let currentDate = NSDate()
+    let currentDate = Date()
     let currentYear = currentDate.year()
     let activityYear = activityDate.year()
     

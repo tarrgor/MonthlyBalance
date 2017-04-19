@@ -48,8 +48,8 @@ class BalanceInfoViewController: UIViewController {
   
   override func updateViewConstraints() {
     if let superview = self.view.superview {
-      superview.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1, constant: 0))
-      superview.addConstraint(NSLayoutConstraint(item: self.view, attribute: .Height, relatedBy: .Equal, toItem: superview, attribute: .Height, multiplier: 1, constant: 0))
+      superview.addConstraint(NSLayoutConstraint(item: self.view, attribute: .width, relatedBy: .equal, toItem: superview, attribute: .width, multiplier: 1, constant: 0))
+      superview.addConstraint(NSLayoutConstraint(item: self.view, attribute: .height, relatedBy: .equal, toItem: superview, attribute: .height, multiplier: 1, constant: 0))
     }
     
     super.updateViewConstraints()

@@ -16,13 +16,13 @@ class CoreDataManager {
 
   static var testMode: Bool = false
 
-  private static var _sharedManager: CoreDataManager?
+  fileprivate static var _sharedManager: CoreDataManager?
   
-  private var _databaseFileName: String
+  fileprivate var _databaseFileName: String
   
   // MARK: - Initialization
   
-  private init() {
+  fileprivate init() {
     self._databaseFileName = CoreDataManager.testMode ? "MonthlyBalanceData_Test.sqlite" : "MonthlyBalanceData.sqlite"
   }
   
@@ -37,31 +37,31 @@ class CoreDataManager {
   
   // MARK: - Core Data stack
   
-  private lazy var applicationDocumentsDirectory: NSURL = {
+  fileprivate lazy var applicationDocumentsDirectory: URL = {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.karrmarrsoftware.MonthlyBalance" in the application's documents Application Support directory.
-    let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return urls[urls.count-1]
   }()
   
-  private lazy var managedObjectModel: NSManagedObjectModel = {
+  fileprivate lazy var managedObjectModel: NSManagedObjectModel = {
     // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-    let modelURL = NSBundle.mainBundle().URLForResource("MonthlyBalance", withExtension: "momd")!
-    return NSManagedObjectModel(contentsOfURL: modelURL)!
+    let modelURL = Bundle.main.url(forResource: "MonthlyBalance", withExtension: "momd")!
+    return NSManagedObjectModel(contentsOf: modelURL)!
   }()
   
-  private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+  fileprivate lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
     // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
     // Create the coordinator and store
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self._databaseFileName)
+    let url = self.applicationDocumentsDirectory.appendingPathComponent(self._databaseFileName)
     var failureReason = "There was an error creating or loading the application's saved data."
     do {
-      try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+      try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
     } catch {
       // Report any error we got.
       var dict = [String: AnyObject]()
-      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-      dict[NSLocalizedFailureReasonErrorKey] = failureReason
+      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
+      dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
       
       dict[NSUnderlyingErrorKey] = error as NSError
       let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
@@ -77,7 +77,7 @@ class CoreDataManager {
   lazy var managedObjectContext: NSManagedObjectContext = {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
     let coordinator = self.persistentStoreCoordinator
-    var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+    var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     managedObjectContext.persistentStoreCoordinator = coordinator
     return managedObjectContext
   }()
@@ -87,13 +87,13 @@ class CoreDataManager {
   func deleteDatabase() -> Bool {
     var result: Bool = true
     
-    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self._databaseFileName)
+    let url = self.applicationDocumentsDirectory.appendingPathComponent(self._databaseFileName)
 
     do {
-      if NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
-        try NSFileManager.defaultManager().removeItemAtPath(url.path!)
-        try NSFileManager.defaultManager().removeItemAtPath("\(url.path!)-shm")
-        try NSFileManager.defaultManager().removeItemAtPath("\(url.path!)-wal")
+      if FileManager.default.fileExists(atPath: url.path) {
+        try FileManager.default.removeItem(atPath: url.path)
+        try FileManager.default.removeItem(atPath: "\(url.path)-shm")
+        try FileManager.default.removeItem(atPath: "\(url.path)-wal")
       }
       CoreDataManager._sharedManager = CoreDataManager()
     } catch {

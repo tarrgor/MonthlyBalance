@@ -17,7 +17,7 @@ class EditEventTableViewController : UITableViewController {
   
   let viewTitles = [ "Add new events", "Edit event" ]
   
-  var mode: ViewControllerMode = .Add
+  var mode: ViewControllerMode = .add
 
   var onSave: EditEventOnSave?
   var onCancel: EditEventOnCancel?
@@ -35,20 +35,20 @@ class EditEventTableViewController : UITableViewController {
   @IBOutlet weak var intervalLabel: UILabel!
   
   override func viewDidLoad() {
-    let tap = UITapGestureRecognizer(target: self, action: "viewTapped")
+    let tap = UITapGestureRecognizer(target: self, action: #selector(EditEventTableViewController.viewTapped))
     self.view.addGestureRecognizer(tap);
     
-    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonPressed:")
-    setupNavigationItemWithTitle(kTitleManageEvents, backButtonSelector: "cancelButtonPressed:", rightItem: saveButtonItem)
+    let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditEventTableViewController.saveButtonPressed(_:)))
+    setupNavigationItemWithTitle(kTitleManageEvents, backButtonSelector: #selector(cancelButtonPressed(_:)), rightItem: saveButtonItem)
     
     // Check if controller is called in "edit" mode
     if self.event != nil {
-      self.mode = .Edit
+      self.mode = .edit
       self.titleLabel.text = self.viewTitles[1]
       
       self.titleTextField.text = self.event!.title
       self.amountLabel.amount = Double(self.event!.amount!)
-      self.recurringSwitch.on = Bool(self.event!.recurring!)
+      self.recurringSwitch.isOn = Bool(self.event!.recurring!)
       self.dayOfMonthSlider.value = Float(self.event!.dayOfMonth!)
       self.dayOfMonthLabel.text = String(Int(self.dayOfMonthSlider.value))
       self.intervalSlider.value = Float(self.event!.interval!)
@@ -58,7 +58,7 @@ class EditEventTableViewController : UITableViewController {
     }
   }
   
-  @IBAction func saveButtonPressed(sender: UIButton) {
+  @IBAction func saveButtonPressed(_ sender: UIButton) {
     let title = self.titleTextField.text
     if title == nil || title?.characters.count == 0 {
       self.showAlertWithTitle("Error!", message: "Please enter a title.")
@@ -66,7 +66,7 @@ class EditEventTableViewController : UITableViewController {
     }
     
     if let account = self.settings?.selectedAccount {
-      let recurring = self.recurringSwitch.on
+      let recurring = self.recurringSwitch.isOn
       let dayOfMonth = Int(self.dayOfMonthSlider.value)
       let interval = Int(self.intervalSlider.value)
       let amount = self.amountLabel.amount
@@ -75,11 +75,11 @@ class EditEventTableViewController : UITableViewController {
         self.event = account.addEventWithTitle(title!, icon: "", recurring: recurring, dayOfMonth: dayOfMonth, interval: interval, amount: amount)
       } else {
         self.event!.title = title
-        self.event!.recurring = recurring
-        self.event!.dayOfMonth = dayOfMonth
-        self.event!.interval = interval
-        self.event!.amount = amount
-        self.event!.nextDueDate = NSDate().nextDateWithDayOfMonth(dayOfMonth)
+        self.event!.recurring = recurring as NSNumber
+        self.event!.dayOfMonth = dayOfMonth as NSNumber
+        self.event!.interval = interval as NSNumber
+        self.event!.amount = amount as NSNumber
+        self.event!.nextDueDate = Date().nextDateWithDayOfMonth(dayOfMonth)
         self.event!.update()
       }
     } else {
@@ -90,19 +90,19 @@ class EditEventTableViewController : UITableViewController {
       callback(self, self.event)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func cancelButtonPressed(sender: UIButton) {
+  @IBAction func cancelButtonPressed(_ sender: UIButton) {
     if let callback = self.onCancel {
       callback(self)
     }
     
-    self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func incomeButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Income, okHandler: { amountPad in
+  @IBAction func incomeButtonPressed(_ sender: UIButton) {
+    openAmountPadInMode(.income, okHandler: { amountPad in
       self.amountLabel.amount = amountPad.finalAmount
       self.closeAmountPad(amountPad)
     }, cancelHandler: { amountPad in
@@ -110,8 +110,8 @@ class EditEventTableViewController : UITableViewController {
     })
   }
   
-  @IBAction func expenditureButtonPressed(sender: UIButton) {
-    openAmountPadInMode(.Expenditure, okHandler: { amountPad in
+  @IBAction func expenditureButtonPressed(_ sender: UIButton) {
+    openAmountPadInMode(.expenditure, okHandler: { amountPad in
       self.amountLabel.amount = amountPad.finalAmount
       self.closeAmountPad(amountPad)
     }, cancelHandler: { amountPad in
@@ -119,11 +119,11 @@ class EditEventTableViewController : UITableViewController {
     })
   }
   
-  @IBAction func dayOfMonthSliderChanged(sender: UISlider) {
+  @IBAction func dayOfMonthSliderChanged(_ sender: UISlider) {
     self.dayOfMonthLabel.text = String(Int(self.dayOfMonthSlider.value))
   }
   
-  @IBAction func intervalSliderChanged(sender: UISlider) {
+  @IBAction func intervalSliderChanged(_ sender: UISlider) {
     self.intervalLabel.text = String(Int(self.intervalSlider.value))
   }
   
@@ -133,7 +133,7 @@ class EditEventTableViewController : UITableViewController {
 }
 
 extension EditEventTableViewController : UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     self.titleTextField.resignFirstResponder()
     return true
   }
